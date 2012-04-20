@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bienvenido a Rickr</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+      <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p> 
+      <% end %>
+      <div id="superior">
+        <div id="busqueda">
+          <%= form_for '', :name => 'busqueda', :method => :get do |f| %>
+            <%= f.text_field :busqueda, :value => 'texto de busqueda' %>
+            <%= f.submit 'Buscar' %>
+          <% end %>
+        </div>
+        <div id="caja_usuario">
+          <img src="/images/usuario.png" alt="foto perfil usuario"/>
+          <div>
+            <h3>Usuario</h3>
+            <p>John Appleseed</p>
+          </div>
+        </div>
+      </div>
+      <div id="cuerpo">
+        <%= yield %>
+      </div>
+      <div id="pie">
+        rickr 2012
+      </div>
+  </div>
+</body>
+</html>

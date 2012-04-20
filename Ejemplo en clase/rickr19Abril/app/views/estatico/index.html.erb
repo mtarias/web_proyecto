@@ -1,0 +1,22 @@
+<div id="imagen_home">
+  <img src="/images/dummy.jpg" alt="imagen de home" />
+</div>
+<div id="texto_home">
+  <div>
+    <h1>Bienvenido <br />
+      a <br />
+      Rickr</h1>
+    <div id="formulario_home">
+      <%= form_for :usuario, :url => login_path, :name => 'login', :method => :post do |f| %>
+        <%= f.text_field :nick, :value => 'usuario...' %><br />
+        <%= f.password_field :password, :value => 'password...' %><br />
+        <%= f.submit 'Entrar' %><%= link_to 'Registro', new_usuario_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="inferior">
+  <div class="paso" id="paso_1">paso 1</div>
+  <div class="paso" id="paso_2">paso 2</div>
+  <div class="paso" id="paso_3">paso 3</div>
+</div>

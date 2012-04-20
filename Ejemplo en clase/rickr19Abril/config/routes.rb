@@ -1,15 +1,16 @@
-Eventmaker::Application.routes.draw do
-  get "home/index"
+Rickr::Application.routes.draw do
+  root :to => "estatico#index"
+  match 'login' => 'estatico#login', :as => :login
+  
+  match 'fotos/usuario/:id' => 'fotos#usuario', :as => :fotos_usuario
+  match 'albums/usuario/:id' => 'albums#usuario', :as => :albums_usuario
+  match 'albums/fotos/:id' => 'albums#fotos', :as => :fotos_del_album
+  
+  resources :albums
 
-  resources :groups
+  resources :fotos
 
-  resources :pictures
-
-  resources :taxes
-
-  resources :events
-
-  resources :users
+  resources :usuarios
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,7 +61,7 @@ Eventmaker::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
