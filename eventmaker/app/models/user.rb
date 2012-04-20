@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
   has_many :taxs , :through => user_taxs
   has_many :pictures
   has_many :picture_comments
+  has_many :event_comments
   attr_accessible :email, :facebook_id, :password, :twitter_id
 end
