@@ -3,8 +3,8 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :email
       t.string :password
-      t.string :facebook_id
-      t.string :twitter_id
+      t.string :facebook
+      t.string :twitter
 
       t.timestamps
     end
