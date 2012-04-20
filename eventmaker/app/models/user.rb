@@ -6,5 +6,7 @@ class User < ActiveRecord::Base
   has_many :pictures
   has_many :picture_comments
   has_many :event_comments
+  has_many :groups
+  has_many :group_members
   attr_accessible :email, :facebook_id, :password, :twitter_id
 end

@@ -1,4 +1,6 @@
 Eventmaker::Application.routes.draw do
+  resources :groups
+
   resources :pictures
 
   resources :taxes
