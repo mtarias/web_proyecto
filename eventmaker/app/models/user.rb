@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :group_members
   has_many :user_events
-  attr_accessible :email, :facebook_id, :password, :twitter_id
+  attr_accessible :email, :password 
 end
