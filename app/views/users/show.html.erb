@@ -10,6 +10,17 @@
   <%= @user.password %>
 </p>
 
+<p>
+  <b>Facebook:</b>
+  <%= @user.facebook %>
+
+</p>
+
+<p>
+  <b>Twitter:</b>
+  <%= @user.twitter %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
