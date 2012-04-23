@@ -1,6 +1,19 @@
 <h1>EventMaker</h1>
-<p>Aquí puedes hacer los eventos más shoros de la red!</p>
-<p> Aqui puedes ver los eventos que tu haz creado</p>
+<div class="login">
+	<p>*Formulario de login*</p>
+</div>
+<div class="register">
+	<%= button_to '*Registrarse', :controller => "user", :action => "new" %>
+</div>
+<div class="main">
+<p>Próximos eventos</p>
+<p>EventMaker es una un lugar donde puedes organizar todos tus eventos</p>
+<p><ol>
+	<li>Publica tu evento</li>
+	<li>Invita a tus amigos</li>
+	<li>Asiste y ¡disfruta!</li></ol>
+</div>
+<p>* Aquí puedes ver los eventos que tu haz creado</p>
 <p><%= link_to 'Mis Eventos', events_path %></p>
-<p> Aqui aparecen todos los usuarios que se han registrado en nuestro portal </p>
+<p>* Aquí aparecen todos los usuarios que se han registrado en nuestro portal</p>
 <p><%= link_to 'Usuarios Registrados', users_path %></p>
