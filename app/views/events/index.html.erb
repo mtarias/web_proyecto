@@ -1,31 +1,38 @@
-<h1>Current events</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Place</th>
-    <th>Description</th>
-    <th>Is private</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Mis Eventos</h1>
+<div>
+    <p>Aqui debiera ir el menu que va en todas las paginas</p>
+    <%= link_to 'Crear Evento', new_event_path %>
+</div>
+<div>
+<table text-align="left">
 
 <% @events.each do |event| %>
-  <tr>
+<tr>
+    <td><b />Nombre</td>
     <td><%= event.name %></td>
+</tr>
+<tr>
+    <td><b />Fecha</td>
     <td><%= event.date %></td>
+</tr>
+<tr>
+    <td><b />Lugar</td>
     <td><%= event.place %></td>
+</tr>
+<tr>
+    <td><b />Descripcion</td>
     <td><%= event.description %></td>
+</tr>
+<tr>
+    <td><b />Es Privado</td>
     <td><%= event.is_private %></td>
+</tr>
+<tr>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+</tr>
 <% end %>
 </table>
-
+</div>
 <br />
-
-<%= link_to 'New Event', new_event_path %>
