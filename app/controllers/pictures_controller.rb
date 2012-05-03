@@ -40,7 +40,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(params[:picture])
+    @picture = Picture.new(Picture.picture_upload(params)[:picture])
 
     respond_to do |format|
       if @picture.save
@@ -59,7 +59,7 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
 
     respond_to do |format|
-      if @picture.update_attributes(params[:picture])
+      if @picture.update_attributes(Picture.picture_upload(params)[:picture])
         format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
         format.json { head :no_content }
       else

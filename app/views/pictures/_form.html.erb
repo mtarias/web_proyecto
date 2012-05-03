@@ -12,15 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label "Nombre de la imagen" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :path %><br />
-    <%= f.text_field :path %>
+    <%= f.file_field :path %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label "Descripción" %><br />
     <%= f.text_field :description %>
   </div>
   <div class="actions">
