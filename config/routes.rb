@@ -7,7 +7,9 @@ Eventmaker::Application.routes.draw do
 
   resources :taxes
 
-  resources :events
+  resources :events do  
+    resources :event_comments
+  end
 
   resources :users
 

@@ -1,0 +1,10 @@
+<p>
+  <b><%= event_comment.user %>Comentario:</b>
+  <%= event_comment.comment %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Comment', [event_comment.event, event_comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+</p>
