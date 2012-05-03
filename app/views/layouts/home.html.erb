@@ -15,7 +15,7 @@
       		<h1>EventMaker</h1>
       	</div>
       	<div id="login">
-      		<%= form_for :user, :url => profile_path, :name => 'login', :method => :post do |f| %>
+      		<%= form_for :user, :url => profile_path, :method => :post do |f| %>
       		<div class="email">
       			<%= f.label "Correo electrónico" %><br>
       			<%= f.text_field :email, :value => '' %>

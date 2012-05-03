@@ -17,12 +17,12 @@ class HomeController < ApplicationController
   		if user = User.find_by_email(params[:email])
   			@user = user
   		else
-  			redirect_to :root, :notice => "No existe usuario con ese email"
+  			redirect_to :root, :notice => "No existe usuario con ese email, weon"
   		end
   	elsif session[:user_id]
   		@user = User.find(session[:user_id])
   	else
-  		redirect_to :root, :notice => "No existe usuario con ese email"
+  		redirect_to :root, :notice => "No existe usuario con ese email, aweonao"
   	end
   end
 
