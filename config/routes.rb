@@ -2,6 +2,7 @@ Eventmaker::Application.routes.draw do
   get "home/index"
 
   match 'login' => "home#login", :as => :login
+  match 'profile(/:email)' => "home#profile", :as => :profile
 
   resources :groups
 
