@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -30,6 +31,14 @@ class UsersController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @user }
     end
+  end
+
+  def edit_profile
+    @user = User.find(session[:user_id])
+    if !@user
+      return redirect_to :root, :notice => "Primero debes iniciar sesión"
+    end
+    render 'edit'
   end
 
   # GET /users/1/edit
