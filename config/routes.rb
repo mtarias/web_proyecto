@@ -1,6 +1,8 @@
 Eventmaker::Application.routes.draw do
   get "home/index"
 
+  match 'login' => "home#login", :as => :login
+
   resources :groups
 
   resources :pictures
