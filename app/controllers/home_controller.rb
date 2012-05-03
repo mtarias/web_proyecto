@@ -1,12 +1,15 @@
 # encoding: utf-8
 class HomeController < ApplicationController
+layout 'home', :except => :profile
+layout 'application', :only => :profile
+
   def index
   end
 
   def login
   	if user = User.login(params[:user][:email],params[:user][:password])
   		session[:user_id] = user.id
-  		redirect_to events_path, :notice => "Hola de nuevo, #{user.email}!"
+  		redirect_to profile_path, :notice => "Hola de nuevo, #{user.email}!"
   	else
   		redirect_to :root, :notice => "Email o contraseña incorrecta"
   	end
