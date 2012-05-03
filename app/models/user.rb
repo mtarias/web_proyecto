@@ -12,4 +12,13 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
    	:message    => ' debe ser valido'
   validates_confirmation_of :password
+
+  def self.login(email, password)
+    user = self.find_by_email(email)
+    if user && password == user.password
+      user
+    else
+      false
+    end
+  end
 end
