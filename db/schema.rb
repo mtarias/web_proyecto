@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420185354) do
+ActiveRecord::Schema.define(:version => 20120503145150) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "comment"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "event_comments", ["event_id"], :name => "index_event_comments_on_event_id"
+  add_index "event_comments", ["user_id"], :name => "index_event_comments_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -40,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20120420185354) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "guests", :force => true do |t|
+    t.boolean  "is_going"
+    t.boolean  "is_admin"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "guests", ["event_id"], :name => "index_user_events_on_event_id"
+  add_index "guests", ["user_id"], :name => "index_user_events_on_user_id"
+
   create_table "picture_comments", :force => true do |t|
     t.string   "comment"
     t.datetime "created_at", :null => false
@@ -57,13 +74,6 @@ ActiveRecord::Schema.define(:version => 20120420185354) do
   create_table "taxes", :force => true do |t|
     t.string   "name"
     t.integer  "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_events", :force => true do |t|
-    t.boolean  "is_admin"
-    t.boolean  "is_going"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
