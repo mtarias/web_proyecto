@@ -1,7 +1,7 @@
 # encoding: utf-8
 class HomeController < ApplicationController
 layout 'home', :except => :profile
-layout 'application', :only => :profile
+layout 'login', :only => :profile
 
   def index
   end

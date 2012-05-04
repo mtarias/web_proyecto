@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eventmaker</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="fixedtop">
+		<div class="logo">
+			<h3>EventMaker</h3>
+		</div>
+		<div class="userinfo">
+			<% if session[:user_id] %>
+				<% user = User.find(session[:user_id]) %>
+				<%= link_to "#{user.email}", profile_path %>
+				<%= link_to "Salir", logout_path %>
+			<% end %>
+		</div>
+	</div>
+	<div id="wrapper">
+		<% if flash[:notice] %>
+      	<p id="notice"><%= flash[:notice] %></p> 
+      	<% end %>
+	</div>
+<%= yield %>
+
+</body>
+</html>

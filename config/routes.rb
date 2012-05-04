@@ -3,6 +3,7 @@ Eventmaker::Application.routes.draw do
 
   match 'login' => "home#login", :as => :login
   match 'profile(/:email)' => "home#profile", :as => :profile
+  match 'logout' => "home#logout", :as => :logout
 
   resources :groups
 
