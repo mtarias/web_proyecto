@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :group_members
   has_many :guests
+  accepts_nested_attributes_for :event_comments, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :guests, :allow_destroy => true, :reject_if => :all_blank
   attr_accessible :email, :password, :password_confirmation, :facebook, :twitter
   validates :email,  :presence => true, :uniqueness => true
   validates :password,  :presence => true, :length => {:within => 6..40}
