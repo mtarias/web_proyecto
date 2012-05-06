@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users.json
 layout 'login', :except => :new
 layout 'home', :only => :new
+skip_before_filter :require_login, :only => :new
 
   def index
     @users = User.all
