@@ -3,7 +3,10 @@
 
 	</nav>
 	<h2>Próximos eventos</h2>
-
+	<%= link_to 'Crear Evento', new_event_path %>
 	<!-- Debiésemos cargar todos los eventos a los cuales el usuario ha sido invitado -->
+	<% current_user = User.find(session[:user_id]) %>
+	<% if session[:user_id] %>
+   <% end %>
 
 </div>

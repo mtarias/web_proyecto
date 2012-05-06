@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  layout 'login'
   def index
     @events = Event.all
 

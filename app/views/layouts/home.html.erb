@@ -7,26 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="wrapper">
-		<% if flash[:notice] %>
-      	<p id="notice"><%= flash[:notice] %></p> 
-      	<% end %>
+	<div class="header">
       	<div id="logo">
       		<h1>EventMaker</h1>
       	</div>
-      	<div id="login">
+      	<div class="login">
       		<%= form_for :user, :url => login_path, :name => 'login', :method => :post do |f| %>
       		<div class="email">
-      			<%= f.label "Correo electrónico" %><br>
+      		  <%= f.label "Correo electrónico" %><br>
       			<%= f.text_field :email, :value => '' %>
       		</div>
       		<div class="password">
       			<%= f.label "Contraseña" %><br>
         		<%= f.password_field :password, :value => '' %>
         	</div>
-        	<%= f.submit 'Entrar' %><%= link_to 'Registrate', new_user_path %>
+          <div class="submit" text-align:"left">
+        	 <%= f.submit 'Entrar' %><%= link_to 'Registrate', new_user_path %>
+          </div>
       <% end %>
-      	</div>
+      <% if flash[:notice] %>
+        <p id="notice"><%= flash[:notice] %></p> 
+      <% end %>
+      </div>
 	</div>
 <%= yield %>
 

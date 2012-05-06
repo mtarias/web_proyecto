@@ -7,22 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="fixedtop">
-		<div class="logo">
-			<h3>EventMaker</h3>
+	<div class="header">
+		<div class="fixedtop">
+			<div id="logo">
+				<h1>EventMaker</h1>
+			</div>
+			<div class="login">
+				<% if session[:user_id] %>
+					<% user = User.find(session[:user_id]) %>
+					<%= link_to "#{user.email}", profile_path %>
+					<%= link_to "Salir", logout_path %>
+				<% end %>
+				<div id="header">
+				<% if flash[:notice] %>
+		      		<p id="notice"><%= flash[:notice] %></p> 
+		      	<% end %>
+		      	</div>
+			</div>
 		</div>
-		<div class="userinfo">
-			<% if session[:user_id] %>
-				<% user = User.find(session[:user_id]) %>
-				<%= link_to "#{user.email}", profile_path %>
-				<%= link_to "Salir", logout_path %>
-			<% end %>
-		</div>
-	</div>
-	<div id="wrapper">
-		<% if flash[:notice] %>
-      	<p id="notice"><%= flash[:notice] %></p> 
-      	<% end %>
+		
 	</div>
 <%= yield %>
 
