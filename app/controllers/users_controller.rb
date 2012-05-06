@@ -2,6 +2,9 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+layout 'login', :except => :new
+layout 'home', :only => :new
+
   def index
     @users = User.all
 

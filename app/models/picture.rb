@@ -1,5 +1,6 @@
 class Picture < ActiveRecord::Base
   belongs_to :user
+  belongs_to :event
   has_many :picture_comments
   attr_accessible :description, :name, :path
 

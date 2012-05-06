@@ -1,12 +1,14 @@
-<div class="main">
+<%= render "layouts/menu" %>
+<div class="content">
 	<nav>
 
 	</nav>
-	<h2>Próximos eventos</h2>
-	<%= link_to 'Crear Evento', new_event_path %>
 	<!-- Debiésemos cargar todos los eventos a los cuales el usuario ha sido invitado -->
+
+	<h2>Próximos eventos</h2>
 	<% current_user = User.find(session[:user_id]) %>
 	<% if session[:user_id] %>
+
    <% end %>
 
 </div>

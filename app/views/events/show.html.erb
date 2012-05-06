@@ -1,35 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="mainevent">
+	<div class="leftevent">	
+		<div class="picture">
+			<%= link_to 'Subir Foto', new_picture_path %>
+		</div>
+		<div class="guests">
+			<h3>Lista de invitados</h3>
+		</div>
+	</div>
+	<div class="rightevent">
+		<p>Aqui va la lita de cosas y los botones importantes</p>
+	</div>
+	<div class="centerevent">
+		<p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @event.name %></h1>
-</p>
+		<p>
+		  <h1><%= @event.name %></h1>
+		</p>
 
-<p>
-  <b>Date:</b>
-  <%= @event.date %>
-</p>
+		<p>
+		  <b>Date:</b>
+		  <%= @event.date %>
+		</p>
 
-<p>
-  <b>Place:</b>
-  <%= @event.place %>
-</p>
+		<p>
+		  <b>Place:</b>
+		  <%= @event.place %>
+		</p>
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
+		<p>
+		  <b>Description:</b>
+		  <%= @event.description %>
+		</p>
 
-<p>
-  <b>Is private:</b>
-  <%= @event.is_private %>
-</p>
+		<p>
+			<% if (@event.is_private) %>
+				<p>Evento Privado</p>
+			<% else %>
+				<p>Evento Publico</p>
+			<% end %>
+		</p>
 
-<h2>Comentarios</h2>
-<%= render @event.event_comments %>
+		<h2>Comentarios</h2>
+		<%= render @event.event_comments %>
 
-<h2>Agregar un comentario:</h2>
-<%= render "event_comments/form" %>
+		<h2>Agregar un comentario</h2>
+		<%= render "event_comments/form" %>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+		<%= link_to 'Edit', edit_event_path(@event) %> |
+		<%= link_to 'Back', events_path %>
+	</div>
+</div>

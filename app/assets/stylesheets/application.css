@@ -12,9 +12,100 @@
  *= require_tree .
 */
 
-body {width:80%; margin-left: auto; margin-right: auto;}
-.header { background-color: #FF0000; padding-right:100px; height:120px;}
-.main{ background-color: #CC0; padding-left:100px; padding-left:100px;}
+body {
+	width:1100px; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+.header { 
+	background-color: #FF0000; 
+	padding-right:100px; 
+	height:120px;
+}
+.main{ 
+	background-color: #CC0; 
+	padding-top:20px;
+	height:500px;
+	padding-left:20px;
+	padding-right:20px;
+}
+#logo {
+	float:left; 
+	padding-top:30px; 
+	padding-left:30px;
+}
+.login{
+	float:right;
+	padding-top:5px;
+}
+.menu{
+	float:left;
+	width:200px;
+	height:520px;
+	position: relative;
+	line-height:15px;
+	background-color:#1DB746;
+	margin-right:50px;
+}
+.content{
+	background-color: #CC0; 
+	padding-left:100px; 
+	padding-top:20px;
+	margin-left:200px;
+}
+ul{  
+	list-style-type:none;  
+} 
+a:hover{text-decoration:none;}
 
-#logo {float:left; padding-top:30px; padding-left:30px;}
-.login{float:right;padding-top:5px;}
+a{text-decoration:none;}
+
+
+.mainevent{
+	background-color: #CC0; 
+	padding-top:20px;
+	padding-right:20px;
+	padding-left:20px;
+}
+.leftevent {
+	background-color: #A5B71D; 
+	width:20%;
+	height:100%;
+	float:left;
+	margin-right:20px;
+}
+.rightevent{
+	background-color: #5CA6D7;
+	width:20%;
+	height:200px;
+	float:right;
+	margin-left:20px;
+}
+.centerevent{
+	width:60%;
+	margin-left: auto; 
+	margin-right: auto;
+}
+.eventcomment{
+	padding-top:2px;
+	border-style:solid;
+	border-width:5px;
+	margin-left:20px;
+	margin-right:20px;
+	padding-left:10px;
+}
+
+.picture{
+	background-color:#60CDDE;
+	height:100px;
+	padding-top:70px;
+	text-align:center;
+}
+.guests{
+	padding-left:15px;
+	padding-right:15px;
+}
+.neweventcomment{
+	margin-left:20px;
+	margin-right:20px;
+}
