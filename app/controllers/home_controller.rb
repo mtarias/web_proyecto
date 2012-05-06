@@ -2,6 +2,7 @@
 class HomeController < ApplicationController
 layout 'home', :except => :profile
 layout 'login', :only => :profile
+skip_before_filter :require_login
 
   def index
     if session[:user_id]
@@ -9,6 +10,7 @@ layout 'login', :only => :profile
     end
   end
 
+  #Maneja el formulario de login
   def login
   	if user = User.login(params[:user][:email],params[:user][:password])
   		session[:user_id] = user.id
