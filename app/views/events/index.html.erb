@@ -7,33 +7,37 @@
     </div>
     <div>
         <table text-align="left">
-
+        <% user = User.find(session[:user_id]) %>
         <% @events.each do |event| %>
-        <tr>
-            <td><b />Nombre</td>
-            <td><%= event.name %></td>
-        </tr>
-        <tr>
-            <td><b />Fecha</td>
-            <td><%= event.date %></td>
-        </tr>
-        <tr>
-            <td><b />Lugar</td>
-            <td><%= event.place %></td>
-        </tr>
-        <tr>
-            <td><b />Descripcion</td>
-            <td><%= event.description %></td>
-        </tr>
-        <tr>
-            <td><b />Es Privado</td>
-            <td><%= event.is_private %></td>
-        </tr>
-        <tr>
-            <td><%= link_to 'Show', event %></td>
-            <td><%= link_to 'Edit', edit_event_path(event) %></td>
-            <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-        </tr>
+            <% event.guests.each do |g| %> 
+                <% if (g.user.email == user.email) %> 
+                    <tr>
+                        <td><b />Nombre</td>
+                        <td><%= event.name %></td>
+                    </tr>
+                    <tr>
+                        <td><b />Fecha</td>
+                        <td><%= event.date %></td>
+                    </tr>
+                    <tr>
+                        <td><b />Lugar</td>
+                        <td><%= event.place %></td>
+                    </tr>
+                    <tr>
+                        <td><b />Descripcion</td>
+                        <td><%= event.description %></td>
+                    </tr>
+                    <tr>
+                        <td><b />Es Privado</td>
+                        <td><%= event.is_private %></td>
+                    </tr>
+                    <tr>
+                        <td><%= link_to 'Show', event %></td>
+                        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                        <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+                    </tr>
+                <% end %>
+            <% end %>
         <% end %>
         </table>
     </div>
