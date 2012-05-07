@@ -41,7 +41,16 @@
 		</p>
 
 		<h2>Comentarios</h2>
-		<%= render @event.event_comments %>
+		<% @event.event_comments.each do |comment| %>
+		<p>
+			<% if !comment.user.nil? %>
+			<%= comment.user.email %>
+			<% end %>
+		</p>
+		<p>
+			<%= comment.comment %>
+		</p>
+		<% end %>
 
 		<h2>Agregar un comentario</h2>
 		<%= render "event_comments/form" %>
