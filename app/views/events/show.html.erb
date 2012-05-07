@@ -18,17 +18,26 @@
 		</p>
 
 		<p>
-		  <b>Date:</b>
+		  <b>Fecha:</b>
 		  <%= @event.date %>
 		</p>
 
 		<p>
-		  <b>Place:</b>
+		  <b>Lugar:</b>
 		  <%= @event.place %>
 		</p>
 
+		<% @event.guests.each do |guest| %>
 		<p>
-		  <b>Description:</b>
+			<% if !guest.user.nil? %>
+				<b>Administrador:</b>
+				<%= guest.user.email %>
+			<% end %>
+		</p>
+		<% end %>
+
+		<p>
+		  <b>Descripcion:</b>
 		  <%= @event.description %>
 		</p>
 

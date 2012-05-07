@@ -46,12 +46,13 @@ body {
 	line-height:15px;
 	background-color:#1DB746;
 	margin-right:50px;
+	padding-right:10px;
 }
 .content{
 	background-color: #CC0; 
 	padding-left:100px; 
 	padding-top:20px;
-	margin-left:200px;
+	margin-left:210px;
 }
 ul{  
 	list-style-type:none;  
