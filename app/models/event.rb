@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   attr_accessible :date, :description, :is_private, :name, :place
   validates :name,  :presence => true
   validates :date,  :presence => true
+  validate :event_date_cannot_be_in_the_past
   validates :place, :presence => true
   accepts_nested_attributes_for :guests, 
                :allow_destroy => true, :reject_if => :all_blank
@@ -14,5 +15,11 @@ class Event < ActiveRecord::Base
     guests = Guest.find(:all, :conditions => [ 'user_id = ? AND event_id = ? AND is_going= ? ',user_id,
      self.id , true ] )
     guests.size>0 
+  end
+
+  def event_date_cannot_be_in_the_past
+    if !date.blank? and date < Date.today
+      errors.add(:date, " debe ser en el futuro")
+    end
   end
 end
