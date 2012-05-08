@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  skip_before_filter :require_login, :only => :public_events
   layout 'login'
+
   def next_events
     @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
 
@@ -39,6 +41,15 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # past_events.html.erb
+      format.json { render json: @events }
+    end
+  end
+
+  def public_events
+    @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ? AND is_private = ?", DateTime.current, false]
+
+    respond_to do |format|
+      format.html # public_events.html.erb
       format.json { render json: @events }
     end
   end
@@ -136,7 +147,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Asistiras a este evento' }
         format.json { head :no_content }
       else
-        format.html { redirect_to publicevent, notice: 'No funciono D:'}
+        format.html { redirect_to :back, notice: 'No funciono D:'}
       end
     end
   end

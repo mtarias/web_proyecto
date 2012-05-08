@@ -8,6 +8,7 @@
             <% end %>
             </h2>
         </td>
+        <td><%= link_to "Asistir a evento", assist_path(event), :notice => "Te has inscrito exitosamente a #{event.name}", :confirm => "¿Seguro que deseas asistir a este evento?" %></td>
     </tr>
     <tr>
         <td><b />Fecha</td>

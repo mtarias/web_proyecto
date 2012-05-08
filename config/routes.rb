@@ -4,12 +4,12 @@ Eventmaker::Application.routes.draw do
   match 'login' => "home#login", :as => :login
   match 'profile(/:email)' => "home#profile", :as => :profile
   match 'logout' => "home#logout", :as => :logout
-  match 'publicevent' => "events#publicevent", :as => :publicevent
   match 'assist(/:id)' => "events#assist", :as => :assist
 
   match 'events/private' => "events#user_events", :as => :private_events
   match 'events/past' => "events#past_events", :as => :past_events
   match 'events/next' => "events#next_events", :as => :next_events
+  match 'public/events' => "events#public_events", :as => :public_events
 
   resources :groups
 
