@@ -12,7 +12,20 @@
 	</div>
 	<div class="rightevent">
 		<p><%= link_to "Editar evento" , edit_event_path(@event) %>
-		<p><%= link_to "Invitar a usuarios" %></p>
+
+		<%= form_tag @event, :method => 'get' do %>
+  			<p>Agregar un amigo con su email:
+    		<%= text_field_tag :search, params[:search] %>
+    		<%= submit_tag "Buscar", :name => nil %>
+  			</p>
+		<% end %>
+		<% if @friends.size == 0 %>
+			No existe el usuario
+		<% else %>
+			<% @friends.each do |friend| %>
+				<p><%= link_to "Invitar a #{friend.email}", invite_path(@event, friend) %></p>
+			<% end %>
+		<% end %>
 		<p>Aqui va la lista de cosas y los botones importantes</p>
 	</div>
 	<div class="centerevent">
@@ -33,15 +46,15 @@
 
 			<% @event.guests.each do |guest| %>
 			<p>
+				<b>Administrador:</b>
 				<% if !guest.user.nil? && guest.is_admin ==true %>
-					<b>Administrador:</b>
 					<%= guest.user.email %>
 				<% end %>
 			</p>
 			<% end %>
 
 			<p>
-			  <b>Descripcion:</b>
+			  <b>Descripción:</b>
 			  <%= @event.description %>
 			</p>
 
