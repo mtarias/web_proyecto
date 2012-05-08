@@ -2,11 +2,43 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   layout 'login'
-  def index
-    @events = Event.all
+  def next_events
+    @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # next_events.html.erb
+      format.json { render json: @events }
+    end
+  end
+
+  def user_events
+    @events = Array.new
+    valid_events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
+    
+    valid_events.each do |e|
+      if (Guest.find :all, :conditions => ["is_admin = ? AND user_id = ? AND event_id = ?", true, session[:user_id], e.id]).size>0
+        @events << e
+      end
+    end
+
+    respond_to do |format|
+      format.html # user_events.html.erb
+      format.json { render json: @events }
+    end
+  end
+
+  def past_events
+    @events = Array.new
+    valid_events = Event.find :all, :order => 'date DESC', :conditions => ["date < ?", DateTime.current]
+
+    valid_events.each do |e|
+      if (Guest.find :all, :conditions => ["user_id = ? AND event_id = ?", session[:user_id], e.id]).size>0
+        @events << e
+      end
+    end
+
+    respond_to do |format|
+      format.html # past_events.html.erb
       format.json { render json: @events }
     end
   end

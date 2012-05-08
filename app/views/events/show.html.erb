@@ -55,8 +55,7 @@
 		<h2>Agregar un comentario</h2>
 		<%= render "event_comments/form" %>
 
-
 		<%= link_to 'Edit', edit_event_path(@event) %> |
-		<%= link_to 'Back', events_path %>
+		<%= link_to 'Atrás', {}, :onclick => 'history.go(-1)' %>
 	</div>
 </div>

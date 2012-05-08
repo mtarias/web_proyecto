@@ -2,10 +2,8 @@
 <div class="content">
 	<nav>
 	</nav>
-	<!-- Debiésemos cargar todos los eventos a los cuales el usuario ha sido invitado -->
-
 	<h2>Próximos eventos</h2>
-	<% current_user = User.find(session[:user_id]) %>
+	<%= @user %>
 	<% if session[:user_id] %>
 
    <% end %>
