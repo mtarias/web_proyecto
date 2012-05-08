@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
 layout 'home', :except => :profile
 layout 'login', :only => :profile
-skip_before_filter :require_login
+skip_before_filter :require_login 
 
   def index
     if session[:user_id]

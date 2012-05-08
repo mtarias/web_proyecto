@@ -85,4 +85,28 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def require_admin
+    @event = Event.find(params[:id])
+    @guest = event.find(params[:guest])
+    unless (session[:user_id] == @guest.user.user_id)
+        format.html { redirect_to @event, notice: 'Debe ser admin para editar el evento.' }
+    end
+  end
+
+  def assist
+    @event = Event.find(params[:id])
+    @guest = @event.guests.create(params[:guest])
+    @guest.user_id = session[:user_id]
+    @guest.is_admin = false
+    respond_to do |format|
+      if @guest.save
+        format.html { redirect_to @event, notice: 'Asistiras a este evento' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to publicevent, notice: 'No funciono D:'}
+      end
+    end
+  end
+  
 end

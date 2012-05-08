@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
 		redirect_to :root, :notice => "Debes hacer login antes de poder ver esa sección"
   	end
   end
+
 end

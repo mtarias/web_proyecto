@@ -5,58 +5,60 @@
 		</div>
 		<div class="guests">
 			<h3>Lista de invitados</h3>
+			<% @event.guests.each do |guest|%>
+				<p><%= guest.user.email %></p>
+			<% end %>
 		</div>
 	</div>
 	<div class="rightevent">
+		<p><%= link_to "Editar evento" , edit_event_path(@event) %>
+		<p><%= link_to "Invitar a usuarios" %></p>
 		<p>Aqui va la lita de cosas y los botones importantes</p>
 	</div>
 	<div class="centerevent">
 		<p id="notice"><%= notice %></p>
+			<p>
+			  <h1><%= @event.name %></h1>
+			</p>
 
-		<p>
-		  <h1><%= @event.name %></h1>
-		</p>
+			<p>
+			  <b>Fecha:</b>
+			  <%= @event.date %>
+			</p>
 
-		<p>
-		  <b>Fecha:</b>
-		  <%= @event.date %>
-		</p>
+			<p>
+			  <b>Lugar:</b>
+			  <%= @event.place %>
+			</p>
 
-		<p>
-		  <b>Lugar:</b>
-		  <%= @event.place %>
-		</p>
-
-		<% @event.guests.each do |guest| %>
-		<p>
-			<% if !guest.user.nil? %>
-				<b>Administrador:</b>
-				<%= guest.user.email %>
+			<% @event.guests.each do |guest| %>
+			<p>
+				<% if !guest.user.nil? && guest.is_admin ==true %>
+					<b>Administrador:</b>
+					<%= guest.user.email %>
+				<% end %>
+			</p>
 			<% end %>
-		</p>
-		<% end %>
 
-		<p>
-		  <b>Descripcion:</b>
-		  <%= @event.description %>
-		</p>
+			<p>
+			  <b>Descripcion:</b>
+			  <%= @event.description %>
+			</p>
 
-		<p>
-			<% if (@event.is_private) %>
-				<p>Evento Privado</p>
-			<% else %>
-				<p>Evento Publico</p>
-			<% end %>
-		</p>
+			<p>
+				<% if (@event.is_private) %>
+					<p>Evento Privado</p>
+				<% else %>
+					<p>Evento Publico</p>
+				<% end %>
+			</p>
 
-		<h2>Comentarios</h2>
-		<%= render @event.event_comments  %>
+			<h2>Comentarios</h2>
+			<%= render @event.event_comments  %>
 
-		<h2>Agregar un comentario</h2>
-		<%= render "event_comments/form" %>
-
-
-		<%= link_to 'Edit', edit_event_path(@event) %> |
-		<%= link_to 'Back', events_path %>
+			<h2>Agregar un comentario</h2>
+			<%= render "event_comments/form" %>
+	|
+			<%= link_to 'Back', events_path %>
 	</div>
 </div>
