@@ -1,0 +1,25 @@
+<table text-align="left">
+<% @events.each do |event| %>
+    <tr>
+        <td>
+            <h2><%= link_to event.name, event %>
+            <% if event.is_private %>
+                <b> <abbr title="Evento privado">(P)</abbr></b>
+            <% end %>
+            </h2>
+        </td>
+    </tr>
+    <tr>
+        <td><b />Fecha</td>
+        <td><%= event.date.to_s(:human) %></td>
+    </tr>
+    <tr>
+        <td><b />Lugar</td>
+        <td><%= event.place %></td>
+    </tr>
+    <tr>
+        <td><b />Descripción</td>
+        <td><%= event.description %></td>
+    </tr>
+<% end %>
+</table>

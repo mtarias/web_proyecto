@@ -7,6 +7,10 @@ Eventmaker::Application.routes.draw do
   match 'publicevent' => "events#publicevent", :as => :publicevent
   match 'assist(/:id)' => "events#assist", :as => :assist
 
+  match 'events/private' => "events#user_events", :as => :private_events
+  match 'events/past' => "events#past_events", :as => :past_events
+  match 'events/next' => "events#next_events", :as => :next_events
+
   resources :groups
 
   resources :pictures
