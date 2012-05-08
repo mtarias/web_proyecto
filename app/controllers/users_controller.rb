@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users.json
 layout 'login', :except => :new
 layout 'home', :only => :new
-skip_before_filter :require_login, :only => :new
+skip_before_filter :require_login, :only => [:new,:create]
 
   def index
     @users = User.all
@@ -57,7 +57,7 @@ skip_before_filter :require_login, :only => :new
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to :root, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

@@ -91,6 +91,7 @@ class EventsController < ApplicationController
         @guest = @event.guests.create(params[:guest])
         @guest.user_id = session[:user_id]
         @guest.is_admin = true
+        @guest.is_going = true
         @guest.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
