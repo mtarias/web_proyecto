@@ -9,4 +9,10 @@ class Event < ActiveRecord::Base
   validates :place, :presence => true
   accepts_nested_attributes_for :guests, 
                :allow_destroy => true, :reject_if => :all_blank
+
+  def isgoing?(user_id)
+    guests = Guest.find(:all, :conditions => [ 'user_id = ? AND event_id = ? AND is_going= ? ',user_id,
+     self.id , true ] )
+    guests.size>0 
+  end
 end

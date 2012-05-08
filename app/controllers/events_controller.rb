@@ -6,7 +6,6 @@ class EventsController < ApplicationController
 
   def next_events
     @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
-
     respond_to do |format|
       format.html # next_events.html.erb
       format.json { render json: @events }
@@ -31,6 +30,7 @@ class EventsController < ApplicationController
 
   def past_events
     @events = Array.new
+
     valid_events = Event.find :all, :order => 'date DESC', :conditions => ["date < ?", DateTime.current]
 
     valid_events.each do |e|
@@ -143,9 +143,23 @@ class EventsController < ApplicationController
     @guest = @event.guests.create(params[:guest])
     @guest.user_id = session[:user_id]
     @guest.is_admin = false
+    @guest.is_going = true
     respond_to do |format|
       if @guest.save
         format.html { redirect_to @event, notice: 'Asistiras a este evento' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: 'No funciono D:'}
+      end
+    end
+  end
+
+  def not_attend
+    @guest = Guest.find(:first, :conditions => ['user_id = ? AND event_id = ?' , session[:user_id] ,:id ] )
+    @guest.is_going = false
+    respond_to do |format|
+      if @guest.save
+        format.html { redirect_to @event, notice: 'No asistiras a este evento' }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funciono D:'}

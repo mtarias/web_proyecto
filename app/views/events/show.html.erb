@@ -5,7 +5,7 @@
 		</div>
 		<div class="guests">
 			<h3>Lista de invitados</h3>
-			<% @event.guests.each do |guest|%>
+			<% @event.guests.each do |guest| %>
 				<p><%= guest.user.email %></p>
 			<% end %>
 		</div>
