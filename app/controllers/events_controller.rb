@@ -59,6 +59,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
+    @friends = User.search(params[:search])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -154,18 +156,19 @@ class EventsController < ApplicationController
     end
   end
 
-  def not_attend
-    @guest = Guest.find(:first, :conditions => ['user_id = ? AND event_id = ?' , session[:user_id] ,:id ] )
-    @guest.is_going = false
+def invite
+    @event = Event.find(params[:id])
+    @guest = @event.guests.create(params[:guest])
+    @guest.user_id = params[:guest_id]
+    @guest.is_admin = false
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @event, notice: 'No asistiras a este evento' }
+        format.html { redirect_to @event, notice: 'Has invitado exitosamente' }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funciono D:'}
       end
     end
   end
-
   
 end
