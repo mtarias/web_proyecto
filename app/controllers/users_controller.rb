@@ -93,4 +93,5 @@ skip_before_filter :require_login, :only => :new
       format.json { head :no_content }
     end
   end
+
 end

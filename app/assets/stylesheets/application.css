@@ -16,14 +16,15 @@ body {
 	width: auto; 
 	padding: 0px 15px;
 	margin: 0px;
+	color:white;
 }
 .header { 
-	background-color: #FF0000; 
+	background-color: #418609; 
 	padding-right:100px; 
 	height:120px;
 }
 .main{ 
-	background-color: #CC0; 
+	background-color: #FFFFFF; 
 	padding-top:20px;
 	height:500px;
 	padding-left:20px;
@@ -44,12 +45,14 @@ body {
 	height:auto;
 	position: relative;
 	line-height:15px;
-	background-color:#1DB746;
+	background-color:#6AC81D;
 	margin-right:10px;
 	padding: 20px 5px;
+	-moz-border-radius:15px;
+	margin-top:50px;
 }
 .content{
-	background-color: #CC0; 
+	background-color: white; 
 	padding-left:100px; 
 	padding-top:20px;
 	margin-left:210px;
@@ -58,13 +61,20 @@ ul{
 	list-style-type:none;
 	padding-left: 15px;
 } 
-a:hover{text-decoration:none;}
 
-a{text-decoration:none;}
+a:link{
+	text-decoration:none;
+	text-color:white;
+}
+
+a:active {
+	text-decoration:none;
+	color:white;
+}
 
 
 .mainevent{
-	background-color: #CC0; 
+	background-color: #FFFFFF; 
 	padding-top:20px;
 	padding-right:20px;
 	padding-left:20px;

@@ -13,7 +13,7 @@
 	<div class="rightevent">
 		<p><%= link_to "Editar evento" , edit_event_path(@event) %>
 		<p><%= link_to "Invitar a usuarios" %></p>
-		<p>Aqui va la lita de cosas y los botones importantes</p>
+		<p>Aqui va la lista de cosas y los botones importantes</p>
 	</div>
 	<div class="centerevent">
 		<p id="notice"><%= notice %></p>
@@ -58,9 +58,7 @@
 
 			<h2>Agregar un comentario</h2>
 			<%= render "event_comments/form" %>
-	|
-			<%= link_to 'Back', events_path %>
-		<%= link_to 'Edit', edit_event_path(@event) %> |
+
 		<%= link_to 'Atrás', {}, :onclick => 'history.go(-1)' %>
 	</div>
 </div>
