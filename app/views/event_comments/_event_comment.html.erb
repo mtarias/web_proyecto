@@ -1,17 +1,9 @@
 <div class="eventcomment">
 	<p style="float:right; padding-right:20px">
 	  	<%= link_to 'X', [event_comment.event, event_comment],
-	               :confirm => 'Are you sure?',
+	               :confirm => '¿Deseas eliminar tu comentario?',
 	               :method => :delete %>
 	</p>
-	<p>
-		<% if !event_comment.user.nil? %>
-		<%= event_comment.user.email %>
-		<% end %>
-	</p>
-	<p>
-		<b>Comentario:</b>
-		<%= event_comment.comment %>
-	</p>
+	<p><b><%= event_comment.user.email %></b> <%= event_comment.comment %></p>
 
 </div>

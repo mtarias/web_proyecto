@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="rightevent">
-		<p><%= link_to "Editar evento" , edit_event_path(@event) %>
+		<p><%= link_to "Editar evento" , edit_event_path(@event) %></p>
 
 		<%= form_tag @event, :method => 'get' do %>
   			<p>Invita a un amigo por email:
@@ -62,7 +62,7 @@
 				<% if (@event.is_private) %>
 					<p>Evento Privado</p>
 				<% else %>
-					<p>Evento Publico</p>
+					<p>Evento Público</p>
 				<% end %>
 			</p>
 

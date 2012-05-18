@@ -9,13 +9,15 @@
             </h2>
         </td>
         <% if event.isgoing?(session[:user_id]) %>
-            <td><%= link_to "Asistiré" %>
+            <td><%= link_to "Asistiré", not_attend_path(event), :confirm => "¿Seguro que deseas no ir a este evento?" %>
+            </td>
+        <% elsif event.isgoing?(session[:user_id]).nil? %>
+            <td><%= link_to "No has sido invitado", assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
             </td>
         <% else %>
-            <td><%= link_to "Asistir a evento", assist_path(event), :notice => "Te has inscrito exitosamente a #{event.name}", :confirm => "¿Seguro que deseas asistir a este evento?" %>
+            <td><%= link_to "Asistir a evento", assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
             </td>
         <% end %>
-        
     </tr>
     <tr>
         <td><b />Fecha</td>

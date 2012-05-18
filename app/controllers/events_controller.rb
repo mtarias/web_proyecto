@@ -149,9 +149,15 @@ class EventsController < ApplicationController
 
   def assist
     @event = Event.find(params[:id])
-    @guest = @event.guests.create(params[:guest])
-    @guest.user_id = session[:user_id]
-    @guest.is_admin = false
+    # Buscamos si existe una invitación
+    @guest = Guest.get_invitation(session[:user_id], params[:id])
+    # Si no existe, creamos una
+    if @guest.nil?
+      @guest = @event.guests.create(params[:guest])
+      @guest.user_id = session[:user_id]
+      @guest.is_admin = false
+    end
+
     @guest.is_going = true
     respond_to do |format|
       if @guest.save
@@ -159,6 +165,28 @@ class EventsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funcionó D:'}
+      end
+    end
+  end
+
+  def not_attend
+    @event = Event.find(params[:id])
+    @guest = Guest.get_invitation(session[:user_id], params[:id])
+    # Hay que considerar el caso en que es el único administrador
+    if @event.number_of_admins > 1
+      @guest.is_going = false
+
+      respond_to do |format|
+        if @guest.save
+          format.html { redirect_to :back, notice: 'Dejarás de participar en este evento' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to :back, notice: 'No funcionó D:'}
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, notice: 'No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.'}
       end
     end
   end
