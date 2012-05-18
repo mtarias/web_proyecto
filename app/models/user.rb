@@ -1,3 +1,4 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
   has_many :user_taxs
   has_many :pictures
@@ -12,7 +13,7 @@ class User < ActiveRecord::Base
   validates :email,  :presence => true, :uniqueness => true
   validates :password,  :presence => true, :length => {:within => 6..40}
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
-   	:message    => ' debe ser valido'
+   	:message    => ' debe ser válido'
   validates_confirmation_of :password
 
   def self.login(email, password)

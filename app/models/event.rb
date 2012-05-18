@@ -12,9 +12,8 @@ class Event < ActiveRecord::Base
                :allow_destroy => true, :reject_if => :all_blank
 
   def isgoing?(user_id)
-    guests = Guest.find(:all, :conditions => [ 'user_id = ? AND event_id = ? AND is_going= ? ',user_id,
-     self.id , true ] )
-    guests.size>0 
+    guests = Guest.where(:user_id => user_id).where(:event_id => self.id).where(:is_going => true)
+    !guests.empty?
   end
 
   def event_date_cannot_be_in_the_past

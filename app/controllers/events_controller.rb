@@ -59,7 +59,14 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    @friends = User.search(params[:search])
+    @friends = nil
+    unless params[:search].blank?
+      @friends = User.search(params[:search])
+
+      @event.guests.each do |g|
+        @friends -= User.where(:id => g.user_id)
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb

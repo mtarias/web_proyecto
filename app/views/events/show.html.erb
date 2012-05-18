@@ -14,19 +14,19 @@
 		<p><%= link_to "Editar evento" , edit_event_path(@event) %>
 
 		<%= form_tag @event, :method => 'get' do %>
-  			<p>Agregar un amigo con su email:
+  			<p>Invita a un amigo por email:
     		<%= text_field_tag :search, params[:search] %>
     		<%= submit_tag "Buscar", :name => nil %>
   			</p>
 		<% end %>
-		<% if @friends.size == 0 %>
-			No existe el usuario
-		<% else %>
-			<% @friends.each do |friend| %>
-				<p><%= link_to "Invitar a #{friend.email}", invite_path(@event, friend) %></p>
+		<% unless @friends.nil?
+			unless @friends.empty? %>
+				<p><%= link_to "Invitar a #{@friends.first.email}", invite_path(@event, @friends.first) %></p>
+			<% else %>
+				El usuario ya fue agregado
 			<% end %>
 		<% end %>
-		<p>Aqui va la lista de cosas y los botones importantes</p>
+		<p>Aquí va la lista de cosas y los botones importantes</p>
 	</div>
 	<div class="centerevent">
 		<p id="notice"><%= notice %></p>
@@ -72,6 +72,6 @@
 			<h2>Agregar un comentario</h2>
 			<%= render "event_comments/form" %>
 
-		<%= link_to 'Atrás', {}, :onclick => 'history.go(-1)' %>
+		<%= link_to 'Atrás', :back %>
 	</div>
 </div>
