@@ -1,3 +1,4 @@
+# encoding: utf-8
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
@@ -94,7 +95,7 @@ class EventsController < ApplicationController
         @guest.is_admin = true
         @guest.is_going = true
         @guest.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Tu evento fue creado exitosamente' }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
@@ -110,7 +111,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Cambios guardados exitosamente' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -147,10 +148,10 @@ class EventsController < ApplicationController
     @guest.is_going = true
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @event, notice: 'Asistiras a este evento' }
+        format.html { redirect_to @event, notice: 'Asistirás a este evento' }
         format.json { head :no_content }
       else
-        format.html { redirect_to :back, notice: 'No funciono D:'}
+        format.html { redirect_to :back, notice: 'No funcionó D:'}
       end
     end
   end
@@ -165,7 +166,7 @@ def invite
         format.html { redirect_to @event, notice: 'Has invitado exitosamente' }
         format.json { head :no_content }
       else
-        format.html { redirect_to :back, notice: 'No funciono D:'}
+        format.html { redirect_to :back, notice: 'No funcionó D:'}
       end
     end
   end
