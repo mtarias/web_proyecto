@@ -18,8 +18,16 @@ class Event < ActiveRecord::Base
   end
 
   def event_date_cannot_be_in_the_past
-    if !date.blank? and date < Date.today
+    if !date.blank? and date < DateTime.current
       errors.add(:date, " debe ser en el futuro")
     end
+  end
+
+  def self.future_events
+    self.where("date > ?", DateTime.current).order("date ASC")
+  end
+
+  def self.past_events
+    self.where("date < ?", DateTime.current).order("date DESC")
   end
 end

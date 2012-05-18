@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   layout 'login'
 
   def next_events
-    @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
+    @events = Event.future_events
     respond_to do |format|
       format.html # next_events.html.erb
       format.json { render json: @events }
@@ -14,10 +14,10 @@ class EventsController < ApplicationController
 
   def user_events
     @events = Array.new
-    valid_events = Event.find :all, :order => 'date ASC', :conditions => ["date > ?", DateTime.current]
+    valid_events =  Event.future_events
     
     valid_events.each do |e|
-      if (Guest.find :all, :conditions => ["is_admin = ? AND user_id = ? AND event_id = ?", true, session[:user_id], e.id]).size>0
+      unless Guest.where(:is_admin => true).where(:user_id => session[:user_id]).where(:event_id => e.id).empty?
         @events << e
       end
     end
@@ -30,11 +30,10 @@ class EventsController < ApplicationController
 
   def past_events
     @events = Array.new
-
-    valid_events = Event.find :all, :order => 'date DESC', :conditions => ["date < ?", DateTime.current]
+    valid_events = Event.past_events
 
     valid_events.each do |e|
-      if (Guest.find :all, :conditions => ["user_id = ? AND event_id = ?", session[:user_id], e.id]).size>0
+      unless Guest.where(:user_id => session[:user_id]).where(:event_id => e.id).empty?
         @events << e
       end
     end
@@ -46,7 +45,7 @@ class EventsController < ApplicationController
   end
 
   def public_events
-    @events = Event.find :all, :order => 'date ASC', :conditions => ["date > ? AND is_private = ?", DateTime.current, false]
+    @events = Event.future_events.where(:is_private => false)
 
     respond_to do |format|
       format.html # public_events.html.erb
