@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :guests
   accepts_nested_attributes_for :event_comments, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :guests, :allow_destroy => true, :reject_if => :all_blank
-  attr_accessible :email, :password, :password_confirmation, :facebook, :twitter
+  attr_accessible :email, :password, :password_confirmation, :facebook, :twitter, :name, :time_zone, :locale
   validates :email,  :presence => true, :uniqueness => true
   validates :password,  :presence => true, :length => {:within => 6..40}
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,

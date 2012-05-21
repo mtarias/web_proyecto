@@ -16,7 +16,7 @@
 				<% if session[:user_id] %>
 					<% user = User.find(session[:user_id]) %>
 					<%= link_to "#{user.email}", profile_path %>
-					<%= link_to "Salir", logout_path, :confirm => "¿Seguro deseas cerrar sesión?" %>
+					<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
 				<% end %>
 				<div id="header">
 				<% if flash[:notice] %>

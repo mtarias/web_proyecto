@@ -21,4 +21,8 @@ class Guest < ActiveRecord::Base
   def self.get_invitation(user, event)
   	invitation = Guest.where(:user_id => user).where(:event_id => event).first
   end
+
+  def self.admins(event)
+    self.where(:event_id => event).where(:is_admin => true)
+  end
 end

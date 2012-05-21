@@ -3,7 +3,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   skip_before_filter :require_login, :only => :public_events
+  skip_before_filter :set_locale_and_time_zone, :only => :public_events
   layout 'login'
+
+  def index
+    redirect_to :root
+  end
 
   def next_events
     @events = Event.future_events
@@ -58,6 +63,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @admins = @event.admins_to_s
 
     @friends = nil
     unless params[:search].blank?
@@ -173,7 +179,28 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @guest = Guest.get_invitation(session[:user_id], params[:id])
     # Hay que considerar el caso en que es el único administrador
-    if @event.number_of_admins > 1
+
+    if @guest.is_admin
+      # Hay que ver si existen más administradores
+      if @event.number_of_admins > 1
+        @guest.is_going = false
+        @guest.is_admin = false
+
+        respond_to do |format|
+          if @guest.save
+            format.html { redirect_to :back, notice: 'Dejarás de participar en este evento' }
+            format.json { head :no_content }
+          else
+            format.html { redirect_to :back, notice: 'No funcionó D:'}
+          end
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, notice: 'No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.'}
+        end
+      end
+    else
+      # Si no es admin, puede dejar de asistir sin problemas
       @guest.is_going = false
 
       respond_to do |format|
@@ -183,10 +210,6 @@ class EventsController < ApplicationController
         else
           format.html { redirect_to :back, notice: 'No funcionó D:'}
         end
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to :back, notice: 'No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.'}
       end
     end
   end

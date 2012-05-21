@@ -12,8 +12,20 @@
   <% end %>
 
   <div class="field">
+    <%= f.label 'Tu nombre' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
     <%= f.label 'Tu correo electrónico' %><br />
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label 'Tu zona horaria' %><br />
+    <%= f.time_zone_select :time_zone, /Santiago/ %>
+  </div>
+  <div class="field">
+    <%= f.label 'Idioma preferido' %><br>
+    <%= f.select :locale, [['Español',"es-CL"], ['English',"en"]] %>
   </div>
   <div class="field">
     <%= f.label 'Contraseña' %><br />

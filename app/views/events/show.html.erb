@@ -32,44 +32,39 @@
 		<p id="notice"><%= notice %></p>
 			<p>
 			  <h1><%= @event.name %></h1>
+			  <% if (@event.is_private) %>
+					<%=t :private_event %>
+				<% end %>
 			</p>
 
 			<p>
-			  <b>Fecha:</b>
-			  <%= @event.date %>
+			  <b><%=t :date_and_time %></b>
+			  <%=l @event.date.in_time_zone, :format => :long %>
 			</p>
 
 			<p>
-			  <b>Lugar:</b>
+			  <b><%=t :place %></b>
 			  <%= @event.place %>
 			</p>
 
-			<% @event.guests.each do |guest| %>
 			<p>
-				<b>Administrador:</b>
-				<% if !guest.user.nil? && guest.is_admin ==true %>
-					<%= guest.user.email %>
-				<% end %>
+				<b><%=t @event.number_of_admins>1 ? :admins : :admin %>:</b>
+				<%= @admins %>
 			</p>
+
+			<% unless :description.blank? %>
+				<p>
+					<b><%=t :description %></b>
+				 	<%= @event.description %>
+				</p>
 			<% end %>
 
-			<p>
-			  <b>Descripción:</b>
-			  <%= @event.description %>
-			</p>
+			<% unless @event.event_comments.blank? %>
+				<h2>Comentarios</h2>
+				<%= render @event.event_comments %>
+			<% end %>
 
-			<p>
-				<% if (@event.is_private) %>
-					<p>Evento Privado</p>
-				<% else %>
-					<p>Evento Público</p>
-				<% end %>
-			</p>
-
-			<h2>Comentarios</h2>
-			<%= render @event.event_comments  %>
-
-			<h2>Agregar un comentario</h2>
+			<h3><%=t :add_comment %></h3>
 			<%= render "event_comments/form" %>
 
 		<%= link_to 'Atrás', :back %>

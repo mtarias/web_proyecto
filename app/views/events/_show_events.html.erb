@@ -4,32 +4,39 @@
         <td>
             <h2><%= link_to event.name, event %>
             <% if event.is_private %>
-                <b> <abbr title="Evento privado">(P)</abbr></b>
+                <b> <abbr title="<%=t :private_event %>">(P)</abbr></b>
             <% end %>
             </h2>
         </td>
-        <% if event.isgoing?(session[:user_id]) %>
-            <td><%= link_to "Asistiré", not_attend_path(event), :confirm => "¿Seguro que deseas no ir a este evento?" %>
-            </td>
-        <% elsif event.isgoing?(session[:user_id]).nil? %>
-            <td><%= link_to "No has sido invitado", assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
+        <% if Guest.get_invitation(session[:user_id], event.id).nil? %>
+            <td><%= link_to I18n.t(:not_invited), assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
             </td>
         <% else %>
-            <td><%= link_to "Asistir a evento", assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
-            </td>
+            <% if response = event.isgoing?(session[:user_id]) %>
+                <td><%= link_to I18n.t(:attending), not_attend_path(event), :confirm => "¿Seguro que deseas no ir a este evento?" %>
+                </td>
+            <% elsif response.nil? %>
+                <td><%= link_to I18n.t(:not_decided), assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
+                </td>
+            <% else %>
+                <td><%= link_to I18n.t(:to_attend), assist_path(event), :confirm => "¿Seguro que deseas asistir a este evento?" %>
+                </td>
+            <% end %>
         <% end %>
     </tr>
     <tr>
-        <td><b />Fecha</td>
-        <td><%= event.date.to_s(:human) %></td>
+        <td><b /><%=t :date_and_time %></td>
+        <td><%= l event.date, :format => :long %></td>
     </tr>
     <tr>
-        <td><b />Lugar</td>
+        <td><b /><%=t :place %></td>
         <td><%= event.place %></td>
     </tr>
-    <tr>
-        <td><b />Descripción</td>
-        <td><%= event.description %></td>
-    </tr>
+    <% unless event.description.blank? %>
+        <tr>
+            <td><b /><%=t :description %></td>
+            <td><%= event.description %></td>
+        </tr>
+    <% end %>
 <% end %>
 </table>

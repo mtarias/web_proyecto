@@ -29,6 +29,19 @@ class Event < ActiveRecord::Base
     self.where("date < ?", DateTime.current).order("date DESC")
   end
 
+  def admins_to_s
+    list_admin = ""
+    Guest.admins(self.id).each do |adm|
+      user = User.find(adm.user_id)
+      if list_admin.blank?
+        list_admin = "#{user.name}"
+      else
+        list_admin = "#{list_admin}, #{user.name}"
+      end
+    end
+    list_admin
+  end
+
   def number_of_admins
     Guest.where(:event_id => self.id).where(:is_admin => true).size
   end

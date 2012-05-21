@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503201624) do
+ActiveRecord::Schema.define(:version => 20120518194118) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "comment"
@@ -91,6 +91,9 @@ ActiveRecord::Schema.define(:version => 20120503201624) do
     t.string   "twitter"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "time_zone"
+    t.string   "locale"
   end
 
 end

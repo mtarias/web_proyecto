@@ -1,12 +1,12 @@
 <div class="menu">
 	<ul>
-		<li><%= link_to 'Organizar nuevo evento', new_event_path %></li><br>
-		<li><%= link_to 'Eventos inscritos', profile_path %></li>
-		<li><%= link_to 'Eventos que organizo', private_events_path %></li>
-		<li><%= link_to 'Próximos eventos', next_events_path %></li>
-		<li><%= link_to 'Eventos anteriores', past_events_path %></li>
-		<li><%= link_to 'Mis amigos' %></li>
-		<li><%= link_to 'Eventos públicos' , public_events_path %></li>
+		<li><%= link_to I18n.t(:make_new_event), new_event_path %></li><br>
+		<li><%= link_to I18n.t(:start), profile_path %></li>
+		<li><%= link_to I18n.t(:own_events), private_events_path %></li>
+		<li><%= link_to I18n.t(:next_events), next_events_path %></li>
+		<li><%= link_to I18n.t(:past_events), past_events_path %></li>
+		<li><%= link_to I18n.t(:my_friends) %></li>
+		<li><%= link_to I18n.t(:public_events) , public_events_path %></li>
 	</ul>
 </div>
 
