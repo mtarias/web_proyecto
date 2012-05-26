@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  has_many :taxs;
+  has_many :taxes;
   has_many :guests
   has_many :event_comments
   has_many :picture

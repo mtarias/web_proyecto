@@ -64,6 +64,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @admins = @event.admins_to_s
+    @taxes = @event.taxes
 
     @friends = nil
     unless params[:search].blank?
