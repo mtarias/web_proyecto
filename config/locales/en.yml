@@ -1,4 +1,6 @@
 en:
+  # General
+  back: Back
   # Menus and titles
   start: Start
   logout: Logout
@@ -20,9 +22,13 @@ en:
   description: Description
   admin: Administrator
   admins: Administrators
+  comments: Comments
   add_comment: Add a comment
   public_events_description: Then all the events you can participate without invitation
-  # Others
+  edit_event: Edit event
+  add_tax: Add something to the checklist
+  # Event_comment
+  post: Post
   date:
     abbr_day_names:
     - Sun

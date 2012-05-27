@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="rightevent">
-		<p><%= link_to "Editar evento" , edit_event_path(@event) %></p>
+		<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
 
 		<%= form_tag @event, :method => 'get' do %>
   			<p>Invita a un amigo por email:
@@ -26,7 +26,24 @@
 				El usuario ya fue agregado
 			<% end %>
 		<% end %>
-		<p>Aquí va la lista de cosas y los botones importantes</p>
+		<h3>CheckList</h3>
+		<% unless @taxes.blank? %>
+			<ul>
+			<% @taxes.each do |t| %>
+				<li><%= "#{t.amount} - #{t.name}" %></li>
+			<% end %>
+			</ul>
+		<% else %>
+			<p>¡No hay nada que llevar aún!</p>
+		<% end %>
+
+		<% unless @taxes.blank? %>
+			<h2><%=t "bla!" %></h2>
+			<%= render @taxes %>
+		<% end %>
+
+		<p><%=t :add_tax %></p>
+		
 	</div>
 	<div class="centerevent">
 		<p>
@@ -47,7 +64,7 @@
 		</p>
 
 		<p>
-			<b><%=t @event.number_of_admins>1 ? :admins : :admin %>:</b>
+			<b><%=t @event.number_of_admins>1 ? :admins : :admin %></b>
 			<%= @admins %>
 		</p>
 
@@ -59,13 +76,13 @@
 		<% end %>
 
 		<% unless @event.event_comments.blank? %>
-			<h2>Comentarios</h2>
+			<h2><%=t :comments %></h2>
 			<%= render @event.event_comments %>
 		<% end %>
 
 		<h3><%=t :add_comment %></h3>
 		<%= render "event_comments/form" %>
 
-		<%= link_to 'Atrás', :back %>
+		<%= link_to I18n.t(:back), :back %>
 	</div>
 </div>

@@ -1,4 +1,6 @@
 es-CL:
+  # General
+  back: Atrás
   # Menús y títulos
   start: Inicio
   logout: Salir
@@ -20,9 +22,13 @@ es-CL:
   description: Descripción
   admin: Administrador
   admins: Administradores
+  comments: Comentarios
   add_comment: Agrega un comentario
   public_events_description: A continuación, todos los eventos a los que puedes acceder sin previa invitación
-  # Otros
+  edit_event: Editar evento
+  add_tax: Agrega algo a la checklist
+  # Event_comment
+  post: Postear
   date:
     abbr_day_names:
     - dom
