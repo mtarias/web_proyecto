@@ -40,7 +40,7 @@ class TaxesController < ApplicationController
   # POST /taxes
   # POST /taxes.json
   def create
-    @taxis = Tax.new(params[:taxis])
+    @taxis = Tax.new(params[:tax])
 
     respond_to do |format|
       if @taxis.save
@@ -59,7 +59,7 @@ class TaxesController < ApplicationController
     @taxis = Tax.find(params[:id])
 
     respond_to do |format|
-      if @taxis.update_attributes(params[:taxis])
+      if @taxis.update_attributes(params[:tax])
         format.html { redirect_to @taxis, notice: 'Tax was successfully updated.' }
         format.json { head :no_content }
       else

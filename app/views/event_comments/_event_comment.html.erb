@@ -4,6 +4,6 @@
 	               :confirm => '¿Deseas eliminar tu comentario?',
 	               :method => :delete %>
 	</p>
-	<p><b><%= event_comment.user.email %></b> <%= event_comment.comment %></p>
+	<p><b><%= link_to event_comment.user.name, event_comment.user %></b> <%= event_comment.comment %></p>
 
 </div>

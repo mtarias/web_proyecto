@@ -37,12 +37,8 @@
 			<p>¡No hay nada que llevar aún!</p>
 		<% end %>
 
-		<% unless @taxes.blank? %>
-			<h2><%=t "bla!" %></h2>
-			<%= render @taxes %>
-		<% end %>
-
 		<p><%=t :add_tax %></p>
+		<% #render "taxes/form" %>
 		
 	</div>
 	<div class="centerevent">
