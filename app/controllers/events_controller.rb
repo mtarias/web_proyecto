@@ -3,7 +3,6 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   skip_before_filter :require_login, :only => :public_events
-  skip_before_filter :set_locale_and_time_zone, :only => :public_events
   layout 'login'
 
   def index

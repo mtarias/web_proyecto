@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 layout 'login', :except => :new
 layout 'home', :only => :new
 skip_before_filter :require_login, :only => [:new,:create]
-skip_before_filter :set_locale_and_time_zone, :only => [:new,:create]
 
   def index
     @users = User.all

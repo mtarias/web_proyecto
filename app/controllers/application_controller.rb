@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_and_time_zone
-  	I18n.locale = User.find(session[:user_id]).locale || I18n.default_locale
-    Time.zone = User.find(session[:user_id]).time_zone
+  	unless (session[:user_id]).blank?
+      I18n.locale = User.find(session[:user_id]).locale
+      Time.zone = User.find(session[:user_id]).time_zone
+    else
+      I18n.locale = extract_locale_from_accept_language_header
+    end
   end
 
   def set_cache_buster
@@ -22,4 +26,21 @@ class ApplicationController < ActionController::Base
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
+  private
+  def extract_locale_from_accept_language_header
+    user_locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+
+    supported_locales = ["es-CL", "en"]
+    
+    givme_the_best_locale supported_locales, user_locale
+  end
+
+  def givme_the_best_locale(list, user_locale)
+    list.each do |locale|
+      if locale.include? user_locale
+        return locale
+      end
+    end
+    I18n.default_locale
+  end
 end
