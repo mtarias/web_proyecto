@@ -12,6 +12,7 @@ en:
   my_friends: My friends
   public_events: Public events
   # Events
+  new_event: New event
   private_event: Private event
   attending: I will attend
   not_invited: You are not invited yet

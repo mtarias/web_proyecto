@@ -12,6 +12,7 @@ es-CL:
   my_friends: Mis amigos
   public_events: Eventos públicos
   # Eventos
+  new_event: Nuevo evento
   private_event: Evento privado
   attending: Asistiré
   not_invited: No has sido invitado aún
