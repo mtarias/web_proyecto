@@ -11,6 +11,8 @@ es-CL:
   past_events: Eventos anteriores
   my_friends: Mis amigos
   public_events: Eventos públicos
+  # Inicio
+  edit_profile: Editar perfil
   # Eventos
   new_event: Nuevo evento
   private_event: Evento privado

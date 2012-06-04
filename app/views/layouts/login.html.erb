@@ -8,21 +8,17 @@
 </head>
 <body>
 	<div class="header">
+		<% if flash[:notice] %>
+			<div id="notice"><%= flash[:notice] %></div> 
+		<% end %>
 		<div class="fixedtop">
 			<div id="logo">
 				<h1><%= link_to "EventMaker", :root %></h1>
 			</div>
 			<div class="login">
-				<% if session[:user_id] %>
-					<% user = User.find(session[:user_id]) %>
-					<%= link_to "#{user.email}", profile_path %>
-					<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
-				<% end %>
-				<div id="header">
-				<% if flash[:notice] %>
-		      		<p id="notice"><%= flash[:notice] %></p> 
-		      	<% end %>
-		      	</div>
+				<% user = User.find(session[:user_id]) %>
+				<%= link_to "#{user.name}", profile_path %>
+				<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
 			</div>
 		</div>
 		

@@ -5,6 +5,9 @@
 	<nav>
 	</nav>
 	<h2><%=t :start %></h2>
-	<% current_user = User.find(session[:user_id]) %>
-	<%= current_user.email%>
+	<%= @user.name %>
+	<%= link_to I18n.t(:edit_profile), @user %>
+
+	<H3>Últimos comentarios</H3>
+	<%= @last_updates %>
 </div>

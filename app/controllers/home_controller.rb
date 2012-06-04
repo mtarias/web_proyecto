@@ -22,22 +22,31 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
   end
 
   def profile
-  	if params[:email]
-  		if user = User.find_by_email(params[:email])
-  			@user = user
-  		else
-  			redirect_to :root, :notice => "No existe usuario con ese email"
-  		end
-  	elsif session[:user_id]
-  		@user = User.find(session[:user_id])
-  	else
-  		redirect_to :root, :notice => "Inicie sesión nuevamente"
-  	end
+  	@user = User.find(session[:user_id])
+    
+    news_size = 4;
+    @last_updates = Array.new
+    events = @user.events
+
+    e = 0
+    while @last_updates.length<5 && e<events.length do
+      # Selecciono un evento con comentarios
+      begin
+        comments = events[e].event_comments
+        e = e+1
+      end while comments.blank? && e<events.length
+
+      # Lo agrego ssi es válido
+      last_comment = comments.last
+      unless last_comment.blank?
+        @last_updates << last_comment
+      end
+    end
+
   end
 
   def logout
-    @user = nil
-  	reset_session
+    reset_session
   	redirect_to :root, :notice => "Has cerrado sesión correctamente"
   end
 end

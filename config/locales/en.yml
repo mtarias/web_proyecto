@@ -11,6 +11,8 @@ en:
   past_events: Previous events
   my_friends: My friends
   public_events: Public events
+  # Start
+  edit_profile: Edit profile
   # Events
   new_event: New event
   private_event: Private event

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :group_members
   has_many :guests
+  has_many :events, :through => :guests
   accepts_nested_attributes_for :event_comments, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :guests, :allow_destroy => true, :reject_if => :all_blank
   attr_accessible :email, :password, :password_confirmation, :facebook, :twitter, :name, :time_zone, :locale
