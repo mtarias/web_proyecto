@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   validates :place, :presence => true
   accepts_nested_attributes_for :guests, 
                :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :taxes
 
   def isgoing?(user_id)
     Guest.is_user_going(user_id, self.id)

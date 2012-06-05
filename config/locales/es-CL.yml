@@ -13,6 +13,7 @@ es-CL:
   public_events: Eventos públicos
   # Inicio
   edit_profile: Editar perfil
+  show_profile: Mostrar perfil
   # Eventos
   new_event: Nuevo evento
   private_event: Evento privado
@@ -32,6 +33,8 @@ es-CL:
   add_tax: Agrega algo a la checklist
   # Event_comment
   post: Postear
+  # Usuario
+  edit_profile: Editar pefil
   date:
     abbr_day_names:
     - dom

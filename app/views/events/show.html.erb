@@ -8,7 +8,7 @@
 		<div class="guests">
 			<h3>Lista de invitados</h3>
 			<% @event.guests.each do |guest| %>
-				<p><%= guest.user.email %></p>
+				<p><%= link_to guest.user.name, guest.user %></p>
 			<% end %>
 		</div>
 	</div>

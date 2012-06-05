@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 layout 'login', :except => :new
-layout 'home', :only => :new
 skip_before_filter :require_login, :only => [:new,:create]
 
   def index
@@ -32,7 +31,7 @@ skip_before_filter :require_login, :only => [:new,:create]
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => 'home' } # new.html.erb
       format.json { render json: @user }
     end
   end

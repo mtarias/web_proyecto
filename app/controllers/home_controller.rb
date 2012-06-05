@@ -1,7 +1,6 @@
 # encoding: utf-8
 class HomeController < ApplicationController
 layout 'home', :except => :profile
-layout 'login', :only => :profile
 skip_before_filter :require_login
 skip_before_filter :set_locale_and_time_zone, :except => :profile
 
@@ -42,6 +41,8 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
         @last_updates << last_comment
       end
     end
+
+    render :layout => 'login'
 
   end
 

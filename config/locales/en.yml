@@ -13,6 +13,7 @@ en:
   public_events: Public events
   # Start
   edit_profile: Edit profile
+  show_profile: Show profile
   # Events
   new_event: New event
   private_event: Private event
@@ -32,6 +33,8 @@ en:
   add_tax: Add something to the checklist
   # Event_comment
   post: Post
+  # Users
+  edit_profile: Edit profile
   date:
     abbr_day_names:
     - Sun
