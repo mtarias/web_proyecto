@@ -14,6 +14,7 @@ es-CL:
   # Inicio
   edit_profile: Editar perfil
   show_profile: Mostrar perfil
+  last_comments: Últimos comentarios
   # Eventos
   new_event: Nuevo evento
   private_event: Evento privado

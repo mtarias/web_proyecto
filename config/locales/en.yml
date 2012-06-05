@@ -14,6 +14,7 @@ en:
   # Start
   edit_profile: Edit profile
   show_profile: Show profile
+  last_comments: Last comments
   # Events
   new_event: New event
   private_event: Private event

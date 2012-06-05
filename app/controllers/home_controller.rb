@@ -23,12 +23,12 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
   def profile
   	@user = User.find(session[:user_id])
     
-    news_size = 4;
-    @last_updates = Array.new
+    news_size = 5;
+    @last_comments = Array.new
     events = @user.events
 
     e = 0
-    while @last_updates.length<5 && e<events.length do
+    while @last_comments.length<news_size && e<events.length do
       # Selecciono un evento con comentarios
       begin
         comments = events[e].event_comments
@@ -38,7 +38,25 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
       # Lo agrego ssi es válido
       last_comment = comments.last
       unless last_comment.blank?
-        @last_updates << last_comment
+        @last_comments << last_comment
+      end
+    end
+
+    @last_taxes = Array.new
+
+    # Por implementar
+    e = 0
+    while @last_taxes.length<news_size && e<events.length do
+      # Selecciono un evento con taxes
+      begin
+        taxes = events[e].taxes
+        e = e+1
+      end while taxes.blank? && e<events.length
+
+      # Lo agrego ssi es válido
+      last_tax = taxes.last
+      unless last_tax.blank?
+        @last_comments << last_tax
       end
     end
 
