@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="wrap">
 	<div class="header">
 		<% if flash[:notice] %>
 			<div id="notice"><%= flash[:notice] %></div> 
@@ -27,17 +28,19 @@
 		</div>
 	</div>
 	<div class="menu">
-	<ul>
-		<li><%= link_to I18n.t(:make_new_event), new_event_path %></li><br>
-		<li><%= link_to I18n.t(:start), profile_path %></li>
-		<li><%= link_to I18n.t(:own_events), private_events_path %></li>
-		<li><%= link_to I18n.t(:next_events), next_events_path %></li>
-		<li><%= link_to I18n.t(:past_events), past_events_path %></li>
-		<li><%= link_to I18n.t(:my_friends), friends_path %></li>
-		<li><%= link_to I18n.t(:public_events) , public_events_path %></li>
-	</ul>
+		<ul>
+			<li><%= link_to I18n.t(:make_new_event), new_event_path %></li><br>
+			<li><%= link_to I18n.t(:start), profile_path %></li>
+			<li><%= link_to I18n.t(:own_events), private_events_path %></li>
+			<li><%= link_to I18n.t(:next_events), next_events_path %></li>
+			<li><%= link_to I18n.t(:past_events), past_events_path %></li>
+			<li><%= link_to I18n.t(:my_friends), friends_path %></li>
+			<li><%= link_to I18n.t(:public_events) , public_events_path %></li>
+		</ul>
+	</div>
+	<div class="content">
+		<%= yield %>
+	</div>
 </div>
-<%= yield %>
-
 </body>
 </html>

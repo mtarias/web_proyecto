@@ -76,6 +76,20 @@ class EventsController < ApplicationController
     @admins = @event.admins_to_s
     @taxes = @event.taxes
 
+    @going = []
+    @not_going = []
+    @waiting_answer = []
+
+    @event.guests do |invitation|
+      if invitation.is_going
+        @going << invitation
+      elsif invitation.nil?
+        @waiting_answer << invitation
+      else
+        @not_going << invitation
+      end
+    end
+
     @friends = nil
     unless params[:search].blank?
       @friends = User.search(params[:search])
@@ -83,8 +97,6 @@ class EventsController < ApplicationController
       @event.guests.each do |g|
         @friends -= User.where(:id => g.user_id)
       end
-
-      flash[:notice] = "wena"
     end
 
     respond_to do |format|

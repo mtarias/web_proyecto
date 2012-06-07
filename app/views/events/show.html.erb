@@ -1,49 +1,47 @@
 <% title @event.name, false %>
 
-<div class="mainevent">
-	<div class="leftevent">	
-		<div class="picture">
-			<%= link_to 'Subir Foto', new_picture_path %>
-		</div>
-		<div class="guests">
-			<h3>Lista de invitados</h3>
-			<% @event.guests.each do |guest| %>
-				<p><%= link_to guest.user.name, guest.user %></p>
-			<% end %>
-		</div>
+<div class="leftevent">	
+	<div class="picture">
+		<%= link_to 'Subir Foto', new_picture_path %>
 	</div>
-	<div class="rightevent">
-		<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
+	<div class="guests">
+		<h3>Lista de invitados</h3>
+		<% @event.guests.each do |guest| %>
+			<p><%= link_to guest.user.name, guest.user %></p>
+		<% end %>
+	</div>
+</div>
+<div class="rightevent">
+	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
 
-		<%= form_tag @event, :method => 'get' do %>
-  			<p>Invita a un amigo por email:
-    		<%= text_field_tag :search, params[:search] %>
-    		<%= submit_tag "Buscar", :name => nil %>
-  			</p>
-		<% end %>
-		<% unless @friends.nil?
-			unless @friends.empty? %>
-				<p><%= link_to "Invitar a #{@friends.first.email}", invite_path(@event, @friends.first) %></p>
-			<% else %>
-				El usuario ya fue agregado
-			<% end %>
-		<% end %>
-		<h3>CheckList</h3>
-		<% unless @taxes.blank? %>
-			<ul>
-			<% @taxes.each do |t| %>
-				<li><%= "#{t.amount} - #{t.name}" %></li>
-			<% end %>
-			</ul>
+	<%= form_tag @event, :method => 'get' do %>
+			<p>Invita a un amigo por email:
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Buscar", :name => nil %>
+			</p>
+	<% end %>
+	<% unless @friends.nil?
+		unless @friends.empty? %>
+			<p><%= link_to "Invitar a #{@friends.first.email}", invite_path(@event, @friends.first) %></p>
 		<% else %>
-			<p>¡No hay nada que llevar aún!</p>
+			El usuario ya fue agregado
 		<% end %>
+	<% end %>
+	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
+	<% unless @event.taxes.blank? %>
+		<ul>
+		<%= render @event.taxes %>
+		</ul>
+	<% else %>
+		<p>¡No hay nada que llevar aún!</p>
+	<% end %>
 
-		<p><%=t :add_tax %></p>
-		<% #render "taxes/form" %>
-		
-	</div>
-	<div class="centerevent">
+	<p><%=t :add_tax %></p>
+	<%= render "taxes/form" %>
+	
+</div>
+<div class="centerevent">
+	<div id="eventinfo">
 		<p>
 		  <h1><%= @event.name %></h1>
 		  <% if (@event.is_private) %>
@@ -66,21 +64,21 @@
 			<%= @admins %>
 		</p>
 
-		<% unless :description.blank? %>
+		<% unless @event.description.blank? %>
 			<p>
 				<b><%=t :description %></b>
 			 	<%= @event.description %>
 			</p>
 		<% end %>
-
-		<% unless @event.event_comments.blank? %>
-			<h2><%=t :comments %></h2>
-			<%= render @event.event_comments %>
-		<% end %>
-
-		<h3><%=t :add_comment %></h3>
-		<%= render "event_comments/form" %>
-
-		<%= link_to_back %>
 	</div>
+	<% unless @event.event_comments.blank? %>
+	<div id="eventinfo">
+		<h2><%=t :comments %></h2>
+		<%= render @event.event_comments %>
+	</div>
+	<% end %>
+	<h3><%=t :add_comment %></h3>
+	<%= render "event_comments/form" %>
+
+	<%= link_to_back %>
 </div>

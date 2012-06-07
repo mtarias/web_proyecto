@@ -1,23 +1,22 @@
 <% title :start %>
 
-<div class="content">
-	<nav>
-	</nav>
-	<h2><%=t :start %></h2>
-	<%= @user.name %>
-	<%= link_to I18n.t(:show_profile), @user %>
 
-	<h3><%=t :last_comments %> (<%= @last_comments.length %>)</h3>
-	<ul>
-	<% @last_comments.each do |comment| %>
-		<li><%= "#{comment.comment} - #{comment.user.name} en #{comment.event.name}" %></li>
-	<% end %>
-	</ul>
+<nav>
+</nav>
+<h2><%=t :start %></h2>
+<%= @user.name %>
+<%= link_to I18n.t(:show_profile), @user %>
 
-	<h3><%=t :last_taxes %> (<%= @last_taxes.length %>)</h3>
-	<ul>
-	<% @last_taxes.each do |tax| %>
-		<li><%= "#{tax.name} - #{tax.user.name} en #{tax.event.name}" %></li>
-	<% end %>
-	</ul>
-</div>
+<h3><%=t :last_comments %> (<%= @last_comments.length %>)</h3>
+<ul>
+<% @last_comments.each do |comment| %>
+	<li><%= "#{comment.comment} - #{comment.user.name} en #{comment.event.name}" %></li>
+<% end %>
+</ul>
+
+<h3><%=t :last_taxes %> (<%= @last_taxes.length %>)</h3>
+<ul>
+<% @last_taxes.each do |tax| %>
+	<li><%= "#{tax.amount} #{tax.name} en #{tax.event.name}" %></li>
+<% end %>
+</ul>

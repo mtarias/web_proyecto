@@ -54,6 +54,10 @@ es-CL:
   user_locale: Idioma preferido
   password: Contraseña
   password_confirmation: Confirme contraseña
+  # CheckList (Taxes)
+  tax_description: Agrega todos los elementos que necesites para realizar el evento.
+  tax_name: Ítem
+  amount: Cantidad
   date:
     abbr_day_names:
     - dom

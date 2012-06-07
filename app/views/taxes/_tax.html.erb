@@ -1,0 +1,7 @@
+<li>
+	<div class="tax">
+		<%= "#{tax.amount} - #{tax.name}" %>
+		<div id="edit">
+			<%= link_to 'X', [tax.event, tax], :method => 'delete' %>
+	</div>
+</li>

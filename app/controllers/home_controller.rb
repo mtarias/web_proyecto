@@ -57,7 +57,7 @@ skip_before_filter :require_login
       # Lo agrego ssi es válido
       last_tax = taxes.last
       unless last_tax.blank?
-        @last_comments << last_tax
+        @last_taxes << last_tax
       end
     end
 
