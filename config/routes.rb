@@ -14,6 +14,8 @@ Eventmaker::Application.routes.draw do
   match 'events/next' => "events#next_events", :as => :next_events
   match 'public/events' => "events#public_events", :as => :public_events
 
+  match 'friends' => "groups#index", :as => :friends
+
   resources :groups
 
   resources :pictures

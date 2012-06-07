@@ -10,7 +10,18 @@ class EventsController < ApplicationController
   end
 
   def next_events
-    @events = Event.future_events
+    future_events = Event.future_events
+    # Agrego los eventos públicos
+    @events = future_events.where(:is_private => false)
+    # Agrego los eventos privados...
+    private_events = future_events.where(:is_private => true)
+    # ... pero a los cuales tenga invitación
+    private_events.each do |event|
+      if Guest.is_user_invited? session[:user_id], event.id
+        @events << event
+      end
+    end
+    
     respond_to do |format|
       format.html # next_events.html.erb
       format.json { render json: @events }

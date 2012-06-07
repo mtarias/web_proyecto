@@ -7,4 +7,8 @@ module ApplicationHelper
 		content_for :title, translate ? I18n.t(title) : title
 	end
 
+	def link_to_back
+		link_to I18n.t(:back), :back
+	end
+
 end

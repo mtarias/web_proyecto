@@ -13,24 +13,24 @@
     <% end %>
 
     <div class="field">
-      <%= f.label "Nombre del evento" %><br />
+      <%= f.label I18n.t :event_name %><br />
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label "Fecha a realizarse" %><br />
-      <%= f.datetime_select :date %>
+      <%= f.label I18n.t :date_and_time %><br />
+      <%= f.datetime_select :date  %>
     </div>
     <div class="field">
-      <%= f.label "Lugar" %><br />
+      <%= f.label I18n.t :place %><br />
       <%= f.text_field :place %>
     </div>
     <div class="field">
-      <%= f.label "Agrega una descripción" %><br />
+      <%= f.label I18n.t :description %><br />
       <%= f.text_area :description %>
     </div>
     <div class="field">
       <%= f.check_box :is_private %>
-      <%= f.label "Evento privado" %>
+      <%= f.label I18n.t :private_event %>
     </div>
     <div class="actions">
       <%= f.submit %>

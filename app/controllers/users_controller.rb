@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-layout 'login', :except => :new
+layout 'login', :except => [:new, :create]
 skip_before_filter :require_login, :only => [:new,:create]
 
   def index
@@ -31,7 +31,7 @@ skip_before_filter :require_login, :only => [:new,:create]
     @user = User.new
 
     respond_to do |format|
-      format.html { render :layout => 'home' } # new.html.erb
+      format.html { render :layout => 'application' } # new.html.erb
       format.json { render json: @user }
     end
   end
@@ -56,10 +56,12 @@ skip_before_filter :require_login, :only => [:new,:create]
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to :root, notice: 'Tu cuenta ha sido creada exitosamente.' }
+        # Logueamos automáticamente al usuario que acaba de crear su cuenta
+        session[:user_id] = @user.id
+        format.html { redirect_to profile_path, notice: 'Tu cuenta ha sido creada exitosamente.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", layout: 'application' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

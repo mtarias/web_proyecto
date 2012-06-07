@@ -1,9 +1,10 @@
-<%= render "layouts/menu" %>
+<% title :edit_event %>
+
 <div class="content">
-	<h1>Editar evento</h1>
+	<h1><%=t :edit_event %></h1>
 
 	<%= render 'form' %>
 
 	<%= link_to 'Show', @event %> |
-	<%= link_to 'Atrás', {}, :onclick => 'history.go(-1)' %>
+	<%= link_to :back %>
 </div>

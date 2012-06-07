@@ -1,18 +1,27 @@
 <% title @user.name, false %>
 
-<%= render "layouts/menu" %>
-
 <h1><%= @user.email %></h1>
 
 <p>
-  <b>Nombre:</b>
+  <b><%=t :user_name %></b>
   <%= @user.name %>
 </p>
 
 <p>
-  <b>Email:</b>
+  <b><%=t :email %></b>
   <%= @user.email %>
 </p>
 
+<p>
+  <b><%=t :time_zone %></b>
+  <%= @user.time_zone %>
+</p>
+
+<p>
+  <b><%=t :user_locale %></b>
+  <%= @user.locale %>
+</p>
+
+
 <%= link_to I18n.t(:edit_profile), edit_user_path(@user) %> | 
-<%= link_to I18n.t(:back), :back %>
+<%= link_to_back %>

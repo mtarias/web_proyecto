@@ -1,6 +1,11 @@
 en:
   # General
+  login: Log in
   back: Back
+  greet_user: "What's up, %{user}?"
+  bad_login: E-mail or password you entered is incorrect.
+  successful_logout: You have successfully logged out.
+  invited_user: Guest
   # Menus and titles
   start: Start
   logout: Logout
@@ -14,7 +19,8 @@ en:
   # Start
   edit_profile: Edit profile
   show_profile: Show profile
-  last_comments: Last comments
+  last_comments: Lastest comments
+  last_taxes: Lastest checklist's stuff
   # Events
   new_event: New event
   private_event: Private event
@@ -22,6 +28,7 @@ en:
   not_invited: You are not invited yet
   not_decided: You haven't answered
   to_attend: Attend to the event
+  event_name: Name of the event
   date_and_time: Date
   place: Place
   description: Description
@@ -35,7 +42,14 @@ en:
   # Event_comment
   post: Post
   # Users
+  user_register: Sign up
   edit_profile: Edit profile
+  user_name: Yor name
+  email: E-mail
+  time_zone: Time zone
+  user_locale: Prefered language
+  password: Password
+  password_confirmation: Password confirmation
   date:
     abbr_day_names:
     - Sun
@@ -171,9 +185,9 @@ en:
     select:
       prompt: Please select
     submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
+      create: Create
+      submit: Save
+      update: Update
   number:
     currency:
       format:

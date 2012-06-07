@@ -2,7 +2,6 @@
 class HomeController < ApplicationController
 layout 'home', :except => :profile
 skip_before_filter :require_login
-skip_before_filter :set_locale_and_time_zone, :except => :profile
 
   def index
     if session[:user_id]
@@ -13,10 +12,12 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
   #Maneja el formulario de login
   def login
   	if user = User.login(params[:user][:email],params[:user][:password])
-  		session[:user_id] = user.id
-  		redirect_to profile_path, :notice => "Hola de nuevo, #{user.email}!"
+      session[:user_id] = user.id
+      # Aprovecho de cargar el idioma
+      set_locale_and_time_zone
+      redirect_to profile_path, :notice => I18n.t(:greet_user, :user => user.name)
   	else
-  		redirect_to :root, :notice => "Email o contraseña incorrecta"
+  		redirect_to :root, :notice => I18n.t(:bad_login)
   	end
   end
 
@@ -65,7 +66,8 @@ skip_before_filter :set_locale_and_time_zone, :except => :profile
   end
 
   def logout
+    message = I18n.t(:successful_logout)
     reset_session
-  	redirect_to :root, :notice => "Has cerrado sesión correctamente"
+  	redirect_to :root, :notice => message
   end
 end

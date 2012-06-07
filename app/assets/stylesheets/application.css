@@ -19,7 +19,6 @@ body {
 	color:white;
 }
 .header { 
-	background-color: #418609; 
 	padding-right:100px; 
 	height:40px;
 }
@@ -47,6 +46,7 @@ body {
 	right:10px; 
 	padding: 0px;
 	height: 37px;
+	border-bottom: 5px solid #3C8008;
 	background-color: #363636;
 	z-index: 11;
 }

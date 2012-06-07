@@ -1,6 +1,11 @@
 es-CL:
   # General
+  login: Entrar
   back: Atrás
+  greet_user: "¡Hola de nuevo, %{user}!"
+  bad_login: Email o contraseña incorrecta.
+  successful_logout: Has cerrado sesión correctamente.
+  invited_user: Invitado
   # Menús y títulos
   start: Inicio
   logout: Salir
@@ -15,6 +20,7 @@ es-CL:
   edit_profile: Editar perfil
   show_profile: Mostrar perfil
   last_comments: Últimos comentarios
+  last_taxes: Últimos elementos de las checklists
   # Eventos
   new_event: Nuevo evento
   private_event: Evento privado
@@ -22,6 +28,7 @@ es-CL:
   not_invited: No has sido invitado aún
   not_decided: Aún no has respondido
   to_attend: Asistir a evento
+  event_name: Nombre del evento
   date_and_time: Fecha
   place: Lugar
   description: Descripción
@@ -35,7 +42,14 @@ es-CL:
   # Event_comment
   post: Postear
   # Usuario
+  user_register: Regístrate
   edit_profile: Editar pefil
+  user_name: Tu nombre
+  email: Email
+  time_zone: Zona horaria
+  user_locale: Idioma preferido
+  password: Contraseña
+  password_confirmation: Confirme contraseña
   date:
     abbr_day_names:
     - dom
@@ -165,9 +179,9 @@ es-CL:
     select:
       prompt: Por favor seleccione
     submit:
-      create: Crear %{model}
-      submit: Guardar %{model}
-      update: Actualizar %{model}
+      create: Crear
+      submit: Guardar
+      update: Actualizar
   number:
     currency:
       format:

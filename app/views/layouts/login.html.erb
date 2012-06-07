@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= yield(:title) %> - Eventmaker</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -16,13 +16,27 @@
 				<h1><%= link_to "EventMaker", :root %></h1>
 			</div>
 			<div class="login">
-				<% user = User.find(session[:user_id]) %>
-				<%= link_to "#{user.name}", profile_path %> |
-				<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
+				<% if session[:user_id] %>
+					<% user = User.find(session[:user_id]) %>
+					<%= link_to "#{user.name}", profile_path %> |
+					<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
+				<% else %>
+					<%= link_to I18n.t(:invited_user), :root %>
+				<% end %>
 			</div>
 		</div>
-		
 	</div>
+	<div class="menu">
+	<ul>
+		<li><%= link_to I18n.t(:make_new_event), new_event_path %></li><br>
+		<li><%= link_to I18n.t(:start), profile_path %></li>
+		<li><%= link_to I18n.t(:own_events), private_events_path %></li>
+		<li><%= link_to I18n.t(:next_events), next_events_path %></li>
+		<li><%= link_to I18n.t(:past_events), past_events_path %></li>
+		<li><%= link_to I18n.t(:my_friends), friends_path %></li>
+		<li><%= link_to I18n.t(:public_events) , public_events_path %></li>
+	</ul>
+</div>
 <%= yield %>
 
 </body>
