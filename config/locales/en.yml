@@ -22,6 +22,10 @@ en:
   last_comments: Lastest comments
   last_taxes: Lastest checklist's stuff
   # Events
+  will_go: You are going.
+  wont_go: You are not going.
+  wont_go_admin_error: You can't stop going because you are the only one event's administrator. Asign any member of the event as administrator and try again.
+  successful_invitation: "An invitation was sent to %{email}."
   new_event: New event
   private_event: Private event
   attending: I will attend
@@ -44,7 +48,7 @@ en:
   # Users
   user_register: Sign up
   edit_profile: Edit profile
-  user_name: Yor name
+  user_name: Name
   email: E-mail
   time_zone: Time zone
   user_locale: Prefered language

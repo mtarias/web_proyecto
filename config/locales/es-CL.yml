@@ -22,6 +22,10 @@ es-CL:
   last_comments: Últimos comentarios
   last_taxes: Últimos elementos de las checklists
   # Eventos
+  will_go: Asistirás a este evento.
+  wont_go: Dejarás de participar en este evento.
+  wont_go_admin_error: No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.
+  successful_invitation: "Has enviado una invitación a %{email}."
   new_event: Nuevo evento
   private_event: Evento privado
   attending: Asistiré
@@ -44,7 +48,7 @@ es-CL:
   # Usuario
   user_register: Regístrate
   edit_profile: Editar pefil
-  user_name: Tu nombre
+  user_name: Nombre
   email: Email
   time_zone: Zona horaria
   user_locale: Idioma preferido

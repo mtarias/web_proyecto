@@ -20,10 +20,9 @@ Eventmaker::Application.routes.draw do
 
   resources :pictures
 
-  resources :taxes
-
   resources :events do  
     resources :event_comments
+    resources :taxes
   end
 
   resources :users

@@ -83,6 +83,8 @@ class EventsController < ApplicationController
       @event.guests.each do |g|
         @friends -= User.where(:id => g.user_id)
       end
+
+      flash[:notice] = "wena"
     end
 
     respond_to do |format|
@@ -178,7 +180,7 @@ class EventsController < ApplicationController
     @guest.is_going = true
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @event, notice: 'Asistirás a este evento' }
+        format.html { redirect_to @event, notice: I18n.t(:will_go) }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funcionó D:'}
@@ -199,7 +201,7 @@ class EventsController < ApplicationController
 
         respond_to do |format|
           if @guest.save
-            format.html { redirect_to :back, notice: 'Dejarás de participar en este evento' }
+            format.html { redirect_to :back, notice: I18n.t(:wont_go) }
             format.json { head :no_content }
           else
             format.html { redirect_to :back, notice: 'No funcionó D:'}
@@ -207,7 +209,7 @@ class EventsController < ApplicationController
         end
       else
         respond_to do |format|
-          format.html { redirect_to :back, notice: 'No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.'}
+          format.html { redirect_to :back, notice: I18n.t(:wont_go_admin_error)}
         end
       end
     else
@@ -216,7 +218,7 @@ class EventsController < ApplicationController
 
       respond_to do |format|
         if @guest.save
-          format.html { redirect_to :back, notice: 'Dejarás de participar en este evento' }
+          format.html { redirect_to :back, notice: I18n.t(:wont_go) }
           format.json { head :no_content }
         else
           format.html { redirect_to :back, notice: 'No funcionó D:'}
@@ -232,7 +234,7 @@ def invite
     @guest.is_admin = false
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @event, notice: 'Has invitado exitosamente' }
+        format.html { redirect_to @event, notice: I18n.t(:successful_invitation, :email => User.find(params[guest_id]).email) }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funcionó D:'}
