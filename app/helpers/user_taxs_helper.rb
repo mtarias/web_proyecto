@@ -1,0 +1,2 @@
+module UserTaxsHelper
+end

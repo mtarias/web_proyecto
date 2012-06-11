@@ -1,7 +1,14 @@
-<li>
-	<div class="tax">
-		<%= "#{tax.amount} - #{tax.name}" %>
-		<div id="edit">
-			<%= link_to 'X', [tax.event, tax], :method => 'delete' %>
+<div class="tax">
+	<%= form_for([@user, @user.user_taxes.build]) do |f| %>
+	<%= f.hidden_field :event_id, :value => @event.id %>
+	<%= f.hidden_field :tax_id, :value => tax.id %>
+	<%= "#{tax.amount}: #{tax.name}" %><br>
+	<%= f.text_field :amount_user %>
+	<%= "/" %>
+	<%= remaining_amount tax %>
+	<div id="right">
+		<%= f.submit 'Actualizar!' %>
+		<%= link_to 'X', [tax.event, tax], :method => 'delete', :confirm => 'sure?' %>
 	</div>
-</li>
+	<% end %>
+</div>

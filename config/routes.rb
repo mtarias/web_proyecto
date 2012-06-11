@@ -25,7 +25,9 @@ Eventmaker::Application.routes.draw do
     resources :taxes
   end
 
-  resources :users
+  resources :users do
+    resources :user_taxes
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

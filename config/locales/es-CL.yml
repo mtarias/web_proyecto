@@ -26,6 +26,7 @@ es-CL:
   wont_go: Dejarás de participar en este evento.
   wont_go_admin_error: No puedes dejar de participar en este evento ya que eres el único administrador. Asigna al menos a uno de los participantes como administrador del evento y vuelve a intentarlo.
   successful_invitation: "Has enviado una invitación a %{email}."
+  successful_new_event: Tu evento fue creado exitosamente.
   new_event: Nuevo evento
   private_event: Evento privado
   attending: Asistiré
@@ -55,6 +56,8 @@ es-CL:
   password: Contraseña
   password_confirmation: Confirme contraseña
   # CheckList (Taxes)
+  user_commit: Estás llevando
+  remaining_taxes: Falta por llevar
   tax_description: Agrega todos los elementos que necesites para realizar el evento.
   tax_name: Ítem
   amount: Cantidad

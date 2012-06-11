@@ -1,12 +1,12 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
-  has_many :user_taxs
+  has_many :user_taxes, :class_name => 'UserTax', :dependent => :destroy
   has_many :pictures
   has_many :picture_comments
   has_many :event_comments
   has_many :groups
   has_many :group_members
-  has_many :guests
+  has_many :guests, :dependent => :destroy
   has_many :events, :through => :guests
   accepts_nested_attributes_for :event_comments, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :guests, :allow_destroy => true, :reject_if => :all_blank
@@ -28,7 +28,9 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      User.find(:all, :conditions => ["email LIKE ?", search])
+      list = []
+      list |= User.where(:email => search)
+      list |= User.where(:name => search)
     else
       Array.new
     end

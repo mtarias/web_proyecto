@@ -6,19 +6,10 @@
 	</div>
 	<div class="guests">
 		<h3>Lista de invitados</h3>
-		<% @event.guests.each do |guest| %>
-			<p><%= link_to guest.user.name, guest.user %></p>
-		<% end %>
-	</div>
-</div>
-<div class="rightevent">
-	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
-
-	<%= form_tag @event, :method => 'get' do %>
-			<p>Invita a un amigo por email:
+		<%= form_tag @event, :method => 'get' do %>
+			<p>Invita a un amigo:</p>
 		<%= text_field_tag :search, params[:search] %>
 		<%= submit_tag "Buscar", :name => nil %>
-			</p>
 	<% end %>
 	<% unless @friends.nil?
 		unless @friends.empty? %>
@@ -27,15 +18,45 @@
 			El usuario ya fue agregado
 		<% end %>
 	<% end %>
-	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
-	<% unless @event.taxes.blank? %>
-		<ul>
-		<%= render @event.taxes %>
-		</ul>
-	<% else %>
-		<p>¡No hay nada que llevar aún!</p>
+	<% @event.guests.each do |guest| %>
+		<p><%= link_to guest.user.name, guest.user %></p>
 	<% end %>
-
+	</div>
+</div>
+<div class="rightevent">
+	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
+	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
+	<% unless @user_commit.blank? %>
+		<h4><%=t :user_commit %></h4>
+		<% @user_commit.each do |tax| %>
+			<div class="user_commit">
+				<%= "#{tax.amount_user} #{tax.tax.name}" %>
+				<div id="right">
+				<%= link_to 'X', [tax.user, tax], :method => 'delete', :confirm => 'sure?' %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	<% unless @remaining_taxes.blank? %>
+		<h4><%=t :remaining_taxes %></h4>
+		<% @remaining_taxes.each do |tax| %>
+			<div class="tax_remaining">
+				<%= remaining_amount tax %>
+				<%= " #{tax.name}" %>
+				<div id="right">
+				<%= form_for([@user, @user.user_taxes.build]) do |f| %>
+					<%= f.hidden_field :event_id, :value => @event.id %>
+					<%= f.hidden_field :tax_id, :value => tax.id %>
+					<%= f.text_field :amount_user %>
+					<%= f.submit 'Actualizar!' %>
+				<% end %>
+				<%= link_to 'X', [tax.event, tax], :method => 'delete', :confirm => 'sure?' %>
+				</div>
+			</div>
+		<% end %>
+	<% else %>
+	<p>¡No hay nada que llevar aún!</p>
+	<% end %>
 	<p><%=t :add_tax %></p>
 	<%= render "taxes/form" %>
 	

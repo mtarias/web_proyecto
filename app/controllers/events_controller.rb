@@ -75,7 +75,23 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @admins = @event.admins_to_s
     @taxes = @event.taxes
+    @user = User.find(session[:user_id])
 
+    # Manejo la CheckList
+    @user_commit = []
+    @remaining_taxes = []
+
+    @taxes.each do |tax|
+      c = UserTax.user_commit(session[:user_id], tax.id)
+      unless c.blank?
+        @user_commit += c
+      end
+      if tax.needs_contributions?
+        @remaining_taxes << tax
+      end
+    end
+
+    # Manejo los invitados
     @going = []
     @not_going = []
     @waiting_answer = []
@@ -90,6 +106,7 @@ class EventsController < ApplicationController
       end
     end
 
+    # Manejo las invitaciones. Por cambiar
     @friends = nil
     unless params[:search].blank?
       @friends = User.search(params[:search])
@@ -133,7 +150,7 @@ class EventsController < ApplicationController
         @guest.is_admin = true
         @guest.is_going = true
         @guest.save
-        format.html { redirect_to @event, notice: 'Tu evento fue creado exitosamente' }
+        format.html { redirect_to @event, notice: I18n.t(:successful_new_event) }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
@@ -246,7 +263,7 @@ def invite
     @guest.is_admin = false
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @event, notice: I18n.t(:successful_invitation, :email => User.find(params[guest_id]).email) }
+        format.html { redirect_to @event, notice: I18n.t(:successful_invitation, :email => User.find(params[:guest_id]).email) }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, notice: 'No funcionó D:'}

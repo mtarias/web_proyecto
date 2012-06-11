@@ -16,7 +16,14 @@
 
 
 $(function() {
-	$("input").click(function() {
-		$( "#tax_name" ).css("color", "red");
-	});
+	$("#notice").delay(10000).fadeOut("slow");
+
+	$("div").hover(function (){
+			$(this).children("#right").show();
+		},
+		function (){
+			$(this).children("#right").hide();
+		}
+	);
+
 });
