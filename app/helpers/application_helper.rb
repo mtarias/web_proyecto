@@ -4,11 +4,18 @@ module ApplicationHelper
 	end
 
 	def title(title, translate = true)
-		content_for :title, translate ? I18n.t(title) : title
+		content_for :title, translate ? t(title) : title
 	end
 
 	def link_to_back
-		link_to I18n.t(:back), :back
+		link_to t(:back), :back
+	end
+
+	def link_to_c_t(name, route)
+		link_to_unless_current t(name), route do
+			raw %Q|<div class="selected_link">#{t(name)}</div>|
+		end
+		
 	end
 
 end

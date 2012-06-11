@@ -20,22 +20,22 @@
 				<% if session[:user_id] %>
 					<% user = User.find(session[:user_id]) %>
 					<%= link_to "#{user.name}", profile_path %> |
-					<%= link_to I18n.t(:logout), logout_path, :confirm => I18n.t(:logout?) %>
+					<%= link_to t(:logout), logout_path, :confirm => t(:logout?) %>
 				<% else %>
-					<%= link_to I18n.t(:invited_user), :root %>
+					<%= link_to t(:invited_user), :root %>
 				<% end %>
 			</div>
 		</div>
 	</div>
 	<div class="menu">
 		<ul>
-			<li><%= link_to I18n.t(:make_new_event), new_event_path %></li><br>
-			<li><%= link_to I18n.t(:start), profile_path %></li>
-			<li><%= link_to I18n.t(:own_events), private_events_path %></li>
-			<li><%= link_to I18n.t(:next_events), next_events_path %></li>
-			<li><%= link_to I18n.t(:past_events), past_events_path %></li>
-			<li><%= link_to I18n.t(:my_friends), friends_path %></li>
-			<li><%= link_to I18n.t(:public_events) , public_events_path %></li>
+			<li><%= link_to_c_t :make_new_event, new_event_path %></li><br>
+			<li><%= link_to_c_t :start, profile_path %></li>
+			<li><%= link_to_c_t :own_events, private_events_path %></li>
+			<li><%= link_to_c_t :next_events, next_events_path %></li>
+			<li><%= link_to_c_t :past_events, past_events_path %></li>
+			<li><%= link_to_c_t :my_friends, friends_path %></li>
+			<li><%= link_to_c_t :public_events , public_events_path %></li>
 		</ul>
 	</div>
 	<div class="content">

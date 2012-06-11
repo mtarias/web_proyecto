@@ -19,10 +19,10 @@ $(function() {
 	$("#notice").delay(10000).fadeOut("slow");
 
 	$("div").hover(function (){
-			$(this).children("#right").show();
+			$(this).delay(500).children("#right").fadeIn();
 		},
 		function (){
-			$(this).children("#right").hide();
+			$(this).delay(500).children("#right").fadeOut("fast");
 		}
 	);
 

@@ -28,7 +28,8 @@ body {
 	position: relative;
 	clear: both;
 	margin: 0 auto;
-	width: 1020px;
+	min-width: 1020px;
+	max-width: 90%;
 	min-height: 100%;
 	overflow: hidden;
 	border-left: 1px solid #CCCCCC;
@@ -117,17 +118,21 @@ a:active {
 	height:100%;
 	float:left;
 	margin-right: 10px;
+	position: relative;
 }
 .rightevent{
-	background-color: #5CA6D7;
-	width:20%;
-	padding-top: 20px;
-	float:right;
+	background-color: #F5F5F5;
+	border: 1px solid #E5E5E5;
+	float: right;
+	width: 20%;
+	padding: 20px;
+	margin-top: 30px;
+	position: relative;
 }
 .centerevent{
-	width:60%;
-	margin-left: auto; 
-	margin-right: auto;
+	width: 55%;
+	margin-left: 20%;
+	position: relative;
 }
 .eventcomment{
 	padding-top:1px;
@@ -198,4 +203,8 @@ h1 a {
 }
 #eventinfo {
 	border-bottom: 1px solid #CCCCCC;
+}
+.selected_link{
+	font-weight: bold;
+	background-color: #F5F5F5;
 }
