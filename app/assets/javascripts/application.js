@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require i18n
+//= require i18n/translations
 
 
 $(function() {
@@ -23,6 +25,38 @@ $(function() {
 		},
 		function (){
 			$(this).delay(500).children("#right").fadeOut("fast");
+		}
+	);
+
+	$("a#attending").hover(function (){
+			$(this).text(I18n.t('to_not_attend'));
+		},
+		function (){
+			$(this).text(I18n.t('attending'));
+		}
+	);
+
+	$("a#not_decided").hover(function (){
+			$(this).text(I18n.t('to_attend'));
+		},
+		function (){
+			$(this).text(I18n.t('not_decided'));
+		}
+	);
+
+	$("a#not_invited").hover(function (){
+			$(this).text(I18n.t('to_attend'));
+		},
+		function (){
+			$(this).text(I18n.t('not_invited'));
+		}
+	);
+
+	$("a#to_not_attend").hover(function (){
+			$(this).text(I18n.t('to_attend'));
+		},
+		function (){
+			$(this).text(I18n.t('to_not_attend'));
 		}
 	);
 

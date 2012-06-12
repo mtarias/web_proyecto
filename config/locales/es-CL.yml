@@ -30,9 +30,11 @@ es-CL:
   new_event: Nuevo evento
   private_event: Evento privado
   attending: Asistiré
+  not_attending: No asistiré
   not_invited: No has sido invitado aún
   not_decided: Aún no has respondido
   to_attend: Asistir a evento
+  to_not_attend: Rechazar invitación
   event_name: Nombre del evento
   date_and_time: Fecha
   place: Lugar

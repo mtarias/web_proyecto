@@ -184,7 +184,7 @@ a:active {
 }
 #notice{
 	position: relative;
-	display: inline;
+	display: block;
     line-height: 1.54em;
 	background-color: #f9edbe;
 	border-color: #foc36d;
@@ -206,5 +206,5 @@ h1 a {
 }
 .selected_link{
 	font-weight: bold;
-	background-color: #F5F5F5;
+	background-color: #36B336;
 }

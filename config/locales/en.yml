@@ -26,12 +26,15 @@ en:
   wont_go: You are not going.
   wont_go_admin_error: You can't stop going because you are the only one event's administrator. Asign any member of the event as administrator and try again.
   successful_invitation: "An invitation was sent to %{email}."
+  successful_new_event: Your have created a new event.
   new_event: New event
   private_event: Private event
   attending: I will attend
+  not_attending: Stop attending
   not_invited: You are not invited yet
   not_decided: You haven't answered
   to_attend: Attend to the event
+  to_not_attend: Reject invitation
   event_name: Name of the event
   date_and_time: Date
   place: Place
