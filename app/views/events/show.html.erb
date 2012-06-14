@@ -6,10 +6,10 @@
 	</div>
 	<div class="guests">
 		<h3>Lista de invitados</h3>
-		<%= form_tag @event, :method => 'get' do %>
+		<%= form_tag @event, :method => 'get', :class => 'findUsers' do %>
 			<p>Invita a un amigo:</p>
 		<%= text_field_tag :search, params[:search] %>
-		<%= submit_tag "Buscar", :name => nil %>
+		<%= submit_tag t(:search) %>
 	<% end %>
 	<% unless @friends.nil?
 		unless @friends.empty? %>

@@ -2,6 +2,7 @@ es-CL:
   # General
   login: Entrar
   back: Atrás
+  search: Buscar
   greet_user: "¡Hola de nuevo, %{user}!"
   bad_login: Email o contraseña incorrecta.
   successful_logout: Has cerrado sesión correctamente.

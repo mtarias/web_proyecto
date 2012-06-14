@@ -2,6 +2,7 @@ en:
   # General
   login: Log in
   back: Back
+  search: Find
   greet_user: "What's up, %{user}?"
   bad_login: E-mail or password you entered is incorrect.
   successful_logout: You have successfully logged out.
@@ -19,8 +20,8 @@ en:
   # Start
   edit_profile: Edit profile
   show_profile: Show profile
-  last_comments: Lastest comments
-  last_taxes: Lastest checklist's stuff
+  last_comments: Latest comments
+  last_taxes: Latest checklist's stuff
   # Events
   will_go: You are going.
   wont_go: You are not going.
@@ -58,7 +59,7 @@ en:
   password: Password
   password_confirmation: Password confirmation
   # CheckList (Taxes)
-  user_commit: You committed to bring
+  user_commit: You've committed to bring
   remaining_taxes: We still need
   tax_description: Add all the elements you need to go to the event.
   tax_name: Item

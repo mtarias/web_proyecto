@@ -18,7 +18,7 @@
 
 
 $(function() {
-	$("#notice").delay(10000).fadeOut("slow");
+	$("#notice").delay(20000).fadeOut("slow");
 
 	$("div").hover(function (){
 			$(this).delay(500).children("#right").fadeIn();
@@ -58,6 +58,14 @@ $(function() {
 		function (){
 			$(this).text(I18n.t('to_not_attend'));
 		}
+	);
+
+	$("input#search").keyup(
+		$.ajax({
+			url: $(".findUsers").attr('action'),
+			type: $(".findUsers").attr('method'),
+			data: $("input#search").text()
+		})
 	);
 
 });
