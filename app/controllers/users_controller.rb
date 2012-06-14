@@ -58,6 +58,8 @@ skip_before_filter :require_login, :only => [:new,:create]
       if @user.save
         # Logueamos automáticamente al usuario que acaba de crear su cuenta
         session[:user_id] = @user.id
+        # Mandamos un mail de registro
+        UserMailer.welcome_email(@user).deliver
         format.html { redirect_to profile_path, notice: 'Tu cuenta ha sido creada exitosamente.' }
         format.json { render json: @user, status: :created, location: @user }
       else

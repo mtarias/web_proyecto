@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614034034) do
+ActiveRecord::Schema.define(:version => 20120614141152) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "comment"
@@ -41,11 +41,17 @@ ActiveRecord::Schema.define(:version => 20120614034034) do
     t.integer  "group_id"
   end
 
+  add_index "group_members", ["group_id"], :name => "index_group_members_on_group_id"
+  add_index "group_members", ["user_id"], :name => "index_group_members_on_user_id"
+
   create_table "groups", :force => true do |t|
     t.string   "group_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
+
+  add_index "groups", ["user_id"], :name => "index_groups_on_user_id"
 
   create_table "guests", :force => true do |t|
     t.boolean  "is_going"
