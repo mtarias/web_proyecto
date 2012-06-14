@@ -14,7 +14,8 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
-
+    @members = @group.group_members
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }
@@ -41,11 +42,15 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    @group.user_id = session[:user_id]
 
     respond_to do |format|
       if @group.save
+        @group_member = @group.group_members.create(params[:group_member])
+        @group_member.user_id = session[:user_id]
+        @group_member.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render json: @group, status: :created, location: @group }
+        format.json { render action: "show"}
       else
         format.html { render action: "new" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -78,6 +83,21 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url }
       format.json { head :no_content }
+    end
+  end
+
+  def add_friend
+    @group = Group.find(params[:id])
+    @group_member = @group.group_member.create(params[:group_member])
+    @group_member.user_id = params[:group_member_id]
+
+    respond_to do |format|
+      if @group_member.save
+        format.html { redirect_to @group, notice: I18n.t(:successful_invitation, :email => User.find(params[:guest_id]).email) }
+        format.json { head :no_content }
+      else
+        format.json { redirect_to @group.errors, status: :unprocessable_entity}
+      end
     end
   end
 end

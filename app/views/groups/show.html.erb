@@ -1,7 +1,9 @@
-
 <p>
-  <b>Group name:</b>
-  <%= @group.group_name %>
+    <b>Group name:<%= @group.group_name %></b>
+  	<% @members.each do |member| %>
+  		<p><%= member.user.name %></p>
+  	<% end %>
+  	
 </p>
 
 
