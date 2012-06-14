@@ -16,7 +16,7 @@ Eventmaker::Application.routes.draw do
 
   match 'friends' => "groups#index", :as => :friends
 
-  match 'add_friend(/:id(/:add_friend_id))' => "groups#add_friend", :as => :add_friend
+  match 'add_friend(/:id(/:member_id))' => "groups#add_friend", :as => :add_friend
 
   resources :groups
 
