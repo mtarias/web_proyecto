@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525205406) do
+ActiveRecord::Schema.define(:version => 20120614034034) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "comment"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20120525205406) do
   create_table "group_members", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "group_id"
   end
 
   create_table "groups", :force => true do |t|

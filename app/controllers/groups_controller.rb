@@ -25,6 +25,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    @group.user = session[:id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -78,6 +79,21 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url }
       format.json { head :no_content }
+    end
+  end
+
+  def add_friend
+    @group = Group.find(params[:id])
+    @group_member = @group.group_member.create(params[:group_member])
+    @group_member.user_id = params[:group_member_id]
+
+    respond_to do |format|
+      if @group_member.save
+        format.html { redirect_to @event, notice: I18n.t(:successful_invitation, :email => User.find(params[:guest_id]).email) }
+        format.json { head :no_content }
+      else
+        format.json { redirect_to :back, notice: 'Bu'}
+      end
     end
   end
 end
