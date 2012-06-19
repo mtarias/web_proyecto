@@ -18,8 +18,17 @@
 			El usuario ya fue agregado
 		<% end %>
 	<% end %>
-	<% @event.guests.each do |guest| %>
+	<% unless @going.blank? %>
+	<h3><%=t :attending_guests, :number => @going.length %></h3>
+	<% @going.each do |guest| %>
 		<p><%= link_to guest.user.name, guest.user %></p>
+	<% end %>
+	<% end %>
+	<% unless @waiting_answer.blank? %>
+	<h3><%=t :waiting_answer_guests, :number => @waiting_answer.length %></h3>
+	<% @waiting_answer.each do |guest| %>
+		<p><%= link_to guest.user.name, guest.user %></p>
+	<% end %>
 	<% end %>
 	</div>
 </div>

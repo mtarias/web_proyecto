@@ -93,16 +93,17 @@ class EventsController < ApplicationController
 
     # Manejo los invitados
     @going = []
-    @not_going = []
+    #@not_going = []
     @waiting_answer = []
 
-    @event.guests do |invitation|
-      if invitation.is_going
+    @event.guests.each do |invitation|
+      response = invitation.is_going
+      if response
         @going << invitation
-      elsif invitation.nil?
+      elsif response.nil?
         @waiting_answer << invitation
-      else
-        @not_going << invitation
+      #else
+        #@not_going << invitation
       end
     end
 

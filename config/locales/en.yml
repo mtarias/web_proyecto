@@ -36,6 +36,8 @@ en:
   not_decided: You haven't answered
   to_attend: Attend to the event
   to_not_attend: Reject invitation
+  attending_guests: "Going (%{number})"
+  waiting_answer_guests: "Invited (%{number})"
   event_name: Name of the event
   date_and_time: Date
   place: Place

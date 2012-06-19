@@ -21,10 +21,10 @@ $(function() {
 	$("#notice").delay(20000).fadeOut("slow");
 
 	$("div").hover(function (){
-			$(this).delay(500).children("#right").fadeIn();
+			$(this).children("#right").show();
 		},
 		function (){
-			$(this).delay(500).children("#right").fadeOut("fast");
+			$(this).children("#right").hide();
 		}
 	);
 
