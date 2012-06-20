@@ -6,6 +6,6 @@ class Tax < ActiveRecord::Base
   attr_accessible :amount, :name
 
   def needs_contributions?
-  	UserTax.all_commits(:id) < self.amount
+  	UserTax.all_commits(self.id) < self.amount
   end
 end
