@@ -4,7 +4,7 @@ layout 'home', :except => :profile
 skip_before_filter :require_login
 
   def index
-    if session[:user_id]
+    if User.exists? session[:user_id])
       redirect_to profile_path
     end
   end
