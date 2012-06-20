@@ -101,14 +101,17 @@
 			</p>
 		<% end %>
 	</div>
-	<% unless @event.event_comments.blank? %>
-	<div id="eventinfo">
-		<h2><%=t :comments %></h2>
-		<%= render @event.event_comments %>
-	</div>
-	<% end %>
+	<% list_of_comments = @event.event_comments.clone %>
 	<h3><%=t :add_comment %></h3>
 	<%= render "event_comments/form" %>
+	<% if list_of_comments.blank? %>
+		<%=t :first_commenting %>
+	<% else %>
+	<div id="eventinfo">
+		<h2><%=t :comments %></h2>
+		<%= render list_of_comments %>
+	</div>
+	<% end %>
 
 	<%= link_to_back %>
 </div>

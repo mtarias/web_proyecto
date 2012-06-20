@@ -1,7 +1,7 @@
 <div class="neweventcomment">
 	<%= form_for([@event, @event.event_comments.build]) do |f| %>
 	  <div class="field">
-	    <%= f.text_field :comment %>
+	    <%= f.text_area :comment %>
 	  </div>
 	  <div class="actions">
 	    <%= f.submit I18n.t(:post) %>

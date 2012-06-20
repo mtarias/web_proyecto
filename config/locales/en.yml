@@ -37,7 +37,7 @@ en:
   to_attend: Attend to the event
   to_not_attend: Reject invitation
   attending_guests: "Going (%{number})"
-  waiting_answer_guests: "Invited (%{number})"
+  Invited: "waiting_answer_guests (%{number})"
   event_name: Name of the event
   date_and_time: Date
   place: Place
@@ -46,6 +46,7 @@ en:
   admins: Administrators
   comments: Comments
   add_comment: Add a comment
+  first_commenting: Be the first commenter! You can also invite more people to the event.
   public_events_description: Then all the events you can participate without invitation
   edit_event: Edit event
   add_tax: Add something to the checklist

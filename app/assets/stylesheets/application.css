@@ -210,3 +210,11 @@ h1 a {
 	font-weight: bold;
 	border-left: 3px solid #3C8008;
 }
+textarea{
+	font-family: verdana,arial,helvetica,sans-serif;
+	font-size: 90%;
+}
+#event_comment_comment{
+	width: 80%;
+	height: 3em;
+}
