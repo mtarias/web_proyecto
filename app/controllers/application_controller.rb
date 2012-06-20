@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_and_time_zone
-  	unless User.exists? session[:user_id]
+  	if User.exists? session[:user_id]
       I18n.locale = User.find(session[:user_id]).locale
       Time.zone = User.find(session[:user_id]).time_zone
     else
