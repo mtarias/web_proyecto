@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_cache_buster
   
   def require_login
-  	unless User.exists? session[:user_id])
+  	unless User.exists? session[:user_id]
 		  redirect_to :root, :notice => "Debes hacer login antes de poder ver esa sección"
   	end
   end
