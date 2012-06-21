@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614141152) do
+ActiveRecord::Schema.define(:version => 20120621144340) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "comment"
@@ -105,6 +105,9 @@ ActiveRecord::Schema.define(:version => 20120614141152) do
     t.string   "name"
     t.string   "time_zone"
     t.string   "locale"
+    t.string   "api_key"
   end
+
+  add_index "users", ["api_key"], :name => "index_users_on_api_key", :unique => true
 
 end

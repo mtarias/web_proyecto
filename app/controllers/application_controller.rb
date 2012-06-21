@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :require_login
+  before_filter :authenticate_api
   before_filter :set_locale_and_time_zone
   before_filter :set_cache_buster
   
@@ -9,6 +10,15 @@ class ApplicationController < ActionController::Base
   	unless User.exists? session[:user_id]
 		  redirect_to :root, :notice => "Debes hacer login antes de poder ver esa sección"
   	end
+  end
+
+  def authenticate_api
+    if request.format.json?
+      unless User.where(:api_key => params[:api_key]).first
+        head :forbidden
+        return false
+      end
+    end
   end
 
   def set_locale_and_time_zone
