@@ -53,6 +53,7 @@ en:
   # Event_comment
   post: Post
   # Users
+  new_user_message: Your account has been successfully created.
   user_register: Sign up
   edit_profile: Edit profile
   user_name: Name

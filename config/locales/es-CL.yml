@@ -53,6 +53,7 @@ es-CL:
   # Event_comment
   post: Postear
   # Usuario
+  new_user_message: Tu cuenta ha sido creada exitosamente.
   user_register: Regístrate
   edit_profile: Editar pefil
   user_name: Nombre

@@ -60,7 +60,7 @@ skip_before_filter :require_login, :only => [:new,:create]
         session[:user_id] = @user.id
         # Mandamos un mail de registro
         # UserMailer.welcome_email(@user).deliver
-        format.html { redirect_to profile_path, notice: 'Tu cuenta ha sido creada exitosamente.' }
+        format.html { redirect_to profile_path, notice: I18n.t(:new_user_message) }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new", layout: 'application' }

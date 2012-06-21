@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
    	:message    => ' debe ser válido'
   validates_confirmation_of :password
 
+  before_create :set_api_key
+
   def self.login(email, password)
     user = self.find_by_email(email)
     if user && password == user.password
@@ -34,6 +36,16 @@ class User < ActiveRecord::Base
     else
       Array.new
     end
+  end
+
+  private
+  def set_api_key
+    begin
+      random_key = SecureRandom.urlsafe_base64
+      if User.where(:api_key => random_key).first.nil?
+        self.api_key = random_key
+      end
+    end while self.api_key.nil?
   end
 
 end

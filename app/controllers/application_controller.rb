@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :require_login
+  skip_before_filter :verify_autheticate_token, if: :is_api_request?
   before_filter :authenticate_api
   before_filter :set_locale_and_time_zone
   before_filter :set_cache_buster
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_api
-    if request.format.json?
+    if is_api_request?
       unless User.where(:api_key => params[:api_key]).first
         head :forbidden
         return false
@@ -52,5 +53,9 @@ class ApplicationController < ActionController::Base
       end
     end
     I18n.default_locale
+  end
+
+  def is_api_request?
+    request.format.json?
   end
 end
