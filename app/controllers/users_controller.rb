@@ -10,7 +10,7 @@ skip_before_filter :require_login, :only => [:new,:create]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      format.json # index.json.jbuilder
     end
   end
 
@@ -21,7 +21,7 @@ skip_before_filter :require_login, :only => [:new,:create]
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.json # show.json.jbuilder
     end
   end
 
