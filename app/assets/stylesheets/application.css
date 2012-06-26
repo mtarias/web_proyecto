@@ -165,12 +165,12 @@ a:active {
 .picture{
 	background-color:#60CDDE;
 	height:100px;
-	padding-top:70px;
 	text-align:center;
 }
 .guests{
 	padding-left:15px;
 	padding-right:15px;
+	padding-top: 110px;
 }
 .neweventcomment{
 	margin-left:20px;
@@ -217,4 +217,8 @@ textarea{
 #event_comment_comment{
 	width: 80%;
 	height: 3em;
+}
+img{
+	width: 200px;
+	height: 200%;
 }

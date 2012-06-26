@@ -18,6 +18,8 @@ Eventmaker::Application.routes.draw do
 
   match 'add_friend(/:id(/:member_id))' => "groups#add_friend", :as => :add_friend
 
+  match 'new_picture(/:event_id)' => "pictures#new_picture", :as => :new_picture
+  
   resources :groups
 
   resources :pictures

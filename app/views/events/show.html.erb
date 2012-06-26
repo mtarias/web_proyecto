@@ -2,9 +2,13 @@
 
 <div class="leftevent">	
 	<div class="picture">
-		<%= link_to 'Subir Foto', new_picture_path %>
+		<% @pictures = Picture.all %>
+		<% @pictures.each do |p| %>
+			<%= image_tag(p.picture_url) %>
+		<% end %>
 	</div>
 	<div class="guests">
+		<%= link_to 'Subir Foto', new_picture_path(@event) %>
 		<h3>Lista de invitados</h3>
 		<%= form_tag @event, :method => 'get', :class => 'findUsers' do %>
 			<p>Invita a un amigo:</p>
@@ -118,4 +122,3 @@
 
 	<%= link_to_back %>
 </div>
-<%= yield :scripts %>
