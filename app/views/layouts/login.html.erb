@@ -3,6 +3,7 @@
 <head>
 	<title><%= yield(:title) %> - Eventmaker</title>
 	<%= stylesheet_link_tag "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
 	<script type="text/javascript">
 		I18n.defaultLocale = "<%= I18n.default_locale %>";
 		I18n.locale = "<%= I18n.locale %>";
@@ -16,6 +17,7 @@
 			<div id="bn"><div id="notice"><%= flash[:notice] %></div></div> 
 		<% end %>
 		<div class="fixedtop">
+			<div class="wrap">
 			<div id="logo">
 				<h1><%= link_to "EventMaker", :root %></h1>
 			</div>
@@ -28,13 +30,14 @@
 					<%= link_to t(:invited_user), :root %>
 				<% end %>
 			</div>
+			</div>
 		</div>
 	</div>
 	<div class="menu">
 		<ul>
 			<li><%= link_to_c_t :make_new_event, new_event_path %></li><br>
 			<li><%= link_to_c_t :start, profile_path %></li>
-			<li><%= link_to_c_t :own_events, private_events_path %></li>
+			<li><%= link_to_c_t :own_events, own_events_path %></li>
 			<li><%= link_to_c_t :next_events, next_events_path %></li>
 			<li><%= link_to_c_t :past_events, past_events_path %></li>
 			<li><%= link_to_c_t :my_friends, friends_path %></li>
@@ -48,6 +51,5 @@
 		EventMaker Inc.
 	</div>
 </div>
-<%= javascript_include_tag "application" %>
 </body>
 </html>

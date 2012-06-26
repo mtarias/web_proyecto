@@ -9,11 +9,6 @@ Eventmaker::Application.routes.draw do
   match 'not_attend(/:id)' => "events#not_attend", :as => :not_attend
   match 'invite(/:id(/:guest_id))' => "events#invite", :as => :invite
 
-  match 'events/private' => "events#user_events", :as => :private_events
-  match 'events/past' => "events#past_events", :as => :past_events
-  match 'events/next' => "events#next_events", :as => :next_events
-  match 'public/events' => "events#public_events", :as => :public_events
-
   match 'friends' => "groups#index", :as => :friends
 
   match 'add_friend(/:id(/:member_id))' => "groups#add_friend", :as => :add_friend
@@ -25,6 +20,12 @@ Eventmaker::Application.routes.draw do
   resources :events do  
     resources :event_comments
     resources :taxes
+    collection do
+      get 'own'
+      get 'next'
+      get 'past'
+      get 'public'
+    end
   end
 
   resources :users do
