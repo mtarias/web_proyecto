@@ -8,6 +8,8 @@
 		I18n.locale = "<%= I18n.locale %>";
 	</script>
 	<%= csrf_meta_tags %>
+	<%= stylesheet_link_tag 'gmaps4rails' %>
+	<%= yield :head %>
 </head>
 <body>
 <div class="wrap">

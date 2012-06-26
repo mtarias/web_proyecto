@@ -73,6 +73,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @json = @event.to_gmaps4rails
     @admins = @event.admins_to_s
     @taxes = @event.taxes
     @user = User.find(session[:user_id])
