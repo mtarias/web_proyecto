@@ -12,6 +12,15 @@ class Event < ActiveRecord::Base
                :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :taxes
 
+  acts_as_gmappable
+  def gmaps4rails
+    place
+  end
+
+  def gmaps4rails_infowindow
+      "<h1>#{name}</h1>"
+    end
+
   def isgoing?(user_id)
     Guest.is_user_going(user_id, self.id)
   end

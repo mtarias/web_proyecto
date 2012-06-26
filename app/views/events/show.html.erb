@@ -87,6 +87,9 @@
 		<p>
 		  <b><%=t :place %></b>
 		  <%= @event.place %>
+		  <%= @event.latitude %>
+		  <%= @event.longitude %>
+		  <%= gmaps4rails(@json) %>
 		</p>
 
 		<p>
@@ -115,3 +118,4 @@
 
 	<%= link_to_back %>
 </div>
+<%= yield :scripts %>
