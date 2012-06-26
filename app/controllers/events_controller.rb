@@ -1,15 +1,15 @@
 # encoding: utf-8
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.json
   skip_before_filter :require_login, :only => :public_events
   layout 'login'
+  respond_to :html, :json
 
   def index
     redirect_to :root
   end
 
-  def next_events
+  # GET /events/next
+  def next
     future_events = Event.future_events
     # Agrego los eventos públicos
     @events = future_events.where(:is_private => false)
@@ -22,13 +22,11 @@ class EventsController < ApplicationController
       end
     end
     
-    respond_to do |format|
-      format.html # next_events.html.erb
-      format.json { render json: @events }
-    end
+    respond_with @events
   end
 
-  def user_events
+  # GET /events/own
+  def own
     @events = Array.new
     valid_events =  Event.future_events
     
@@ -38,13 +36,11 @@ class EventsController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html # user_events.html.erb
-      format.json { render json: @events }
-    end
+    respond_with @events
   end
 
-  def past_events
+  # GET /events/past
+  def past
     @events = Array.new
     valid_events = Event.past_events
 
@@ -54,29 +50,25 @@ class EventsController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html # past_events.html.erb
-      format.json { render json: @events }
-    end
+    respond_with @events
   end
 
-  def public_events
+  # GET /public/events
+  def public
     @events = Event.future_events.where(:is_private => false)
 
-    respond_to do |format|
-      format.html # public_events.html.erb
-      format.json { render json: @events }
-    end
+    respond_with @events
   end
 
-  # GET /events/1
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
     @json = @event.to_gmaps4rails
     @admins = @event.admins_to_s
     @taxes = @event.taxes
-    @user = User.find(session[:user_id])
+    unless session[:user_id].nil?
+      @user = User.find(session[:user_id])
+    end
 
     # Manejo la CheckList
     @user_commit = []
@@ -108,7 +100,7 @@ class EventsController < ApplicationController
       end
     end
 
-    # Manejo las invitaciones. Por cambiar
+    # Manejo las invitaciones
     @friends = nil
     unless params[:search].blank?
       @friends = User.search(params[:search])
@@ -117,22 +109,13 @@ class EventsController < ApplicationController
         @friends -= User.where(:id => g.user_id)
       end
     end
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
-    end
   end
 
-  # GET /events/new
   # GET /events/new.json
   def new
     @event = Event.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @event }
-    end
+    respond_with @event
   end
 
   # GET /events/1/edit
@@ -140,7 +123,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # POST /events
   # POST /events.json
   def create
     @event = Event.new(params[:event])
@@ -177,14 +159,13 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url }
+      format.html { redirect_to :root }
       format.json { head :no_content }
     end
   end

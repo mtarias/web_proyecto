@@ -1,7 +1,7 @@
 # encoding: utf-8
 class HomeController < ApplicationController
 layout 'home', :except => :profile
-skip_before_filter :require_login
+skip_before_filter :require_login, :except => :profile
 
   def index
     if User.exists? session[:user_id]

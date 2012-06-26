@@ -3,29 +3,29 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :require_login
   skip_before_filter :verify_autheticate_token, if: :is_api_request?
-  before_filter :authenticate_api
   before_filter :set_locale_and_time_zone
   before_filter :set_cache_buster
   
   def require_login
-  	unless User.exists? session[:user_id]
+    logger.info params.inspect
+  	if is_api_request?
+      # Si se llama a la API verifico su key
+      if User.where(:api_key => params[:api_key]).blank?
+        head :forbidden
+        return false
+      end
+    elsif !User.exists?(session[:user_id])
+      # Si no es a la API, verifico que el usuario haya iniciado sesión
 		  redirect_to :root, :notice => "Debes hacer login antes de poder ver esa sección"
   	end
   end
 
-  def authenticate_api
-    if is_api_request?
-      unless User.where(:api_key => params[:api_key]).first
-        head :forbidden
-        return false
-      end
-    end
-  end
-
   def set_locale_and_time_zone
-  	if User.exists? session[:user_id]
-      I18n.locale = User.find(session[:user_id]).locale
-      Time.zone = User.find(session[:user_id]).time_zone
+    u = User.where(:id => session[:user_id]).first || User.where(:api_key => params[:key]).first
+    
+  	if u
+      I18n.locale = u.locale
+      Time.zone = u.time_zone
     else
       I18n.locale = extract_locale_from_accept_language_header
     end
