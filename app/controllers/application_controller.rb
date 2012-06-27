@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_and_time_zone
-    u = User.where(:id => session[:user_id]).first || User.where(:api_key => params[:key]).first
+    u = User.where(:id => user_id).first
     
   	if u
       I18n.locale = u.locale
@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
+  def user_id
+    session[:user_id] || User.find_by_api_key(params[:api_key]).id
   end
 
   private

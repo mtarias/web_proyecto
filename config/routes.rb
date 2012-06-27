@@ -9,11 +9,7 @@ Eventmaker::Application.routes.draw do
   match 'not_attend(/:id)' => "events#not_attend", :as => :not_attend
   match 'invite(/:id(/:guest_id))' => "events#invite", :as => :invite
 
-  match 'friends' => "groups#index", :as => :friends
-
   match 'add_friend(/:id(/:member_id))' => "groups#add_friend", :as => :add_friend
-
-  match 'new_picture(/:event_id)' => "pictures#new_picture", :as => :new_picture
   
   resources :groups
 
@@ -27,6 +23,7 @@ Eventmaker::Application.routes.draw do
       get 'next'
       get 'past'
       get 'public'
+      get 'search_users'
     end
   end
 

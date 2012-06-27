@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
   def self.search(search)
     if search
       list = []
-      list |= User.where(:email => search)
-      list |= User.where(:name => search)
+      list |= User.where(['email LIKE ?', "%#{search}%"])
+      list |= User.where(['name LIKE ?', "%#{search}%"])
     else
       Array.new
     end
