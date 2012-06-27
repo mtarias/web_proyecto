@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_cache_buster
   
   def require_login
-    logger.info params.inspect
+    logger.info "Hola api_key: '#{params[:api_key]}'"
   	if is_api_request?
       # Si se llama a la API verifico su key
       if User.where(:api_key => params[:api_key]).blank?
