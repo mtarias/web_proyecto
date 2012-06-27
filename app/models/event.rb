@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :taxes
 
   acts_as_gmappable
-  def gmaps4rails
+  def gmaps4rails_address
     place
   end
 
