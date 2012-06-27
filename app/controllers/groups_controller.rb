@@ -55,7 +55,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-    @group.user_id = session[:user_id]
+    @group.user_id = session[:user_id] || User.find_by_api_key(params[:api_key]).id
     respond_to do |format|
       if @group.save
         @group_member = @group.group_members.create(params[:group_member])

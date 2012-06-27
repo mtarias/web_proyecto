@@ -130,7 +130,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         @guest = @event.guests.create(params[:guest])
-        @guest.user_id = session[:user_id]
+        @guest.user_id = session[:user_id] || User.find_by_api_key(params[:api_key]).id
         @guest.is_admin = true
         @guest.is_going = true
         @guest.save
