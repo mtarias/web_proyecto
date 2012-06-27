@@ -5,6 +5,10 @@ class Tax < ActiveRecord::Base
   validates :name,  :presence => true
   attr_accessible :amount, :name
 
+  def remaining_amount
+  	self.amount - UserTax.all_commits(self.id)
+  end
+
   def needs_contributions?
   	UserTax.all_commits(self.id) < self.amount
   end

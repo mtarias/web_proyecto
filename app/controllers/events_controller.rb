@@ -1,6 +1,6 @@
 # encoding: utf-8
 class EventsController < ApplicationController
-  skip_before_filter :require_login, :only => :public_events
+  skip_before_filter :require_login, :only => :public
   layout 'login'
   respond_to :html, :json
 
