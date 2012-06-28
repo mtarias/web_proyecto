@@ -10,9 +10,9 @@
 	<div class="guests">
 		<%= link_to 'Subir Avatar', new_picture_path(:event_id => @event.id, :is_avatar => true) %>
 		<h3>Lista de invitados</h3>
-		<%= form_tag 'search_users', :method => 'get', :class => 'findUsers' do %>
+		<%= form_tag('send_invitations') do %>
 			<p>Invita a un amigo:</p>
-		<%= text_field_tag :search, params[:search] %>
+		<%= text_field_tag :invitations %>
 		<%= hidden_field_tag :event_id, @event.id %>
 		<%= submit_tag t(:search) %>
 		<% end %>

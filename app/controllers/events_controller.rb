@@ -10,13 +10,11 @@ class EventsController < ApplicationController
 
   # GET /events/next
   def next
+    @events = []
+    # Agrego todos los eventos futuros...
     future_events = Event.future_events
-    # Agrego los eventos públicos
-    @events = future_events.where(:is_private => false)
-    # Agrego los eventos privados...
-    private_events = future_events.where(:is_private => true)
-    # ... pero a los cuales tenga invitación
-    private_events.each do |event|
+    # ... pero dejo los cuales tenga invitación
+    future_events.each do |event|
       if Guest.is_user_invited? user_id, event.id
         @events << event
       end
@@ -99,21 +97,20 @@ class EventsController < ApplicationController
     end
   end
 
-  def search_users
+  def send_invitations
     # Manejo las invitaciones
     event = Event.find(params[:event_id])
 
-    unless params[:search].blank?
-      users = User.search(params[:search])
-
-      event.guests.each do |g|
-        users -= User.where(:id => g.user_id)
-      end
-    else
-      users = []
+    emails = params[:invitations].split(",")
+    
+    emails.each do |e|
+      guest = event.guests.create(params[:guest])
+      guest.user_id = User.find_by_email(e).id
+      guest.is_admin = false
+      guest.save
     end
 
-    render :json => users.collect {|u| { :id => u.id, :name => u.name } }
+    redirect_to event, notice: I18n.t(:successful_invitation, :email => params[:invitations] )
   end
 
   # GET /events/new.json
@@ -240,21 +237,6 @@ class EventsController < ApplicationController
         else
           format.html { redirect_to :back, notice: 'No funcionó D:'}
         end
-      end
-    end
-  end
-
-def invite
-    @event = Event.find(params[:id])
-    @guest = @event.guests.create(params[:guest])
-    @guest.user_id = params[:guest_id]
-    @guest.is_admin = false
-    respond_to do |format|
-      if @guest.save
-        format.html { redirect_to @event, notice: I18n.t(:successful_invitation, :email => User.find(params[:guest_id]).email) }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to :back, notice: 'No funcionó D:'}
       end
     end
   end

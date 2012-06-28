@@ -189,7 +189,7 @@ $.TokenList = function (input, url_or_data, settings) {
         .css({
             outline: "none"
         })
-        .attr("id", settings.idPrefix + input.id)
+        .attr("id", settings.idPrefix + input[settings.tokenValue])
         .focus(function () {
             if (settings.tokenLimit === null || settings.tokenLimit !== token_count) {
                 show_dropdown_hint();
@@ -463,7 +463,8 @@ $.TokenList = function (input, url_or_data, settings) {
             });
 
         // Store data on the token
-        var token_data = {"id": item.id};
+        var token_data = {};
+        token_data[settings.tokenValue] = item[settings.tokenValue];
         token_data[settings.propertyToSearch] = item[settings.propertyToSearch];
         $.data(this_token.get(0), "tokeninput", item);
 
@@ -495,7 +496,7 @@ $.TokenList = function (input, url_or_data, settings) {
             token_list.children().each(function () {
                 var existing_token = $(this);
                 var existing_data = $.data(existing_token.get(0), "tokeninput");
-                if(existing_data && existing_data.id === item.id) {
+                if(existing_data && existing_data[settings.tokenValue] === item[settings.tokenValue]) {
                     found_existing_token = existing_token;
                     return false;
                 }
@@ -640,6 +641,9 @@ $.TokenList = function (input, url_or_data, settings) {
 
     function show_dropdown_searching () {
         if(settings.searchingText) {
+            if(typeof settings.searchingText == 'function') {
+                settings.searchingText = settings.searchingText.call();
+            }
             dropdown.html("<p>"+settings.searchingText+"</p>");
             show_dropdown();
         }
@@ -647,6 +651,9 @@ $.TokenList = function (input, url_or_data, settings) {
 
     function show_dropdown_hint () {
         if(settings.hintText) {
+            if(typeof settings.hintText == 'function') {
+                settings.hintText = settings.hintText.call();
+            }
             dropdown.html("<p>"+settings.hintText+"</p>");
             show_dropdown();
         }
@@ -706,6 +713,9 @@ $.TokenList = function (input, url_or_data, settings) {
             }
         } else {
             if(settings.noResultsText) {
+                if(typeof settings.noResultsText == 'function') {
+                    settings.noResultsText = settings.noResultsText.call();
+                }
                 dropdown.html("<p>"+settings.noResultsText+"</p>");
                 show_dropdown();
             }

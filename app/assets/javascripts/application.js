@@ -63,12 +63,17 @@ $(function() {
 		}
 	);
 
-	$("input#search").keyup(
-		$.ajax({
-			url: $(".findUsers").attr('action'),
-			type: $(".findUsers").attr('method'),
-			data: $("input#search").text()
-		})
-	);
+	$("input#invitations").tokenInput(function() {
+		return "/users/search?event_id=" + $("#event_id").val()
+	}, {
+		theme: "facebook",
+		preventDuplicates: true,
+		searchDelay: 600,
+		minChars: 2,
+		tokenValue: "email",
+		hintText: function() { return I18n.t('hintText') },
+		noResultsText: function() { return I18n.t('noResultsText') },
+		searchingText: function() { return I18n.t('searchingText') }
+	});
 
 });

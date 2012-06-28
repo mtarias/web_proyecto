@@ -24,12 +24,15 @@ Eventmaker::Application.routes.draw do
       get 'next'
       get 'past'
       get 'public'
-      get 'search_users'
+      post 'send_invitations'
     end
   end
 
   resources :users do
     resources :user_taxes
+    collection do
+      get 'search'
+    end
   end
 
   resources :api_authentication, :only => [:create]
