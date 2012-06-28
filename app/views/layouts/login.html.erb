@@ -4,13 +4,15 @@
 	<title><%= yield(:title) %> - Eventmaker</title>
 	<%= stylesheet_link_tag "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "map" %>
 	<script type="text/javascript">
 		I18n.defaultLocale = "<%= I18n.default_locale %>";
 		I18n.locale = "<%= I18n.locale %>";
 	</script>
+	<script type="text/javascript"
+	    src="https://maps.google.com/maps/api/js?sensor=true">
+	</script>
 	<%= csrf_meta_tags %>
-	<%= stylesheet_link_tag 'gmaps4rails' %>
-	<%= yield :head %>
 </head>
 <body>
 <div class="wrap">

@@ -1,3 +1,4 @@
+<div id="event">
 <% title @event.name, false %>
 
 <div class="leftevent">	
@@ -91,17 +92,16 @@
 		</p>
 
 		<p>
-		  <b><%=t :place %></b>
-		  <%= @event.place %>
-		  <%= @event.latitude %>
-		  <%= @event.longitude %>
-		  <%= gmaps4rails(@json) %>
-		</p>
-
-		<p>
 			<b><%=t @event.number_of_admins>1 ? :admins : :admin %></b>
 			<%= @admins %>
 		</p>
+
+		<p id="address">
+		  <b><%=t :place %></b>
+		  <%= @event.place %>
+		</p>
+
+		<div id="map_canvas" style="width: 400px; height: 300px"></div>
 
 		<% unless @event.description.blank? %>
 			<p>
@@ -123,4 +123,5 @@
 	<% end %>
 
 	<%= link_to_back %>
+</div>
 </div>
