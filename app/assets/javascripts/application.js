@@ -63,13 +63,14 @@ $(function() {
 		}
 	);
 
-	$("input#search").tokenInput(function() {
+	$("input#invitations").tokenInput(function() {
 		return "/users/search?event_id=" + $("#event_id").val()
 	}, {
 		theme: "facebook",
 		preventDuplicates: true,
-		searchDelay: 2000,
+		searchDelay: 600,
 		minChars: 2,
+		tokenValue: "email",
 		hintText: function() { return I18n.t('hintText') },
 		noResultsText: function() { return I18n.t('noResultsText') },
 		searchingText: function() { return I18n.t('searchingText') }

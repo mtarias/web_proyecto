@@ -12,7 +12,7 @@
 		<h3>Lista de invitados</h3>
 		<%= form_tag('send_invitations') do %>
 			<p>Invita a un amigo:</p>
-		<%= text_field_tag :search %>
+		<%= text_field_tag :invitations %>
 		<%= hidden_field_tag :event_id, @event.id %>
 		<%= submit_tag t(:search) %>
 		<% end %>

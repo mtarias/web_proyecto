@@ -88,6 +88,7 @@ class UsersController < ApplicationController
         # En el caso de que sea un email válido
         u = User.new
         u.name = params[:q]
+        u.email = params[:q]
         users = [u]
       end
     else
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
       users = []
     end
 
-    render :json => users.collect {|u| { :id => u.id, :name => u.name } }
+    render :json => users.collect {|u| { :id => u.id, :name => u.name, :email => u.email } }
   end
 
 
