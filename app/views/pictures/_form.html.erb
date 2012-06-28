@@ -10,6 +10,8 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :event_id %>
+  <%= f.hidden_field :is_avatar %>
   <div class="field">
     <%= f.label "Nombre de la imagen" %><br />
     <%= f.text_field :name %>
@@ -22,7 +24,7 @@
     <%= f.label "Descripción" %><br />
     <%= f.text_field :description %>
   </div>
-  <div class="actions">
+  <div clss="actions">
     <%= f.submit %>
   </div>
 <% end %>

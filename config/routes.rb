@@ -17,6 +17,7 @@ Eventmaker::Application.routes.draw do
 
   resources :events do  
     resources :event_comments
+    resources :pictures
     resources :taxes
     collection do
       get 'own'

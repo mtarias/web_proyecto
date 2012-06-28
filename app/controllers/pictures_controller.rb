@@ -5,6 +5,7 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
     @pictures = Picture.all
+    @event = Event.find(params[:event_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +28,10 @@ class PicturesController < ApplicationController
   # GET /pictures/new.json
   def new
     @picture = Picture.new
-
+    @event = Event.find(params[:event_id])
+    @picture.event = @event
+    @picture.is_avatar = params[:is_avatar]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @picture }
@@ -43,8 +47,6 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(Picture.picture_upload(params)[:picture])
-    @picture.user_id = user_id
-    @picture.event_id = params[:event_id]
 
     respond_to do |format|
       if @picture.save
@@ -77,10 +79,11 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1.json
   def destroy
     @picture = Picture.find(params[:id])
+    @event = Event.find(@picture.event.id)
     @picture.destroy
 
     respond_to do |format|
-      format.html { redirect_to pictures_url }
+      format.html { redirect_to pictures_url(:event_id => @event.id) }
       format.json { head :no_content }
     end
   end

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   before_create :set_api_key
 
-  def self.login(email, password)
+  def self.login(email, password)           
     user = self.find_by_email(email)
     if user && password == user.password
       user

@@ -1,22 +1,21 @@
-<h1>Imágenes de </h1>
-
+<h1>Imágenes de <%= "#{@event.name}" %></h1>
 <table>
   <tr>
     <th>Nombre</th>
     <th>Descripción</th>
     <th>Imagen</th>
-    <th>ID Evento</th>
+    <th>Is Avatar</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @pictures.each do |picture| %>
+<% @event.pictures.each do |picture| %>
   <tr>
     <td><%= picture.name %></td>
     <td><%= picture.description %></td>
     <td><%= image_tag(picture.picture_url) %></td>
-    <td><%= picture.event_id %></td>
+    <td><%= picture.is_avatar %></td>
     <td><%= link_to 'Show', picture %></td>
     <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
     <td><%= link_to 'Destroy', picture, confirm: 'Are you sure?', method: :delete %></td>
@@ -26,4 +25,4 @@
 
 <br />
 
-<%= link_to 'Nueva imagen', new_picture_path %>
+<%= link_to 'Nueva imagen', new_picture_path(:event_id => @event.id, :is_avatar => false) %>
