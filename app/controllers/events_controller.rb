@@ -10,13 +10,11 @@ class EventsController < ApplicationController
 
   # GET /events/next
   def next
+    @events = []
+    # Agrego todos los eventos futuros...
     future_events = Event.future_events
-    # Agrego los eventos públicos
-    @events = future_events.where(:is_private => false)
-    # Agrego los eventos privados...
-    private_events = future_events.where(:is_private => true)
-    # ... pero a los cuales tenga invitación
-    private_events.each do |event|
+    # ... pero dejo los cuales tenga invitación
+    future_events.each do |event|
       if Guest.is_user_invited? user_id, event.id
         @events << event
       end
@@ -99,7 +97,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def search_users
+  def send_invitations
     # Manejo las invitaciones
     event = Event.find(params[:event_id])
 
@@ -113,7 +111,7 @@ class EventsController < ApplicationController
       users = []
     end
 
-    render :json => users.collect {|u| { :id => u.id, :name => u.name } }
+    redirect_to event
   end
 
   # GET /events/new.json

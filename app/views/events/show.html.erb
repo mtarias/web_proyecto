@@ -3,16 +3,16 @@
 <div class="leftevent">	
 	<div class="picture">
 		<% @pictures = Picture.all %>
-		<% @pictures.each do |p| %>
-			<%= image_tag(p.picture_url) %>
-		<% end %>
+		<% #@pictures.each do |p| %>
+			<% #= image_tag(p.picture_url) %>
+		<% #end %>
 	</div>
 	<div class="guests">
 		<%= link_to 'Subir Foto', new_picture_path(@event) %>
 		<h3>Lista de invitados</h3>
-		<%= form_tag 'search_users', :method => 'get', :class => 'findUsers' do %>
+		<%= form_tag('send_invitations') do %>
 			<p>Invita a un amigo:</p>
-		<%= text_field_tag :search, params[:search] %>
+		<%= text_field_tag :search %>
 		<%= hidden_field_tag :event_id, @event.id %>
 		<%= submit_tag t(:search) %>
 		<% end %>

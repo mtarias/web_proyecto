@@ -50,6 +50,9 @@ en:
   public_events_description: Then all the events you can participate without invitation
   edit_event: Edit event
   add_tax: Add something to the checklist
+  hintText: Type a name or an email
+  noResultsText: No results
+  searchingText: Loading...
   # Event_comment
   post: Post
   # Users
