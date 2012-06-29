@@ -32,6 +32,7 @@ Eventmaker::Application.routes.draw do
     resources :user_taxes
     collection do
       get 'search'
+      get 'check_email'
     end
   end
 

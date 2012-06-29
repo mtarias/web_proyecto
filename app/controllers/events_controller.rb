@@ -33,7 +33,6 @@ class EventsController < ApplicationController
         @events << e
       end
     end
-    @json = @events.to_gmaps4rails
 
     respond_with @events
   end

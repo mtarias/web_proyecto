@@ -92,11 +92,17 @@ class UsersController < ApplicationController
         users = [u]
       end
     else
-      # Solo respondo si se ha enviado un string no vacio
+      # Solo respondo si se ha enviado un string no vacío
       users = []
     end
 
     render :json => users.collect {|u| { :id => u.id, :name => u.name, :email => u.email } }
+  end
+
+  def check_email
+    @user = User.find_by_email(params[:user][:email])
+
+    render :json => !@user
   end
 
 
