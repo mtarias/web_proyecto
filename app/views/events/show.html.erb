@@ -14,7 +14,7 @@
 			<p>Invita a un amigo:</p>
 		<%= text_field_tag :invitations %>
 		<%= hidden_field_tag :event_id, @event.id %>
-		<%= submit_tag t(:search) %>
+		<%= submit_tag t(:send_invitations) %>
 		<% end %>
 	<% unless @friends.nil?
 		unless @friends.empty? %>

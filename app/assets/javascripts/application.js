@@ -15,12 +15,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.validate
 //= require i18n
 //= require i18n/translations
 //= require jquery.tokeninput
 
 
 $(function() {
+
+	$("#new_user").validate({
+		debug: true,
+		rules: {
+			"user[name]": { required: true },
+			"user[email]": { required: true, email: true },
+			"user[password]": { required: true, minlength: 6 },
+			"user[password_confirmation]": { required: true, equalTo: "#user_password" }
+		}
+	});
+
 	$("#notice").delay(20000).fadeOut("slow");
 
 	$("div").hover(function (){

@@ -53,6 +53,7 @@ en:
   hintText: Type a name or an email
   noResultsText: No results
   searchingText: Loading...
+  send_invitations: Send invitations
   # Event_comment
   post: Post
   # Users

@@ -53,6 +53,7 @@ es-CL:
   hintText: Escribe un nombre o email
   noResultsText: No hay resultados
   searchingText: Cargando...
+  send_invitations: Enviar invitaciones
   # Event_comment
   post: Postear
   # Usuario
