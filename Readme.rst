@@ -2,10 +2,12 @@
 Cosas por hacer
 ===============
 
-  * Disponer de una API
-  * Utilizar una API (Google Maps por simpleza)
-  * Hacer validaciones de los formularios Usuario, Eventos y Cosas-por-llevar
-  * Invitar usuarios:
-    * Enviar email
-    * Hacer una lista, por Ajax, para sugerir usuarios registrados http://loopj.com/jquery-tokeninput/
-  * Agregar fotos a los usuarios
+  * Eliminar Usuarios
+  * Eliminar Eventos
+  * Arreglar flujo de Navegación en las fotos
+  * Hacer Grupos
+  * Hacer validaciones de Cosas-por-llevar
+  * Invitar usuarios por E-Mail
+  * Efecto de manipulacion del DOM para proporcionar Feedback al usuario
+  * Elementos de Ayuda
+  * Modificar vista de fotos
