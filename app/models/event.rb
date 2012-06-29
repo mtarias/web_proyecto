@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   has_many :taxes, :class_name => 'Tax', :dependent => :destroy
   has_many :guests
   has_many :event_comments, :dependent => :destroy
-  has_many :picture
+  has_many :pictures
   attr_accessible :date, :description, :is_private, :name, :place
   validates :name,  :presence => true
   validates :date,  :presence => true

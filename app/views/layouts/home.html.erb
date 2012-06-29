@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eventmaker</title>
+  <title><%= yield(:title) %> - Eventmaker</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="header">
-    <% if flash[:notice] %>
-      <div id="notice"><%= flash[:notice] %></div> 
-    <% end %>
-      	<div id="logo">
-      		<h1>EventMaker</h1>
-      	</div>
-      	<div class="login">
-      		<%= form_for :user, :url => login_path, :name => 'login', :method => :post do |f| %>
-      		<div class="email">
-      		  <%= f.label I18n.t(:email) %><br>
-      			<%= f.text_field :email, :value => '' %>
-      		</div>
-      		<div class="password">
-      			<%= f.label I18n.t(:password) %><br>
-        		<%= f.password_field :password, :value => '' %>
-        	</div>
-          <div class="submit" text-align:"left">
-        	 <%= f.submit I18n.t(:login) %><%= link_to I18n.t(:user_register), new_user_path %>
+  <div class="wrap">
+    <div class="header">
+        <div class="fixedtop">
+          <div class="wrap">
+            <div id="logo">
+              <h1><%= link_to "EventMaker", :root %></h1>
+            </div>
+            <div class="account">
+              <p id="account">¿No account? <%= link_to I18n.t(:user_register), new_user_path %></p>
+            </div>
           </div>
-      <% end %>
+        </div>
+    </div>
+    <div class="login">
+    <%= form_for :user, :url => login_path, :name => 'login', :method => :post do |f| %>
+      <div class="email">
+        <%= f.label I18n.t(:email) %><br>
+        <%= f.text_field :email, :value => '' %>
       </div>
-	</div>
-<%= yield %>
-
+      <div class="password">
+        <%= f.label I18n.t(:password) %><br>
+        <%= f.password_field :password, :value => '' %>
+      </div>
+      <div class="submit" text-align:"left">
+        <%= f.submit I18n.t(:login) %>
+      </div>
+    <% end %>
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      EventMaker Inc.
+    </div>
+  </div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eventmaker</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title><%= yield(:title) %> - Eventmaker</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -12,7 +12,6 @@
       	<p id="notice"><%= flash[:notice] %></p> 
       	<% end %>
 	</div>
-<%= yield :scripts %>
 <%= yield %>
 </body>
 </html>

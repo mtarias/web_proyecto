@@ -1,14 +1,15 @@
+<div id="event">
 <% title @event.name, false %>
 
 <div class="leftevent">	
 	<div class="picture">
-		<% @pictures = Picture.all %>
-		<% #@pictures.each do |p| %>
-			<% #= image_tag(p.picture_url) %>
-		<% #end %>
+		<% @picture = Picture.where(:event_id => @event.id ).where(:is_avatar => true).last %>
+		<% unless @picture.nil? %>
+		<%= image_tag(@picture.picture_url) %>
+		<% end %>
 	</div>
 	<div class="guests">
-		<%= link_to 'Subir Foto', new_picture_path(@event) %>
+		<%= link_to I18n.t(:update_avatar), new_picture_path(:event_id => @event.id, :is_avatar => true) %>
 		<h3>Lista de invitados</h3>
 		<%= form_tag('send_invitations') do %>
 			<p>Invita a un amigo:</p>
@@ -39,6 +40,7 @@
 </div>
 <div class="rightevent">
 	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
+	<p><%= link_to I18n.t(:picture_gallery), pictures_path(:event_id => @event.id) %></p>
 	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
 	<% unless @user_commit.blank? %>
 		<h4><%=t :user_commit %></h4>
@@ -90,17 +92,16 @@
 		</p>
 
 		<p>
-		  <b><%=t :place %></b>
-		  <%= @event.place %>
-		  <%= @event.latitude %>
-		  <%= @event.longitude %>
-		  <%= gmaps4rails(@json) %>
-		</p>
-
-		<p>
 			<b><%=t @event.number_of_admins>1 ? :admins : :admin %></b>
 			<%= @admins %>
 		</p>
+
+		<p id="address">
+		  <b><%=t :place %></b>
+		  <%= @event.place %>
+		</p>
+
+		<div id="map_canvas" style="width: 400px; height: 300px"></div>
 
 		<% unless @event.description.blank? %>
 			<p>
@@ -122,4 +123,5 @@
 	<% end %>
 
 	<%= link_to_back %>
+</div>
 </div>

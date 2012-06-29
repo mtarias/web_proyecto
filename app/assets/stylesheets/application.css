@@ -45,13 +45,23 @@ body {
 	padding-left:20px;
 	padding-right:20px;
 }
+#account{
+	float:right;
+	padding: 0px 20px 0px 0px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
 #logo {
 	float:left; 
 	padding: 0 0 0 20px;
 }
+.loginmenu{
+	float:right;
+	padding: 0 10 0 20px;
+}
 .login{
 	float:right;
-	padding: 4px 20px 0 0;
+	padding: 60px 20px 0 0;
 }
 .fixedtop{
 	position: fixed;
@@ -162,13 +172,13 @@ a:active {
 }
 .picture{
 	background-color:#60CDDE;
-	height:100px;
+	height:200px;
 	text-align:center;
 }
 .guests{
 	padding-left:15px;
 	padding-right:15px;
-	padding-top: 110px;
+	padding-top: 20px;
 }
 .neweventcomment{
 	margin-left:20px;
@@ -218,5 +228,5 @@ textarea{
 }
 img{
 	width: 200px;
-	height: 200%;
+	height: 100%;
 }

@@ -2,7 +2,7 @@ class Picture < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   has_many :picture_comments
-  attr_accessible :description, :name, :path
+  attr_accessible :description, :name, :path, :event_id, :is_avatar
 
 	def self.picture_upload(params)
 		uploadedFile = params[:picture][:path]

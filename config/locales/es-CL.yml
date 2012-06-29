@@ -22,6 +22,10 @@ es-CL:
   show_profile: Mostrar perfil
   last_comments: Últimos comentarios
   last_taxes: Últimos elementos de las checklists
+  #Fotos
+  picture_gallery: Galería de fotos
+  update_avatar: Cambiar el avatar
+  new_picture: Nueva foto
   # Eventos
   will_go: Asistirás a este evento.
   wont_go: Dejarás de participar en este evento.

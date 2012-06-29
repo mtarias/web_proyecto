@@ -22,6 +22,10 @@ en:
   show_profile: Show profile
   last_comments: Latest comments
   last_taxes: Latest checklist's stuff
+  #Pictures
+  picture_gallery: Picture gallery
+  update_avatar: Update avatar
+  new_picture: New picture
   # Events
   will_go: You are going.
   wont_go: You are not going.

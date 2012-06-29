@@ -88,4 +88,6 @@ $(function() {
 		searchingText: function() { return I18n.t('searchingText') }
 	});
 
+	$("div#event").ready(initialize());
+
 });
