@@ -103,13 +103,17 @@ class EventsController < ApplicationController
     emails = params[:invitations].split(",")
     
     emails.each do |e|
-      guest = event.guests.create(params[:guest])
-      guest.user_id = User.find_by_email(e).id
-      guest.is_admin = false
-      guest.save
+      if u = User.find_by_email(e)
+        guest = event.guests.create(params[:guest])
+        guest.user_id = u.id
+        guest.is_admin = false
+        guest.save
+      else
+        # Enviamos email con invitación a "u"
+      end
     end
 
-    redirect_to event, notice: I18n.t(:successful_invitation, :email => params[:invitations] )
+    redirect_to event, notice: I18n.t(:successful_invitation, :email => params[:invitations].gsub(',',', ') )
   end
 
   # GET /events/new.json

@@ -101,7 +101,7 @@
 		  <%= @event.place %>
 		</p>
 
-		<div id="map_canvas" style="width: 400px; height: 300px"></div>
+		<div id="map_canvas" style="width: 90%; height: 300px"></div>
 
 		<% unless @event.description.blank? %>
 			<p>
@@ -110,7 +110,7 @@
 			</p>
 		<% end %>
 	</div>
-	<% list_of_comments = @event.event_comments.clone %>
+	<% list_of_comments = @event.event_comments.clone.reverse %>
 	<h3><%=t :add_comment %></h3>
 	<%= render "event_comments/form" %>
 	<% if list_of_comments.blank? %>

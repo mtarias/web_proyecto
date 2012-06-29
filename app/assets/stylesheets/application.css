@@ -185,7 +185,7 @@ a:active {
 	margin-right:20px;
 }
 #bn{
-	position: absolute;
+	position: fixed;
 	top: 2px;
 	right: 0;
 	left: 0;

@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui-timepicker-addon.js
 //= require jquery.validate
 //= require i18n
 //= require i18n/translations
@@ -24,12 +25,25 @@
 $(function() {
 
 	$("#new_user").validate({
-		debug: true,
 		rules: {
 			"user[name]": { required: true },
 			"user[email]": { required: true, email: true, remote: "/users/check_email" },
 			"user[password]": { required: true, minlength: 6 },
 			"user[password_confirmation]": { required: true, equalTo: "#user_password" }
+		}
+	});
+
+	$("#event_date").datetimepicker({
+		
+		firstDay: 1
+	});
+
+	$("#new_event").validate({
+		debug: true,
+		rules: {
+			"event[name]": { required: true },
+			"event[date]": { required: true },
+			"event[place]": { required: true }
 		}
 	});
 
