@@ -9,7 +9,7 @@
 		<% end %>
 	</div>
 	<div class="guests">
-		<%= link_to 'Subir Avatar', new_picture_path(:event_id => @event.id, :is_avatar => true) %>
+		<%= link_to I18n.t(:update_avatar), new_picture_path(:event_id => @event.id, :is_avatar => true) %>
 		<h3>Lista de invitados</h3>
 		<%= form_tag('send_invitations') do %>
 			<p>Invita a un amigo:</p>
@@ -40,7 +40,7 @@
 </div>
 <div class="rightevent">
 	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
-	<p><%= link_to 'Ir a Galeria de Fotos', pictures_path(:event_id => @event.id) %></p>
+	<p><%= link_to I18n.t(:picture_gallery), pictures_path(:event_id => @event.id) %></p>
 	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
 	<% unless @user_commit.blank? %>
 		<h4><%=t :user_commit %></h4>

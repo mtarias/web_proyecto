@@ -45,13 +45,23 @@ body {
 	padding-left:20px;
 	padding-right:20px;
 }
+#account{
+	float:right;
+	padding: 0px 20px 0px 0px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
 #logo {
 	float:left; 
 	padding: 0 0 0 20px;
 }
+.loginmenu{
+	float:right;
+	padding: 0 10 0 20px;
+}
 .login{
 	float:right;
-	padding: 4px 20px 0 0;
+	padding: 60px 20px 0 0;
 }
 .fixedtop{
 	position: fixed;

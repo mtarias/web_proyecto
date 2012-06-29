@@ -1,4 +1,8 @@
-<h1>Imágenes de <%= "#{@event.name}" %></h1>
+<h1>Fotos de <%= "#{@event.name}" %></h1>
+
+<br />
+<%= link_to I18n.t(:new_picture), new_picture_path(:event_id => @event.id, :is_avatar => false) %>
+
 <table>
   <tr>
     <th>Nombre</th>
@@ -23,6 +27,4 @@
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'Nueva imagen', new_picture_path(:event_id => @event.id, :is_avatar => false) %>
