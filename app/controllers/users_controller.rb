@@ -117,5 +117,30 @@ class UsersController < ApplicationController
     render :json => !@user
   end
 
+  def search_group
+    # Para el manejo de los grupos
+    group = Group.find(params[:group_id])
+
+    unless params[:q].blank?
+      users = User.search_group(params[:q])
+
+      group.group_members.each do |g|
+        users -= User.where(:id => g.user_id)
+      end
+      if users.blank? && !(params[:q])[/^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i].nil?
+        # En el caso de que sea un email válido
+        u = User.new
+        u.name = params[:q]
+        u.email = params[:q]
+        users = [u]
+      end
+    else
+      # Solo respondo si se ha enviado un string no vacío
+      users = []
+    end
+
+    render :json => users.collect {|u| { :id => u.id, :name => u.name, :email => u.email } }
+  end
+
 
 end

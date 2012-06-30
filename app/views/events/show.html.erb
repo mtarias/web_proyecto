@@ -17,13 +17,6 @@
 		<%= hidden_field_tag :event_id, @event.id %>
 		<%= submit_tag t(:send_invitations) %>
 		<% end %>
-	<% unless @friends.nil?
-		unless @friends.empty? %>
-			<p><%= link_to "Invitar a #{@friends.first.email}", invite_path(@event, @friends.first) %></p>
-		<% else %>
-			El usuario ya fue agregado
-		<% end %>
-	<% end %>
 	<% unless @going.blank? %>
 	<h3><%=t :attending_guests, :number => @going.length %></h3>
 	<% @going.each do |guest| %>

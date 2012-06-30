@@ -126,6 +126,19 @@ $(function() {
 		searchingText: function() { return I18n.t('searchingText') }
 	});
 
+	$("input#myfriends").tokenInput(function() {
+		return "/users/search_group?group_id=" + $("#group_id").val()
+	}, {
+		theme: "facebook",
+		preventDuplicates: true,
+		searchDelay: 600,
+		minChars: 2,
+		tokenValue: "email",
+		hintText: function() { return I18n.t('hintText') },
+		noResultsText: function() { return I18n.t('noResultsText') },
+		searchingText: function() { return I18n.t('searchingText') }
+	});
+
 	$("div#event").ready(initialize());
 
 	$("div#event").ready(function(){

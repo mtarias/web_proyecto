@@ -63,6 +63,8 @@ en:
   send_invitations: Send invitations
   # Event_comment
   post: Post
+  # Groups
+  add_friends: Add friends
   # Users
   new_user_message: Your account has been successfully created.
   user_register: Sign up
