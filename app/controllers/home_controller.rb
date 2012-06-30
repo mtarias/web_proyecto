@@ -11,7 +11,7 @@ skip_before_filter :require_login, :except => :profile
 
   #Maneja el formulario de login
   def login
-  	if user = User.login(params[:user][:email],params[:user][:password])
+  	if user = User.login(params[:email],params[:password])
       session[:user_id] = user.id
       # Aprovecho de cargar el idioma
       set_locale_and_time_zone

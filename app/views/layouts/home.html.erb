@@ -18,23 +18,23 @@
               <h1><%= link_to "EventMaker", :root %></h1>
             </div>
             <div class="account">
-              <p id="account">¿No account? <%= link_to I18n.t(:user_register), new_user_path %></p>
+              <p id="account"><%= link_to t(:user_register), new_user_path, id:  "new_account" %></p>
             </div>
           </div>
         </div>
     </div>
     <div class="login">
-    <%= form_for :user, :url => login_path, :name => 'login', :method => :post do |f| %>
+    <%= form_tag 'login', :url => login_path, :method => :post do %>
       <div class="email">
-        <%= f.label I18n.t(:email) %><br>
-        <%= f.text_field :email, :value => '' %>
+        <%= label_tag I18n.t(:email) %><br>
+        <%= text_field_tag :email %>
       </div>
       <div class="password">
-        <%= f.label I18n.t(:password) %><br>
-        <%= f.password_field :password, :value => '' %>
+        <%= label_tag I18n.t(:password) %><br>
+        <%= password_field_tag :password %>
       </div>
       <div class="submit" text-align:"left">
-        <%= f.submit I18n.t(:login) %>
+        <%= submit_tag I18n.t(:login) %>
       </div>
     <% end %>
     </div>
