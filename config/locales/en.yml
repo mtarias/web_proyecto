@@ -7,6 +7,7 @@ en:
   bad_login: E-mail or password you entered is incorrect.
   successful_logout: You have successfully logged out.
   invited_user: Guest
+  account?: No account?
   # Menus and titles
   start: Start
   logout: Logout

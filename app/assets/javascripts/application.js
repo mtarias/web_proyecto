@@ -128,4 +128,10 @@ $(function() {
 
 	$("div#event").ready(initialize());
 
+	$("div#event").ready(function(){
+		$("button#showMap").click(function(){
+		    $("div#map_canvas").slideToggle("slow");
+	  });
+	});
+
 });

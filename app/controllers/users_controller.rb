@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         # Logueamos automáticamente al usuario que acaba de crear su cuenta
         session[:user_id] = @user.id
         # Mandamos un mail de registro
-        UserMailer.welcome_email(@user).deliver
+        # UserMailer.welcome_email(@user).deliver
         format.html { redirect_to profile_path, notice: I18n.t(:new_user_message) }
         format.json { render json: @user, status: :created, location: @user }
       else
