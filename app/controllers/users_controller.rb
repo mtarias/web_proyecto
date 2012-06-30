@@ -53,7 +53,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      @user.name = params[:user][:name]
+      @user.email = params[:user][:email]
+      @user.time_zone = params[:user][:time_zone]
+      @user.locale = params[:user][:locale]
+
+      unless params[:user][:password].blank?
+        @user.password = params[:user][:password]
+      end
+      if @user.save
         format.html { redirect_to @user, notice: 'Tus datos fueron guardados exitosamente.' }
         format.json { head :no_content }
       else
@@ -101,6 +109,10 @@ class UsersController < ApplicationController
 
   def check_email
     @user = User.find_by_email(params[:user][:email])
+
+    if user_id && @user == User.find(user_id)
+      @user = false
+    end
 
     render :json => !@user
   end

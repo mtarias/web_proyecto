@@ -27,14 +27,15 @@
     <%= f.label I18n.t :user_locale %><br>
     <%= f.select :locale, [['Español',"es-CL"], ['English',"en"]] %>
   </div>
+  <br>
   <div class="field">
     <%= f.label I18n.t :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
+    <%= f.password_field :password %><br />
     <%= label_tag I18n.t :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
+  <br>
+  <%= link_to t(:delete_account), @user, confirm: t(:delete_account_confirmation), method: :delete, id: "delete"  %>
   <div class="actions">
     <%= f.submit %>
   </div>

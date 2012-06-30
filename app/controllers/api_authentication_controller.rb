@@ -1,6 +1,5 @@
 class ApiAuthenticationController < ApplicationController
 	respond_to :json
-	skip_before_filter :authenticate_api
 	skip_before_filter :require_login
 	skip_before_filter :set_locale_and_time_zone
 

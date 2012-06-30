@@ -68,8 +68,11 @@ en:
   email: E-mail
   time_zone: Time zone
   user_locale: Prefered language
+  change_password: Change password
   password: Password
   password_confirmation: Password confirmation
+  delete_account: Delete your account...
+  delete_account_confirmation: This process is irreversible. Are you sure you want to delete your account?
   # CheckList (Taxes)
   user_commit: You've committed to bring
   remaining_taxes: We still need

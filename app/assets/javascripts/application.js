@@ -33,17 +33,41 @@ $(function() {
 		}
 	});
 
-	$("#event_date").datetimepicker({
-		
-		firstDay: 1
+	$("#new_user > #delete").remove()
+
+	$('form[id^="edit_user_"]').validate({
+		rules: {
+			"user[name]": { required: true },
+			"user[email]": { required: true, email: true, remote: "/users/check_email" },
+			"user[password]": { minlength: 6 },
+			"user[password_confirmation]": { equalTo: "#user_password" }
+		}
 	});
 
+	/*$("#event_date").datetimepicker({
+		firstDay: 1,
+		onSelect: function(dateText, inst) {
+        	dateText = $.datepicker.formatDate(
+            	'mm.dd.yy',
+            	new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay)
+        	);
+			inst.input.val(dateText);
+		}
+	});*/
+
 	$("#new_event").validate({
-		debug: true,
 		rules: {
 			"event[name]": { required: true },
 			"event[date]": { required: true },
 			"event[place]": { required: true }
+		}
+	});
+
+	$("#new_tax").validate({
+		debug: true,
+		rules: {
+			"tax[amount]": { required: true, number: true },
+			"tax[name]": { required: true }
 		}
 	});
 

@@ -68,8 +68,11 @@ es-CL:
   email: Email
   time_zone: Zona horaria
   user_locale: Idioma preferido
+  change_password: Cambiar contraseña
   password: Contraseña
   password_confirmation: Confirme contraseña
+  delete_account: Eliminar tu cuenta...
+  delete_account_confirmation: Este proceso es irreversible. ¿Estas seguro que deseas eliminar tu cuenta?
   # CheckList (Taxes)
   user_commit: Estás llevando
   remaining_taxes: Falta por llevar

@@ -9,6 +9,9 @@
 <body>
   <div class="wrap">
     <div class="header">
+      <% if flash[:notice] %>
+      <div id="bn"><div id="notice"><%= flash[:notice] %></div></div> 
+      <% end %>
         <div class="fixedtop">
           <div class="wrap">
             <div id="logo">
