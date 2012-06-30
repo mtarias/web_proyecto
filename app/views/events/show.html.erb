@@ -39,7 +39,8 @@
 	</div>
 </div>
 <div class="rightevent">
-	<p><%= link_to I18n.t(:edit_event) , edit_event_path(@event) %></p>
+	<p><%= link_to t(:edit_event) , edit_event_path(@event) %></p>
+	<p><%= link_to t(:delete_event), @event, confirm: t(:delete_event_confirmation), method: :delete %></p>
 	<p><%= link_to I18n.t(:picture_gallery), pictures_path(:event_id => @event.id) %></p>
 	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
 	<% unless @user_commit.blank? %>

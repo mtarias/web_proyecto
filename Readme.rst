@@ -2,7 +2,6 @@
 Cosas por hacer
 ===============
 
-  * Eliminar Eventos
   * Arreglar flujo de Navegación en las fotos
   * Hacer Grupos
   * Invitar usuarios por E-Mail

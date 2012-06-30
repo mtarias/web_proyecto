@@ -53,6 +53,8 @@ en:
   first_commenting: Be the first commenter! You can also invite more people to the event.
   public_events_description: Then all the events you can participate without invitation
   edit_event: Edit event
+  delete_event: Delete event...
+  delete_event_confirmation: This operation is irreversible. Are you sure you want to delete this event?
   add_tax: Add something to the checklist
   hintText: Type a name or an email
   noResultsText: No results
