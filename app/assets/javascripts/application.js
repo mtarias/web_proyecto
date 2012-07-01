@@ -29,7 +29,8 @@ $(function() {
 			var url = $(this).attr('href');
 			var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
 				autoOpen: false,
-				width: 520,
+				position: "top",
+				width: 600,
 				modal: true,
 				open: function() {
 					return $(this).load(url);
@@ -145,6 +146,25 @@ $(function() {
 		searchingText: function() { return I18n.t('searchingText') }
 	});
 
+	$("input#myfriends").tokenInput(function() {
+		return "/users/search_group?group_id=" + $("#group_id").val()
+	}, {
+		theme: "facebook",
+		preventDuplicates: true,
+		searchDelay: 600,
+		minChars: 2,
+		tokenValue: "email",
+		hintText: function() { return I18n.t('hintText') },
+		noResultsText: function() { return I18n.t('noResultsText') },
+		searchingText: function() { return I18n.t('searchingText') }
+	});
+
 	$("div#event").ready(initialize());
+
+	$("div#event").ready(function(){
+		$("button#showMap").click(function(){
+		    $("div#map_canvas").slideToggle("slow");
+	  });
+	});
 
 });

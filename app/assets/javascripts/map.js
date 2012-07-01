@@ -22,8 +22,9 @@ var geocoder;
 	            map: map,
 	            position: results[0].geometry.location
 	        });
-	      } else {
-	        alert("Geocode was not successful for the following reason: " + status);
+	      } else{
+             $("button#showMap").hide();
 	      }
+	      $("div#map_canvas").hide();
 	    });
 	  }

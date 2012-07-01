@@ -7,6 +7,7 @@ en:
   bad_login: E-mail or password you entered is incorrect.
   successful_logout: You have successfully logged out.
   invited_user: Guest
+  account?: No account?
   # Menus and titles
   start: Start
   logout: Logout
@@ -62,6 +63,8 @@ en:
   send_invitations: Send invitations
   # Event_comment
   post: Post
+  # Groups
+  add_friends: Add friends
   # Users
   new_user_message: Your account has been successfully created.
   user_register: Sign up

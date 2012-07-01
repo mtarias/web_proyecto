@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         # Logueamos automáticamente al usuario que acaba de crear su cuenta
         session[:user_id] = @user.id
         # Mandamos un mail de registro
-        UserMailer.welcome_email(@user).deliver
+        # UserMailer.welcome_email(@user).deliver
         format.html { redirect_to profile_path, notice: I18n.t(:new_user_message) }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -115,6 +115,31 @@ class UsersController < ApplicationController
     end
 
     render :json => !@user
+  end
+
+  def search_group
+    # Para el manejo de los grupos
+    group = Group.find(params[:group_id])
+
+    unless params[:q].blank?
+      users = User.search_group(params[:q])
+
+      group.group_members.each do |g|
+        users -= User.where(:id => g.user_id)
+      end
+      if users.blank? && !(params[:q])[/^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i].nil?
+        # En el caso de que sea un email válido
+        u = User.new
+        u.name = params[:q]
+        u.email = params[:q]
+        users = [u]
+      end
+    else
+      # Solo respondo si se ha enviado un string no vacío
+      users = []
+    end
+
+    render :json => users.collect {|u| { :id => u.id, :name => u.name, :email => u.email } }
   end
 
 

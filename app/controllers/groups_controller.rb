@@ -98,18 +98,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_friend
-    @group = Group.find(params[:id])
-    @member = @group.group_members.create(params[:member])
-    @member.user_id = params[:member_id]
+  def add_friends
+    # Manejo las invitaciones de aigos
+    group = Group.find(params[:group_id])
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to groups_path, notice: I18n.t(:successful_invitation) ,:email => User.find(params[:member_id]).email}
-        format.json { head :no_content }
+    emails = params[:myfriends].split(",")
+    
+    emails.each do |e|
+      if u = User.find_by_email(e)
+        friend = group.group_members.create(params[:friend])
+        friend.user_id = u.id
+        friend.save
       else
-        format.json { redirect_to @group.errors, status: :unprocessable_entity}
+        
       end
     end
+
+    redirect_to group, notice: I18n.t(:successful_invitation, :email => params[:friends].gsub(',',', ') )
   end
+
 end

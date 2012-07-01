@@ -18,7 +18,7 @@
               <h1><%= link_to "EventMaker", :root %></h1>
             </div>
             <div class="account">
-              <p id="account"><%= link_to t(:user_register), new_user_path, id:  "new_account" %></p>
+              <p id="account"> <%= I18n.t(:account?)   %> <%= link_to I18n.t(:user_register), new_user_path, id: "new_account" %></p>
             </div>
           </div>
         </div>

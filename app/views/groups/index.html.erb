@@ -1,24 +1,29 @@
 <h1>Mis Grupos de amigos</h1>
 
-<%= link_to 'Crear Nuevo Grupo', new_group_path %>
-<table>
-  <tr>
-    <th>Group name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<p><%= link_to 'Crear Nuevo Grupo', new_group_path %></p>
 
+<table text-align="left">
 <% @groups.each do |group| %>
-  <tr>
-    <td><%= group.group_name %></td>
-    <td><%= link_to 'Ver grupo de amigos', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Eliminar grupo', group, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+    <% if group.user_id == session[:user_id] %>
+    <tr>
+        <td>
+            <h2><%= link_to group.group_name, group %></h2>
+        </td>
+    </tr>
+    <% group.group_members.each do |gm| %>
+    <tr>
+        <td><%= gm.user.name %></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td><%= link_to 'Editar grupo', edit_group_path(group) %></td>
+    </tr>
+    <tr>
+        <td><%= link_to 'Eliminar grupo', group, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+    <% end %>
 <% end %>
 </table>
-
-<br />
-
-

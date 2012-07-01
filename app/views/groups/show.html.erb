@@ -3,23 +3,11 @@
 </b>
 <h1> Miembros del grupo</h1>
 
-<% @group.group_members.each do |member| %>
-	   <p><%= link_to member.user.name, member.user %></p>
-<% end %>
-
 <p>Invitar a nuevo amigo:</p>
-<%= form_tag @group, :method => 'get' do %>
-    <%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Buscar", :name => nil %>
-<% end %>
-	<% unless @friends.nil? 
-		unless @friends.empty? %>
-		<p><%= link_to "Agregar a #{@friends.first.email}", add_friend_path(@group, @friends.first) %></p>
-	<% else %>
-		El usuario ya fue agregado
-	<% end %>
-<% end %>
+  <%= form_tag('add_friends') do %>
+    <%= text_field_tag :myfriends %>
+    <%= hidden_field_tag :group_id, @group.id %>
+    <%= submit_tag t(:add_friends) %>
+  <% end %>
 
-
-<%= link_to 'Edit', edit_group_path(@group) %> 
 <%= link_to 'Back', groups_path %>

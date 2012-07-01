@@ -17,13 +17,6 @@
 		<%= hidden_field_tag :event_id, @event.id %>
 		<%= submit_tag t(:send_invitations) %>
 		<% end %>
-	<% unless @friends.nil?
-		unless @friends.empty? %>
-			<p><%= link_to "Invitar a #{@friends.first.email}", invite_path(@event, @friends.first) %></p>
-		<% else %>
-			El usuario ya fue agregado
-		<% end %>
-	<% end %>
 	<% unless @going.blank? %>
 	<h3><%=t :attending_guests, :number => @going.length %></h3>
 	<% @going.each do |guest| %>
@@ -39,8 +32,13 @@
 	</div>
 </div>
 <div class="rightevent">
-	<p><%= link_to t(:edit_event) , edit_event_path(@event) %></p>
-	<p><%= link_to t(:delete_event), @event, confirm: t(:delete_event_confirmation), method: :delete %></p>
+	<% @ads = Guest.admins(@event.id)%>
+	<% @ads.each do |a| %>
+		<% if session[:user_id] == a.user.id %>
+		<p><%= link_to t(:edit_event) , edit_event_path(@event) %></p>
+		<p><%= link_to t(:delete_event), @event, confirm: t(:delete_event_confirmation), method: :delete %></p>
+		<% end %>
+	<% end %>
 	<p><%= link_to I18n.t(:picture_gallery), pictures_path(:event_id => @event.id) %></p>
 	<h3><abbr title="<%=t :tax_description %>">CheckList</abbr></h3>
 	<% unless @user_commit.blank? %>
@@ -97,10 +95,11 @@
 			<%= @admins %>
 		</p>
 
-		<p id="address">
-		  <b><%=t :place %></b>
-		  <%= @event.place %>
-		</p>
+		<div>
+		  <b><%=t :place %> </b><p id="address"><%= @event.place %></p>
+		</div>
+		<p></p>
+		<button id="showMap">Mostrar mapa</button>
 
 		<div id="map_canvas" style="width: 90%; height: 300px"></div>
 

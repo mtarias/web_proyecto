@@ -7,6 +7,7 @@ es-CL:
   bad_login: Email o contraseña incorrecta.
   successful_logout: Has cerrado sesión correctamente.
   invited_user: Invitado
+  account?: ¿No tienes una cuenta?
   # Menús y títulos
   start: Inicio
   logout: Salir
@@ -62,6 +63,8 @@ es-CL:
   send_invitations: Enviar invitaciones
   # Event_comment
   post: Postear
+  # Grupos
+  add_friends: Agregar amigos
   # Usuario
   new_user_message: Tu cuenta ha sido creada exitosamente.
   user_register: Regístrate

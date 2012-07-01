@@ -8,10 +8,12 @@ Eventmaker::Application.routes.draw do
   match 'assist(/:id)' => "events#assist", :as => :assist
   match 'not_attend(/:id)' => "events#not_attend", :as => :not_attend
   match 'invite(/:id(/:guest_id))' => "events#invite", :as => :invite
-
-  match 'add_friend(/:id(/:member_id))' => "groups#add_friend", :as => :add_friend
   
-  resources :groups
+  resources :groups do
+    collection do
+      post 'add_friends'
+    end
+  end
 
   resources :pictures
 
@@ -32,6 +34,7 @@ Eventmaker::Application.routes.draw do
     resources :user_taxes
     collection do
       get 'search'
+      get 'search_group'
       get 'check_email'
     end
   end
