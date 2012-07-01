@@ -4,7 +4,7 @@ module ApplicationHelper
 	end
 
 	def title(title, translate = true)
-		content_for :title, translate ? t(title) : title
+		content_for :title, "#{translate ? t(title) : title} - EventMaker"
 	end
 
 	def link_to_back
