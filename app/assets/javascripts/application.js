@@ -146,8 +146,8 @@ $(function() {
 		searchingText: function() { return I18n.t('searchingText') }
 	});
 
-	$("input#myfriends").tokenInput(function() {
-		return "/users/search_group?group_id=" + $("#group_id").val()
+	$("input#new_members").tokenInput(function() {
+		return "/users/search?group_id=" + $("#group_id").val()
 	}, {
 		theme: "facebook",
 		preventDuplicates: true,

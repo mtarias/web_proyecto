@@ -2,21 +2,21 @@
 
 <p><%= link_to 'Crear Nuevo Grupo', new_group_path %></p>
 
-<table text-align="left">
+<table>
 <% @groups.each do |group| %>
-    <% if group.user_id == session[:user_id] %>
     <tr>
         <td>
-            <h2><%= link_to group.group_name, group %></h2>
+            <h2><%= link_to(group.group_name, group) %><%= " (#{group.group_members.length})" %></h2>
         </td>
     </tr>
-    <% group.group_members.each do |gm| %>
     <tr>
-        <td><%= gm.user.name %></td>
-    </tr>
-    <% end %>
-    <tr>
-        <td></td>
+        <td>
+        <%= form_tag(:controller => 'groups', :action => 'add_members') do %>
+        <%= text_field_tag :new_members %>
+        <%= hidden_field_tag :group_id, group.id %>
+        <%= submit_tag t(:add_friends) %>
+        <% end %>
+        </td>
     </tr>
     <tr>
         <td><%= link_to 'Editar grupo', edit_group_path(group) %></td>
@@ -24,6 +24,5 @@
     <tr>
         <td><%= link_to 'Eliminar grupo', group, confirm: 'Are you sure?', method: :delete %></td>
     </tr>
-    <% end %>
 <% end %>
 </table>

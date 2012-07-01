@@ -109,7 +109,17 @@ class EventsController < ApplicationController
         guest.is_admin = false
         guest.save
       else
-        # Enviamos email con invitación a "u"
+        # Veo si se trata de un grupo
+        if e.start_with?("group") && e.end_with?("group")
+          g = Group.search(user_id, e.slice(6,e.length-12))
+          g.group_members.each do |gm|
+            guest = event.guests.create(params[:guest])
+            guest.user_id = gm.user.id
+            guest.is_admin = false
+            guest.save
+          end
+        end
+        # Envio invitación al email
       end
     end
 

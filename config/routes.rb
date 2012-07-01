@@ -11,7 +11,7 @@ Eventmaker::Application.routes.draw do
   
   resources :groups do
     collection do
-      post 'add_friends'
+      post 'add_members'
     end
   end
 

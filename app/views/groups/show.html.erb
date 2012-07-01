@@ -1,13 +1,17 @@
-<b>Nombre del grupo:
-	<p><%= @group.group_name %></p>
-</b>
-<h1> Miembros del grupo</h1>
+<h1><%= @group.group_name %></h1>
+<p><%=t :group %></p>
 
-<p>Invitar a nuevo amigo:</p>
-  <%= form_tag('add_friends') do %>
-    <%= text_field_tag :myfriends %>
-    <%= hidden_field_tag :group_id, @group.id %>
-    <%= submit_tag t(:add_friends) %>
-  <% end %>
+<p><%=t :add_friends %></p>
+	<%= form_tag(:controller => 'groups', :action => 'add_members') do %>
+	<%= text_field_tag :new_members %>
+	<%= hidden_field_tag :group_id, @group.id %>
+	<%= submit_tag t(:add_friends) %>
+	<% end %>
 
-<%= link_to 'Back', groups_path %>
+<ul>
+<% @group.group_members.each do |gm| %>
+	<li><%= link_to gm.user.name, gm.user %></li>
+<% end %>
+</ul>
+
+<%= link_to_back %>

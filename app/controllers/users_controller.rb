@@ -83,21 +83,43 @@ class UsersController < ApplicationController
   end
 
   def search
-    # Para el manejo de las invitaciones
-    event = Event.find(params[:event_id])
+    # Para el manejo de las invitaciones y grupos
+    event = nil
+    group = nil
+    if params[:event_id]
+      event = Event.find(params[:event_id])
+    end
+    if params[:group_id]
+      group = Group.find(params[:group_id])
+    end
 
     unless params[:q].blank?
       users = User.search(params[:q])
 
-      event.guests.each do |g|
-        users -= User.where(:id => g.user_id)
+      if event
+        event.guests.each do |g|
+          users -= User.where(:id => g.user_id)
+        end
       end
-      if users.blank? && !(params[:q])[/^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i].nil?
-        # En el caso de que sea un email válido
-        u = User.new
-        u.name = params[:q]
-        u.email = params[:q]
-        users = [u]
+      if group
+        group.group_members.each do |g|
+          users.delete(g.user)
+        end
+      end
+      if users.blank? 
+        if !(params[:q])[/^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i].nil?
+          # En el caso de que sea un email válido
+          u = User.new
+          u.name = params[:q]
+          u.email = params[:q]
+          users = [u]
+        elsif g = Group.search(user_id, params[:q])
+          # Haré una chanchalla u.u
+          u = User.new
+          u.name = g.group_name
+          u.email = "group@#{g.group_name}.group"
+          users = [u]
+        end
       end
     else
       # Solo respondo si se ha enviado un string no vacío

@@ -66,6 +66,7 @@ es-CL:
   post: Postear
   # Grupos
   add_friends: Agregar amigos
+  successful_new_member: "Has agregado correctamente a %{email}."
   # Usuario
   new_user_message: Tu cuenta ha sido creada exitosamente.
   user_register: Regístrate

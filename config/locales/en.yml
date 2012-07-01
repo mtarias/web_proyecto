@@ -65,7 +65,9 @@ en:
   # Event_comment
   post: Post
   # Groups
+  group: Group
   add_friends: Add friends
+  successful_new_member: "You have successfully added to your friends to %{email}."
   # Users
   new_user_message: Your account has been successfully created.
   user_register: Sign up
