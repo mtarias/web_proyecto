@@ -65,6 +65,11 @@ es-CL:
   # Event_comment
   post: Postear
   # Grupos
+  group_tittle: Mis grupos de amigos
+  new_group: Crear nuevo grupo de amigos
+  edit_group: Editar nombre del grupo
+  destroy_group: Eliminar grupo
+  group_members: Miembros del grupo
   add_friends: Agregar amigos
   successful_new_member: "Has agregado correctamente a %{email}."
   # Usuario

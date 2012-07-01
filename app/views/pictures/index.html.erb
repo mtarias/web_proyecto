@@ -2,29 +2,24 @@
 
 <br />
 <%= link_to I18n.t(:new_picture), new_picture_path(:event_id => @event.id, :is_avatar => false) %>
+<p></p>
 
 <table>
-  <tr>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th>Imagen</th>
-    <th>Is Avatar</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @event.pictures.each do |picture| %>
   <tr>
-    <td><%= picture.name %></td>
+    <th><%= picture.name %></th>
+  </tr>
+  <tr>
+    <td><%= image_tag(picture.picture_url) %></a></td>
+  </tr>
+  <tr>
     <td><%= picture.description %></td>
-    <td><%= image_tag(picture.picture_url) %></td>
-    <td><%= picture.is_avatar %></td>
+  </tr>
+  <tr>
     <td><%= link_to 'Show', picture %></td>
-    <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-    <td><%= link_to 'Destroy', picture, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+
 </table>
 
 

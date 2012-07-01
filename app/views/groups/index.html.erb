@@ -1,6 +1,6 @@
-<h1>Mis Grupos de amigos</h1>
+<h1><%= I18n.t('group_tittle') %></h1>
 
-<p><%= link_to 'Crear Nuevo Grupo', new_group_path %></p>
+<p><%= link_to I18n.t('new_group'), new_group_path %></p>
 
 <table>
 <% @groups.each do |group| %>
@@ -17,12 +17,6 @@
         <%= submit_tag t(:add_friends) %>
         <% end %>
         </td>
-    </tr>
-    <tr>
-        <td><%= link_to 'Editar grupo', edit_group_path(group) %></td>
-    </tr>
-    <tr>
-        <td><%= link_to 'Eliminar grupo', group, confirm: 'Are you sure?', method: :delete %></td>
     </tr>
 <% end %>
 </table>
