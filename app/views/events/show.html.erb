@@ -5,7 +5,7 @@
 	<div class="picture">
 		<% @picture = Picture.where(:event_id => @event.id ).where(:is_avatar => true).last %>
 		<% unless @picture.nil? %>
-		<%= image_tag(@picture.picture_url) %>
+		<div class="picture"><%= link_to image_tag(@picture.picture_url), @picture, id: "mypicture", :name => @picture.name %></div>
 		<% end %>
 	</div>
 	<div class="guests">

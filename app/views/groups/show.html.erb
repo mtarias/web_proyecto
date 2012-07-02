@@ -1,5 +1,12 @@
+<div id="group">
 <h1><%= @group.group_name %></h1>
-<p><%=t :group %></p>
+<h3><%= I18n.t('group_members') %></h3>
+
+<ul>
+<% @group.group_members.each do |gm| %>
+	<li><%= link_to gm.user.name, gm.user %></li>
+<% end %>
+</ul>
 
 <p><%=t :add_friends %></p>
 	<%= form_tag(:controller => 'groups', :action => 'add_members') do %>
@@ -8,10 +15,7 @@
 	<%= submit_tag t(:add_friends) %>
 	<% end %>
 
-<ul>
-<% @group.group_members.each do |gm| %>
-	<li><%= link_to gm.user.name, gm.user %></li>
-<% end %>
-</ul>
-
-<%= link_to_back %>
+<p><%= link_to I18n.t('edit_group'), edit_group_path(@group) %></p>
+<p><%= link_to I18n.t('destroy_group'), @group, confirm: 'Are you sure?', method: :delete %></p>
+<p><%= link_to I18n.t('back'), groups_path %></p>
+</div>

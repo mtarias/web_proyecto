@@ -1,27 +1,12 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <b>Nombre:</b>
-  <%= @picture.name %>
-</p>
+ <div id="showpicture">
+	<p id="image" style="text-align:center;">
+	  <%= image_tag(@picture.picture_url) %>
+	</p>
+	<p>
+	  <%= @picture.description %>
+	</p>
 
-<p>
-  <b>Path:</b>
-  <%= @picture.path %>
-</p>
-
-<p>
-  <b>Descripcion:</b>
-  <%= @picture.description %>
-</p>
-<p>
-	<b>Evento:</b>
-	<%= @picture.event.name %>
-</p>
-<p>
-	<b>Es Avatar:</b>
-	<%= @picture.is_avatar %>
-</p>
-
-
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path(:event_id => @picture.event.id) %>
+	<%= link_to 'Edit', edit_picture_path(@picture) %> |
+	<td><%= link_to 'Destroy', @picture, confirm: 'Are you sure?', method: :delete %></td> |
+	<%= link_to 'Back', pictures_path(:event_id => @picture.event.id) %>
+</div>

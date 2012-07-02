@@ -1,12 +1,13 @@
 <% title :start %>
 
-
 <nav>
 </nav>
+<p></p>
 <h1><%=t :start %></h1>
+<p></p>
 <%= @user.name %>
 <%= link_to I18n.t(:show_profile), @user %>
-
+<p></p>
 <h3><%=t :last_comments %> (<%= @last_comments.length %>)</h3>
 <ul>
 <% @last_comments.each do |comment| %>
