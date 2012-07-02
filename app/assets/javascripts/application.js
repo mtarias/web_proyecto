@@ -23,6 +23,7 @@
 
 
 $(function() {
+	
 
 	$( "#new_account" ).click(
 		function(e) {
@@ -32,6 +33,29 @@ $(function() {
 				position: "top",
 				width: 600,
 				modal: true,
+				open: function() {
+					return $(this).load(url);
+				},
+				close: function() {
+					$('#dialog-form').remove();
+				}
+			});
+			dialog_form.dialog('open');
+			e.preventDefault();
+		}
+	);
+	
+	$(".mypicture").click(
+		function(e) {
+			var url = $(this).attr('href');
+			var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
+				autoOpen: false,
+				position: "center",
+				modal: true,
+				resizable: true,
+				width: $(this).attr("width"),
+				height: $(this).attr("height"),
+				title: $(this).attr("name"),
 				open: function() {
 					return $(this).load(url);
 				},
@@ -166,6 +190,12 @@ $(function() {
 		    $("div#map_canvas").slideToggle("slow");
 	  });
 	});
+
+	$(document).ready(function($) {
+	  $('a[rel*=facebox]').facebox();
+	});
+
+	$(document).trigger('close.facebox');
 
 });
 

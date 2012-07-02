@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
 
-  layout 'login'
+  layout 'login' , :except => :show
   # GET /pictures
   # GET /pictures.json
   def index
@@ -50,7 +50,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+        format.html { redirect_to pictures_url(:event_id => @picture.event.id) , notice: 'Picture was successfully created.' }
         format.json { render json: @picture, status: :created, location: @picture }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.update_attributes(Picture.picture_upload(params)[:picture])
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        format.html { redirect_to pictures_url(:event_id => @picture.event.id), notice: 'Picture was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

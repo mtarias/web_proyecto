@@ -246,8 +246,13 @@ a:active {
 }
 .picture{
 	background-color:#60CDDE;
+	width:200px;
 	height:200px;
 	text-align:center;
+}
+.picture img{
+	width:200px;
+	height:200px;
 }
 .guests{
 	padding-left:15px;
@@ -296,13 +301,13 @@ textarea{
 	width: 80%;
 	height: 3em;
 }
-img{
-	width: 200px;
-	height: 100%;
-}
 #address{
 	display:inline;
 }
 #group{
 	width: 500px;
+}
+#showpicture{
+	width:300px;
+	height:300px;
 }
