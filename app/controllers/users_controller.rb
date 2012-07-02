@@ -1,7 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   layout 'login', :except => [:new, :create]
-  skip_before_filter :require_login, :only => [:new,:create]
+  skip_before_filter :require_login, :only => [:new,:create,:check_email]
   respond_to :html, :json
 
   def index
