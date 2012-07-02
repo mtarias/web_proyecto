@@ -50,6 +50,19 @@ $(function() {
 			"user[email]": { required: true, email: true, remote: "/users/check_email" },
 			"user[password]": { required: true, minlength: 6 },
 			"user[password_confirmation]": { required: true, equalTo: "#user_password" }
+		},
+		messages: {
+			"user[name]": I18n.t('name_required'),
+			"user[email]": {
+				required: I18n.t('email_required'),
+				email: I18n.t('email_valid'),
+				remote: I18n.t('email_remote')
+			},
+			"user[password]": {
+				required: I18n.t('password_required'),
+				minlength: I18n.t('password_length')
+			},
+			"user[password_confirmation]": I18n.t('password_equal')
 		}
 	});
 
@@ -61,6 +74,16 @@ $(function() {
 			"user[email]": { required: true, email: true, remote: "/users/check_email" },
 			"user[password]": { minlength: 6 },
 			"user[password_confirmation]": { equalTo: "#user_password" }
+		},
+		messages: {
+			"user[name]": I18n.t('name_required'),
+			"user[email]": {
+				required: I18n.t('email_required'),
+				email: I18n.t('email_valid'),
+				remote: I18n.t('email_remote')
+			},
+			"user[password]": I18n.t('password_length'),
+			"user[password_confirmation]": I18n.t('password_equal')
 		}
 	});
 
@@ -84,7 +107,6 @@ $(function() {
 	});
 
 	$("#new_tax").validate({
-		debug: true,
 		rules: {
 			"tax[amount]": { required: true, number: true },
 			"tax[name]": { required: true }

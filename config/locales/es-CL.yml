@@ -65,6 +65,7 @@ es-CL:
   # Event_comment
   post: Postear
   # Grupos
+  group: Grupo
   add_friends: Agregar amigos
   successful_new_member: "Has agregado correctamente a %{email}."
   # Usuario
@@ -86,6 +87,14 @@ es-CL:
   tax_description: Agrega todos los elementos que necesites para realizar el evento.
   tax_name: Ítem
   amount: Cantidad
+  # Validation
+  name_required: "Necesitamos tu nombre"
+  email_required: "Danos tu email para recordarte"
+  email_valid: "Tu email debe ser de la forma jaime@dominio.com"
+  email_remote: "Ese email ya fue asignado a otro usuario"
+  password_required: "Necesitas una contraseña"
+  password_length: "Usa una contraseña de al menos 6 caracteres"
+  password_equal: "Por favor, repite la misma contraseña"
   date:
     abbr_day_names:
     - dom

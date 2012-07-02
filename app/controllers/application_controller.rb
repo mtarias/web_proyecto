@@ -22,8 +22,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale_and_time_zone
     u = User.where(:id => user_id).first
-    
-  	if u
+    if u
       I18n.locale = u.locale
       Time.zone = u.time_zone
     else
@@ -38,7 +37,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_id
-    session[:user_id] || User.find_by_api_key(params[:api_key]).id
+    u = User.find_by_api_key(params[:api_key])
+    session[:user_id] || u ? u.id : nil
   end
 
   private
@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def givme_the_best_locale(list, user_locale)
+    logger.info "El user_locale es: '#{user_locale}'"
     list.each do |locale|
       if locale.include? user_locale
         return locale

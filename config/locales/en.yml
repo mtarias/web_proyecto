@@ -87,6 +87,14 @@ en:
   tax_description: Add all the elements you need to go to the event.
   tax_name: Item
   amount: Amount
+  # Validation
+  name_required: "Please specify your name"
+  email_required: "We need your email address to contact you"
+  email_valid: "Your email address must be in the format of name@domain.com"
+  email_remote: "The email was already registered by another user"
+  password_required: "You need a password"
+  password_length: "Use a password of at least 6 characters"
+  password_equal: "Repeat the password, please"
   date:
     abbr_day_names:
     - Sun

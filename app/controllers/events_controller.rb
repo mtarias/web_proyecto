@@ -123,7 +123,7 @@ class EventsController < ApplicationController
       end
     end
 
-    redirect_to event, notice: I18n.t(:successful_invitation, :email => params[:invitations].gsub(',',', ') )
+    redirect_to event, notice: I18n.t(:successful_invitation, :email => emails.join(', ') )
   end
 
   # GET /events/new.json
